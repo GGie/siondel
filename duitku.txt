@@ -1,0 +1,1836 @@
+tempWallet : Array
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 15:30:56 ***
+merchantOrderId : 1594197011 
+amount : 10123 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10123 
+additionalParam :  
+resultCode : 00 
+signature : b309285aa39cab52c353bafaae336a59 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248T1VFIR0J7S0WI87 
+vaNumber :  
+
+***************************
+
+tempWallet : {"nama_driver":null,"fullnama":"hendy admin","id":"180","id_user":"P1591528692","jumlah":"10123","bank":"Duitku Payment Gateway","nama_pemilik":"hendy admin","rekening":"Duitku REKENING","waktu":"2020-07-08 14:06:16","type":"Topup","status":"0"}
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 15:33:13 ***
+merchantOrderId : 1594197188 
+amount : 10123 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10123 
+additionalParam :  
+resultCode : 00 
+signature : 845669672bb713dad001e0fe77a01ec2 
+paymentCode : BK 
+merchantUserId :  
+reference : D62487DFUNB7T5WX3LIM 
+vaNumber :  
+
+***************************
+
+tempWallet : {"nama_driver":null,"fullnama":"hendy admin","id":"180","id_user":"P1591528692","jumlah":"10123","bank":"Duitku Payment Gateway","nama_pemilik":"hendy admin","rekening":"Duitku REKENING","waktu":"2020-07-08 14:06:16","type":"Topup","status":"0"}
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 15:34:41 ***
+merchantOrderId : 1594197271 
+amount : 10123 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10123 
+additionalParam :  
+resultCode : 00 
+signature : 17eb40d4b05737d13232abaf3a17c8f1 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248OZZFJQETTGFR81K 
+vaNumber :  
+
+***************************
+
+tempWallet : {"nama_driver":null,"fullnama":"hendy admin","id":"180","id_user":"P1591528692","jumlah":"10123","bank":"Duitku Payment Gateway","nama_pemilik":"hendy admin","rekening":"Duitku REKENING","waktu":"2020-07-08 14:06:16","type":"Topup","status":"0"}
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 15:37:26 ***
+merchantOrderId : 1594197437 
+amount : 10123 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10123 
+additionalParam :  
+resultCode : 00 
+signature : e56d347eea0421d6a591a64d679985e1 
+paymentCode : BK 
+merchantUserId :  
+reference : D62482EGQLASKXKA521V 
+vaNumber :  
+
+***************************
+
+saldo : null
+tempWallet : {"nama_driver":null,"fullnama":"hendy admin","id":"180","id_user":"P1591528692","jumlah":"10123","bank":"Duitku Payment Gateway","nama_pemilik":"hendy admin","rekening":"Duitku REKENING","waktu":"2020-07-08 14:06:16","type":"Topup","status":"0"}
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 15:43:01 ***
+merchantOrderId : 1594197776 
+amount : 10123 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10123 
+additionalParam :  
+resultCode : 00 
+signature : ba135d19bb580937e71486e438aa1165 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248AAPVNBM4ZAUCOF4 
+vaNumber :  
+
+***************************
+
+saldo : null
+tempWallet : {"nama_driver":null,"fullnama":"hendy admin","id":"180","id_user":"P1591528692","jumlah":"10123","bank":"Duitku Payment Gateway","nama_pemilik":"hendy admin","rekening":"Duitku REKENING","waktu":"2020-07-08 14:06:16","type":"Topup","status":"0"}
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 15:44:56 ***
+merchantOrderId : 1594197886 
+amount : 10123 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10123 
+additionalParam :  
+resultCode : 00 
+signature : b32ada6221cd2660c0ac098400ae914d 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248WGAFKK8J2FF1ZY5 
+vaNumber :  
+
+***************************
+
+saldo : {"saldo":"335396"}P1591528692
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 16:06:31 ***
+merchantOrderId : 1594199182 
+amount : 10123 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10123 
+additionalParam :  
+resultCode : 00 
+signature : 3de52314163fc36c5c5ad4183cf0a09e 
+paymentCode : BK 
+merchantUserId :  
+reference : D62486ODPFND82SDUQX2 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 18:17:57 ***
+merchantOrderId : G1594207143 
+amount : 10123 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10123 
+additionalParam :  
+resultCode : 00 
+signature : b9e1d35cb5c85bcc193536bf80338e25 
+paymentCode : BK 
+merchantUserId :  
+reference : D62484N5D5EEP7DC4P3N 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 18:19:42 ***
+merchantOrderId : J1594207242 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 02f03a79ec493a30785fa6bdfd3aff76 
+paymentCode : BK 
+merchantUserId :  
+reference : D62480UPIXYQLKTP0Y2L 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 18:23:47 ***
+merchantOrderId : H1594207386 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : ff14d029cbdd5905e2e5daa9edec7cbd 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248CML5AMDT6ZNKHZX 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 18:25:04 ***
+merchantOrderId : Y1594207562 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : a662ada6d259799f396d9369b2eebc1e 
+paymentCode : BK 
+merchantUserId :  
+reference : D62481W40V3P8VTQVT73 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 18:29:42 ***
+merchantOrderId : G1594207693 
+amount : 100000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 100000 
+additionalParam :  
+resultCode : 00 
+signature : a58144d9d7eacb22b35f2556fd10f9a5 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248XU62LCIN1ZMTRBJ 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 18:35:42 ***
+merchantOrderId : Q1594208206 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : b0be8367b378ef3466dee9c7da93e006 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248EKWFAT1RE1KATO8 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 18:36:39 ***
+merchantOrderId : Z1594208182 
+amount : 100000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 100000 
+additionalParam :  
+resultCode : 00 
+signature : 3f5ee1922f57614f2358f1936ee5e3ec 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248YGUQ0246HRHZ1ZN 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 19:48:28 ***
+merchantOrderId : K1594212418 
+amount : 100000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 100000 
+additionalParam :  
+resultCode : 00 
+signature : 598b85cfbc28224286e9d5d9754c4557 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248MDMH20PDBWE2604 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 20:11:34 ***
+merchantOrderId : K1594213958 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 5b5c9eea85823f37b7d8492836d491c5 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248GE4FKX1F1E3V2W7 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-08 22:25:57 ***
+merchantOrderId : P1594221949 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : badb897ca37f91bddbd9681f88482b97 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248HC67NLURRTIAKHG 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 12:37:26 ***
+merchantOrderId : D1594273097 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 9082e93266286aac8fa5418ec6067b8c 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248N1TZPV6WC6IYHG3 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 12:47:56 ***
+merchantOrderId : INV-1594273731540 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : a513283cb8c7a2311b3c08c62725f0fb 
+paymentCode : BK 
+merchantUserId :  
+reference : D62483S1EP2HYBPPHD3I 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 12:50:28 ***
+merchantOrderId : INV-1594273891099 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 42f0a66f0bfbdabca909f07f6ae772b7 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248JFEOV22QKWURF5L 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:07:11 ***
+merchantOrderId : INV-1594274883901 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : ae68b8ea526670f3f413bc0a1f242c68 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248W6AHXN0FBQ6OPZ2 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:08:41 ***
+merchantOrderId : INV-1594274942844 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : b6b0fe1969abd9fed064012e6bf5c591 
+paymentCode : VC 
+merchantUserId :  
+reference : D62484ZKLVBCLKQHMV2F 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:10:41 ***
+merchantOrderId : INV-1594275018480 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : eea2a0d3200b38cddb87fdabb22cf8d1 
+paymentCode : LQ 
+merchantUserId :  
+reference : D6248DZ5FCVEJF6C45IM 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:26:12 ***
+merchantOrderId : INV-1594276004077 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 29c859b3c74e19c19cf09c2d4283a096 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248AFNXOZW3A5PS0UJ 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:27:12 ***
+merchantOrderId : INV-1594276056637 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 89184198f31a3c8b478762a831f1eae9 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248V0LM0UJPRLWV0FL 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:33:12 ***
+merchantOrderId : INV-1594276416327 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : acba11504d8d4286a512faea1b2582b3 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248QF1BMVPYZYGBHRX 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:34:27 ***
+merchantOrderId : INV-1594276519431 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 8040d2cff998c35328f22be3c1eea9cf 
+paymentCode : LQ 
+merchantUserId :  
+reference : D62484DY8XG5T5WFBKT5 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:51:27 ***
+merchantOrderId : INV-1594277528074 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 39920fd9031586ffa4d0ab77b29c8ca8 
+paymentCode : LQ 
+merchantUserId :  
+reference : D62481S6IU2OTYECYP3Y 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:54:27 ***
+merchantOrderId : INV-1594277671632 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : b4ab583e62f35228d40f17f34cb675d3 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248UJMOG5ZHX1Y7UGV 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:55:42 ***
+merchantOrderId : INV-1594277772424 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 9e79f8e39c4f11c5840f0c210606d24c 
+paymentCode : LQ 
+merchantUserId :  
+reference : D6248BDHTGCY1MPB06GV 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:57:57 ***
+merchantOrderId : INV-1594277852837 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : ea1abef7b993900450971934491557d4 
+paymentCode : LQ 
+merchantUserId :  
+reference : D6248MMR0UYM20GK7HE7 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 13:59:57 ***
+merchantOrderId : INV-1594278029531 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 239ad27701fb321803e6a19282b04d86 
+paymentCode : LQ 
+merchantUserId :  
+reference : D6248716NYY5XWL1QBPS 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 14:38:45 ***
+merchantOrderId : INV-1594280317412 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 283d14144f5c09eae2bf70d2a945b730 
+paymentCode : LQ 
+merchantUserId :  
+reference : D6248DG4BY5ACFSFEB6L 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 14:40:58 ***
+merchantOrderId : INV-1594280478047 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 0368b366cf04beaa1842f3f5e4bb267f 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248BDWDK7ZL2O6P46Q 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 14:44:28 ***
+merchantOrderId : INV-1594280720891 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 44e1c7f277021c195ae050b32b746ad5 
+paymentCode : LQ 
+merchantUserId :  
+reference : D62482SFMVD5JXXRO4V8 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 14:47:28 ***
+merchantOrderId : INV-1594280821730 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : e703e2fa60812001ccf8ce36a47bc7d6 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248RTG3EISLCFZMQSH 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 14:50:13 ***
+merchantOrderId : INV-1594280997567 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : e0794f14df6e79b88ee624aa06855fdf 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248HZ1OB57U62W2YYE 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 14:59:43 ***
+merchantOrderId : INV-1594277592401 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 4f0bc8a4555636ef8e6f8a2ef26600ff 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248JH3EN1Y73TA4O0J 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 16:24:59 ***
+merchantOrderId : INV-1594286713046 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 495f7e5fcc4b01cffdb47943d47f705e 
+paymentCode : LQ 
+merchantUserId :  
+reference : D6248M3E6GK0HGR2GMWC 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 17:01:57 ***
+merchantOrderId : INV-1594288896304 
+amount : 100000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 100000 
+additionalParam :  
+resultCode : 00 
+signature : 87ddf2abcdf962510107e5a63cc532c2 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248M0HIN37KRLSDH10 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-09 17:55:12 ***
+merchantOrderId : INV-1594292124569 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 8ef2af4482ce5b4f0a33e637075d04c8 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248GO8C2U0ZIIF6H1Y 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-10 08:33:52 ***
+merchantOrderId : INV-1594344852218 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 0413449a237a8f10d07cb9db07517fd8 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248PYI3ZLCL0IDRODM 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-07-10 08:35:22 ***
+merchantOrderId : INV-1594344976096 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 844b3986e42e2f561a0798d8372a08f5 
+paymentCode : BK 
+merchantUserId :  
+reference : D62483Z0RO6P077UI06U 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 15:54:57 ***
+merchantOrderId : INV-1598000043753 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : adf732a076510e99be5cecdb9322639c 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248MM2OZMJS47MIRK7 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 15:56:30 ***
+merchantOrderId : INV-1598000231501 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 027d24edbeeb7f9a302ffd5c3b3c46bc 
+paymentCode : SP 
+merchantUserId :  
+reference : D62486SSBUY6OXO5F3CM 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:03:15 ***
+merchantOrderId : INV-1598000659361 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 84fb2e54fc2d66dd503cef2da977dca8 
+paymentCode : SP 
+merchantUserId :  
+reference : D62483M8NCQD7XC18YAD 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:08:46 ***
+merchantOrderId : INV-1598000995636 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 81cd1db0c04e47fde656b25df53986e2 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248E4RQQRGOVOF77SE 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:11:16 ***
+merchantOrderId : INV-1598001145014 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 891073aa6aadb21f96eb1b4d800686ef 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248LMCYYMISX353XVU 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:17:08 ***
+merchantOrderId : INV-1598001494131 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 39f87df4c4c2b4bbbf76ff7de070120f 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248RBP2GNQR5MHIL2N 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:21:08 ***
+merchantOrderId : INV-1598001737297 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 58e87e2033b37e86a879ca5fd49dfa56 
+paymentCode : SP 
+merchantUserId :  
+reference : D624834OBG4N6D74MH8W 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:24:08 ***
+merchantOrderId : INV-1598001914310 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : ca357644165f903d58b9f22fcb07c5ef 
+paymentCode : SP 
+merchantUserId :  
+reference : D624876TNV4OSLKJDXQ8 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:26:38 ***
+merchantOrderId : INV-1598002059971 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 84dd4563c6c476c248877ce7961ecc7b 
+paymentCode : SP 
+merchantUserId :  
+reference : D624857DWUQ4167C7X3M 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:41:08 ***
+merchantOrderId : INV-1598002930089 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 3deb4c5a20b56f69e8af9168e7eb289d 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248DVX5M3JU8R6XGNT 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 16:54:05 ***
+merchantOrderId : INV-1598003714153 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 1f2581b120464a6fec180e8a31157ba2 
+paymentCode : SP 
+merchantUserId :  
+reference : D624834BYHEV4NMZXQZI 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:00:23 ***
+merchantOrderId : INV-1598004073284 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : d10636d2d29276abe7ac9656da7c831a 
+paymentCode : SP 
+merchantUserId :  
+reference : D62485GNBG1S6A1YJDUI 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:04:23 ***
+merchantOrderId : INV-1598004319613 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : efdd20286ee570c9211e2f336c071465 
+paymentCode : SP 
+merchantUserId :  
+reference : D62487U7AQ2ZLSPIUEMW 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:19:24 ***
+merchantOrderId : INV-1598003646396 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : b81054f7e1e95d6d4df8c9e5c94136cb 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248UD6W4FB8HR1T00L 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:19:53 ***
+merchantOrderId : INV-1598005225958 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 6c868016660ad8203a1e4a36de022e85 
+paymentCode : SP 
+merchantUserId :  
+reference : D62482W8IK1YD1QDJ8EC 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:24:38 ***
+merchantOrderId : INV-1598005530834 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : cd2a11c2e9cd5db87da592f933fecc9c 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248FLAZO3548R1WY26 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:27:53 ***
+merchantOrderId : INV-1598005732793 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : d2bf01e0647effdc1a52be35349da717 
+paymentCode : SP 
+merchantUserId :  
+reference : D62481TSFMLB70G3VNH5 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:33:39 ***
+merchantOrderId : INV-1598006078784 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : f329237092319cd6a8692f27362c16c2 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248VGXEJ5TN61Z0TCX 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:35:39 ***
+merchantOrderId : INV-1598006203120 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : c75c9e551adad187c8f6ae2545edc812 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248BQKF6WA1OBYYFH1 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:39:54 ***
+merchantOrderId : INV-1598006455429 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 4f2ff2f5c80b027c240cb992c0d4e2c7 
+paymentCode : SP 
+merchantUserId :  
+reference : D62483QFBDU665NNUD3R 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:42:57 ***
+merchantOrderId : INV-1598006641575 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 5f2b5e84b5b0c8a51e434a99e0af74e8 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248DUY8EMLHKIO71FL 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:45:39 ***
+merchantOrderId : INV-1598006779932 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : c91a98b692ba74fbc76214893395ec82 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248GSYFZTG5M2YORSY 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:48:12 ***
+merchantOrderId : INV-1598006928017 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 15e6c28e64f1295398b7dfc5447fb48f 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248UDOJWZGSYEX5HQ5 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 17:58:39 ***
+merchantOrderId : INV-1598007557653 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : d6106c4daee79ec71a8a290c44dcc48a 
+paymentCode : SP 
+merchantUserId :  
+reference : D6248ZUANJLKQBLPZDLT 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 18:07:09 ***
+merchantOrderId : INV-1598008065892 
+amount : 10000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : d6b39ec2da6d1e5471f5dd1afa35300b 
+paymentCode : VC 
+merchantUserId :  
+reference : D6248W4HX6UA46W3Z31K 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 18:10:10 ***
+merchantOrderId : INV-1598008185876 
+amount : 100000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 100000 
+additionalParam :  
+resultCode : 00 
+signature : 58413d8300fafc8c1993bf127815a41f 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248DLLECN7BSG2M1MY 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-21 18:12:25 ***
+merchantOrderId : INV-1598008309636 
+amount : 50000 
+merchantUserId :  
+merchantCode : D6248 
+productDetail : TopUp 50000 
+additionalParam :  
+resultCode : 00 
+signature : a6bdc7d8438ccd3b27d8b89b6421bb10 
+paymentCode : BK 
+merchantUserId :  
+reference : D6248N57KBCHBWGA0JA2 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-25 15:21:38 ***
+merchantOrderId : INV-1598340235707 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : fcbce26ade03f3da20ad844149951bf3 
+paymentCode : M1 
+merchantUserId :  
+reference : D4328N32WLVNTEJKROPS 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-25 15:28:47 ***
+merchantOrderId : INV-1598340235707 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : fcbce26ade03f3da20ad844149951bf3 
+paymentCode : M1 
+merchantUserId :  
+reference : D4328N32WLVNTEJKROPS 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-25 15:28:53 ***
+merchantOrderId : INV-1598340235707 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : fcbce26ade03f3da20ad844149951bf3 
+paymentCode : M1 
+merchantUserId :  
+reference : D4328N32WLVNTEJKROPS 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-25 15:32:23 ***
+merchantOrderId : INV-1598340235707 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : fcbce26ade03f3da20ad844149951bf3 
+paymentCode : M1 
+merchantUserId :  
+reference : D4328N32WLVNTEJKROPS 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-25 15:32:28 ***
+merchantOrderId : INV-1598340235707 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : fcbce26ade03f3da20ad844149951bf3 
+paymentCode : M1 
+merchantUserId :  
+reference : D4328N32WLVNTEJKROPS 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-27 08:17:45 ***
+merchantOrderId : INV-1598490924482 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : e06b55d01ff43a047df7629fca53cb29 
+paymentCode : I1 
+merchantUserId :  
+reference : D4328WE1R8EQ74Q81H2B 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 
+
+***************************
+
+*** 2020-08-28 14:04:07 ***
+merchantOrderId :  
+amount :  
+merchantUserId :  
+merchantCode :  
+productDetail :  
+additionalParam :  
+resultCode :  
+signature :  
+paymentCode :  
+merchantUserId :  
+reference :  
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-31 12:09:00 ***
+merchantOrderId : INV-1598850244901 
+amount : 20000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 20000 
+additionalParam :  
+resultCode : 00 
+signature : 8487d0a0fe535583687197ba5e5ccd52 
+paymentCode : A1 
+merchantUserId :  
+reference : D4328L01OWEFP872HK45 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-08-31 12:09:00 ***
+merchantOrderId : INV-1598850427103 
+amount : 5000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 5000 
+additionalParam :  
+resultCode : 00 
+signature : b4fb37131019a9af45cc37348bbb2521 
+paymentCode : SP 
+merchantUserId :  
+reference : D4328DZ7ZO0E100XZP0A 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 01
+
+***************************
+
+*** 2020-09-03 18:25:35 ***
+merchantOrderId : INV-1599132233748 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 01 
+signature : 501cfc871c2bea3ad9509e597eea56d8 
+paymentCode : OV 
+merchantUserId :  
+reference : D4328XJ3044AEK7CJS05 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-09-04 12:02:43 ***
+merchantOrderId : INV-1599195707361 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 93ed3a73be310bcfc338356dddb141f1 
+paymentCode : FT 
+merchantUserId :  
+reference : D432871KK2ULKUIMPBLN 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 01
+
+***************************
+
+*** 2020-09-06 09:43:13 ***
+merchantOrderId : INV-1599360128725 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 01 
+signature : e1a473d74c09780c961c6b0ef4cc3b1f 
+paymentCode : OV 
+merchantUserId :  
+reference : D4328F83RY2IIHMO68IO 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 01
+
+***************************
+
+*** 2020-09-07 11:56:22 ***
+merchantOrderId : INV-1599454471152 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 01 
+signature : d7ef9aab913f5c8b8298ead9d5e26cc1 
+paymentCode : OV 
+merchantUserId :  
+reference : D4328RO5NK884Q7MG4CZ 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 01
+
+***************************
+
+*** 2020-09-09 08:03:43 ***
+merchantOrderId : INV-1599613338061 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 01 
+signature : 918ec75fa0c206fa8cedf687318e27f2 
+paymentCode : OV 
+merchantUserId :  
+reference : D4328QD08I5KZWH3E6SR 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 01
+
+***************************
+
+*** 2020-09-09 08:07:32 ***
+merchantOrderId : INV-1599613494415 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 01 
+signature : 07efc84c5abb7d5531084d4793fb1625 
+paymentCode : OV 
+merchantUserId :  
+reference : D4328OXH3E3OWGWIX52S 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 00
+
+***************************
+
+*** 2020-09-10 12:31:08 ***
+merchantOrderId : INV-1599715814976 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 00 
+signature : 85e613311cc8a7d3d169b6c3a744c65b 
+paymentCode : OV 
+merchantUserId :  
+reference : D4328FSJ662CS76IBLKN 
+vaNumber :  
+
+***************************
+
+*** Logs virtual Account ***
+STATUS : 01
+
+***************************
+
+*** 2020-09-10 23:05:31 ***
+merchantOrderId : INV-1599753860305 
+amount : 10000 
+merchantUserId :  
+merchantCode : D4328 
+productDetail : TopUp 10000 
+additionalParam :  
+resultCode : 01 
+signature : 23ca3991ecb1d07d71b89509f0d50d61 
+paymentCode : OV 
+merchantUserId :  
+reference : D4328SAEU7T2IHKPTBHF 
+vaNumber :  
+
+***************************
+
