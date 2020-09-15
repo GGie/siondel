@@ -79,7 +79,7 @@ class Samsat extends CI_Controller
 									
 									$returnValue = json_encode(array('status' => "200", 'message'=> 'found', 'data' => $get_petugas->result() ));
 								} else {
-									$returnValue = json_encode(array('status' => "404", 'message'=> 'email or password', 'data' => [] ));
+									$returnValue = json_encode(array('status' => "404", 'message'=> 'Wrong email or password', 'data' => [] ));
 								}
 							}
 			

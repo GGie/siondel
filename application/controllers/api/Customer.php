@@ -124,6 +124,12 @@ class Customer extends CI_Controller
 		
 		try
 		{
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$signature)
+					throw new Exception("signature null.");
 				if (!$token)
 					throw new Exception("token null.");
 				if (!$phone)
@@ -375,12 +381,37 @@ class Customer extends CI_Controller
 				
 	}
 	
-	public function validasiNopol(){
-		// header('Content-Type: application/json');
-		header( 'Content-type: text/xml' );
+	public function kdvoucher(){
+		header('Content-Type: application/json');
+		
+		$data = file_get_contents('php://input');
+		$result = json_decode($data, true);
+	
 
+		$uid 		= @$result["uid"];
+		$signature 	= @$result["signature"];
+		
+		$kdvoucher	= @$result["kdvoucher"]; //ME35HRQL
+		
+		try
+		{
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$signature)
+					throw new Exception("signature null.");
+				if (!$kdvoucher)
+					throw new Exception("kdvoucher null.");
+				
+				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+				$signatureGenerate	= hash('sha256', $uid . $secret . $kdvoucher);
+				
+				if ($signature != $signatureGenerate)
+					throw new Exception("Wrong Signature!!!");
+				
 				$params = array(
-					'kdvoucher'		=> "ME35HRQL"
+					'kdvoucher'		=> $kdvoucher
 				);
 
 
@@ -422,14 +453,31 @@ class Customer extends CI_Controller
 					$result = json_decode($request, true);
 
 					$json_pretty = json_encode($result, JSON_PRETTY_PRINT);
-					echo $json_pretty;
+					// echo $json_pretty;
+					// echo $result['error'];
 					// var_dump($request);
+					if (empty(@$result['error']))
+						$data = array('status' => "200", "message" => "Success", 'data' => $result );
+					else
+						$data = array('status' => "404", "message" => "FAILED", 'data' => [] );
+						$returnValue = json_encode($data);
 					
 				}
 				else {
-					echo $httpCode . " - " . $request;
+					// echo $httpCode . " - " . $request;
+					$result = json_decode($request, true);
+					$data = array('status' => "01", "message" => "failed", 'data' => $result['message'] );
+					$returnValue = json_encode($data);
+					// $result = json_decode($request, true);
+					// echo $result['error'];
 				}
-
+		} catch(Exception $ex)
+		{
+			$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+			$returnValue = json_encode($data);
+		}
+		
+		echo $returnValue;
 				
 	}
 	
@@ -453,5 +501,205 @@ class Customer extends CI_Controller
 		}
 		
 	}
+	
+	
+	public function getDriver()
+	{
+			$data = file_get_contents('php://input');
+			$result = json_decode($data, true);
+		
+			header('Content-Type: application/json');
+
+			$uid 		= @$result["uid"];
+			$signature 	= @$result["signature"];
+			$latitude	= @$result["latitude"];
+			$longitude	= @$result["longitude"];
+			$fitur		= @$result["fitur"];
+			
+			try
+			{
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$signature)
+					throw new Exception("signature null.");
+				if (!$latitude)
+					throw new Exception("latitude null.");
+				if (!$longitude)
+					throw new Exception("longitude null.");
+				if (!$fitur)
+					throw new Exception("fitur null.");
+
+				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+				$signatureGenerate	= hash('sha256', $uid . $secret . $latitude . $longitude);
+				
+				if ($signature != $signatureGenerate)
+					throw new Exception("Wrong Signature!!!");
+				
+				if ( $latitude AND $longitude ) {		// Cek apakah user telah menginput email dan password
+					
+							$near = $this->Pelanggan_model->get_driver_ride($latitude, $longitude, $fitur);
+							if ($near->num_rows() > 0) {
+								$returnValue = json_encode(array('status' => "200", 'message'=>'Success', 'data' => $near->result() ));
+							} else {
+								$returnValue = json_encode(array('status' => "404", 'message'=> 'Not Found', 'data' => [] ));
+							}
+			
+				} else {
+					$returnValue = json_encode(array('status' => "01", 'message'=>'FAILED'));
+				}
+		
+			} catch(Exception $ex)
+			{
+				$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+				$returnValue = json_encode($data);
+			}
+			
+			echo $returnValue;
+			
+	}
+
+	function requestTransaksi()
+    {
+		$data = file_get_contents('php://input');
+		$result = json_decode($data, true);
+	
+		header('Content-Type: application/json');
+
+		$uid 		= @$result["uid"];
+		$signature 	= @$result["signature"];
+		$email		= @$result["email"];
+		
+		$id_pelanggan		= @$result["id_pelanggan"];
+		$order_fitur		= @$result["order_fitur"];
+		$start_latitude		= @$result["start_latitude"];
+		$start_longitude	= @$result["start_longitude"];
+		$end_latitude		= @$result["end_latitude"];
+		$end_longitude		= @$result["end_longitude"];
+		$jarak				= @$result["jarak"];
+		$harga				= @$result["harga"];
+		$estimasi_time		= @$result["estimasi_time"];
+		$alamat_asal		= @$result["alamat_asal"];
+		$alamat_tujuan		= @$result["alamat_tujuan"];
+		$biaya_akhir		= @$result["biaya_akhir"];
+		$kredit_promo		= @$result["kredit_promo"];
+		$pakai_wallet		= @$result["pakai_wallet"];
+		
+		$nama_pengirim		= @$result["nama_pengirim"];
+		$telepon_pengirim	= @$result["telepon_pengirim"];
+		$nama_penerima		= @$result["nama_penerima"];
+		$telepon_penerima	= @$result["telepon_penerima"];
+		$nama_barang		= @$result["nama_barang"];
+		
+		try
+			{
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$signature)
+					throw new Exception("signature null.");
+				if (!$email)
+					throw new Exception("email null.");
+				
+				if (!$id_pelanggan)
+					throw new Exception("id_pelanggan null.");
+				if (!$order_fitur)
+					throw new Exception("order_fitur null.");
+				if (!$start_latitude)
+					throw new Exception("start_latitude null.");
+				if (!$start_longitude)
+					throw new Exception("start_longitude null.");
+				if (!$end_latitude)
+					throw new Exception("end_latitude null.");
+				if (!$end_longitude)
+					throw new Exception("end_longitude null.");
+				if (!$jarak)
+					throw new Exception("jarak null.");
+				if (!$harga)
+					throw new Exception("harga null.");
+				if (!$estimasi_time)
+					throw new Exception("estimasi_time null.");
+				if (!$alamat_asal)
+					throw new Exception("alamat_asal null.");
+				if (!$alamat_tujuan)
+					throw new Exception("alamat_tujuan null.");
+				if (!$biaya_akhir)
+					throw new Exception("biaya_akhir null.");
+				if (!$kredit_promo)
+					throw new Exception("kredit_promo null.");
+				if (!$pakai_wallet)
+					throw new Exception("pakai_wallet null.");
+				if (!$nama_pengirim)
+					throw new Exception("nama_pengirim null.");
+				if (!$telepon_pengirim)
+					throw new Exception("telepon_pengirim null.");
+				if (!$nama_penerima)
+					throw new Exception("nama_penerima null.");
+				if (!$telepon_penerima)
+					throw new Exception("telepon_penerima null.");
+				if (!$nama_barang)
+					throw new Exception("nama_barang null.");
+
+				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+				$signatureGenerate	= hash('sha256', $uid . $secret . $latitude . $longitude);
+				
+				if ($signature != $signatureGenerate)
+					throw new Exception("Wrong Signature!!!");
+
+				
+					$cek = $this->Pelanggan_model->check_banned_user($email);
+					if ($cek) {
+						throw new Exception("Status User Banned.");
+					}
+
+				$data_req = array(
+					'id_pelanggan' => $id_pelanggan,
+					'order_fitur' => $order_fitur,
+					'start_latitude' => $start_latitude,
+					'start_longitude' => $start_longitude,
+					'end_latitude' => $end_latitude,
+					'end_longitude' => $end_longitude,
+					'jarak' => $jarak,
+					'harga' => $harga,
+					'estimasi_time' => $estimasi_time,
+					'waktu_order' => date('Y-m-d H:i:s'),
+					'alamat_asal' => $alamat_asal,
+					'alamat_tujuan' => $alamat_tujuan,
+					'biaya_akhir' => $harga,
+					'kredit_promo' => $kredit_promo,
+					'pakai_wallet' => $pakai_wallet
+				);
+
+
+				$dataDetail = array(
+					'nama_pengirim' => $nama_pengirim,
+					'telepon_pengirim' => $telepon_pengirim,
+					'nama_penerima' => $nama_penerima,
+					'telepon_penerima' => $telepon_penerima,
+					'nama_barang' => $nama_barang
+				);
+
+				$request = $this->Pelanggan_model->insert_transaksi_send($data_req, $dataDetail);
+				if ($request['status']) {
+					$data = array('status' => "01", "message" => 'Success', 'data' => $request['data']->result());
+					$returnValue = json_encode($data);
+				} else {
+					$data = array('status' => "01", "message" => 'FAILED', 'data' => []);
+					$returnValue = json_encode($data);
+				}
+				
+				
+		
+			} catch(Exception $ex)
+			{
+				$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+				$returnValue = json_encode($data);
+			}
+			
+			echo $returnValue;
+			
+    }
 	
 }

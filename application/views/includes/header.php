@@ -122,8 +122,8 @@
                             </a>
                             <div class="collapse" id="samsat">
                                 <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>driver">List Samsat</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>newregistration">List Petugas</a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>samsat">List Samsat</a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>petugas">List Petugas</a></li>
                                 </ul>
                             </div>
                         </li>

@@ -10,6 +10,11 @@ class Petugas_model extends CI_model
         parent::__construct();
     }
 	
+	public function getAllpetugas()
+    {
+        return $this->db->get('samsat')->result_array();
+    }
+	
 	public function signup($data_signup)
     {
         $signup = $this->db->insert('petugas', $data_signup);
