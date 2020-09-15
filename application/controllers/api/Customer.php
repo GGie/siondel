@@ -72,7 +72,7 @@ class Customer extends CI_Controller
 							);
 							$check_banned = $this->Pelanggan_model->check_banned_user($email);
 							if ($check_banned) {
-								$returnValue = json_encode(array('status' => "01", 'message'=>'banned', 'data' => []));
+								$returnValue = json_encode(array('status' => "01", 'message'=>'banned' ));
 							} else {
 								$cek_login = $this->Pelanggan_model->get_data_pelanggan($condition);
 								$message = array();
@@ -84,7 +84,7 @@ class Customer extends CI_Controller
 									
 									$returnValue = json_encode(array('status' => "200", 'message'=> 'found', 'data' => $get_pelanggan->result() ));
 								} else {
-									$returnValue = json_encode(array('status' => "404", 'message'=> 'email or password', 'data' => [] ));
+									$returnValue = json_encode(array('status' => "404", 'message'=> 'email or password' ));
 								}
 							}
 			
@@ -94,7 +94,7 @@ class Customer extends CI_Controller
 		
 			} catch(Exception $ex)
 			{
-				$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+				$data = array('status' => "01", "message" => $ex->getMessage() );
 				$returnValue = json_encode($data);
 			}
 			
@@ -146,17 +146,17 @@ class Customer extends CI_Controller
 					throw new Exception("Wrong Signature!!!");
 				
 				if ($check_exist) {
-					$data = array('status' => "201", "message" => 'email and phone number already exist', 'data' => []);
+					$data = array('status' => "201", "message" => 'email and phone number already exist' );
 					$returnValue = json_encode($data);
 				} else if ($check_exist_phone) {
-					$data = array('status' => "201", "message" => 'phone already exist', 'data' => []);
+					$data = array('status' => "201", "message" => 'phone already exist' );
 					$returnValue = json_encode($data);
 				} else if ($check_exist_email) {
-					$data = array('status' => "201", "message" => 'email already exist', 'data' => []);
+					$data = array('status' => "201", "message" => 'email already exist' );
 					$returnValue = json_encode($data);
 				} else {
 					if (@$result["checked"] == "true") {
-						$data = array('status' => "200", "message" => 'next', 'data' => []);
+						$data = array('status' => "200", "message" => 'next' );
 						$returnValue = json_encode($data);
 					} else {
 						// $image = $dec_data->fotopelanggan;
@@ -186,7 +186,7 @@ class Customer extends CI_Controller
 							$data = array('status' => "200", "message" => 'success', 'data' => $datauser1->result() );
 							$returnValue = json_encode($data);
 						} else {
-							$data = array('status' => "201", "message" => 'failed', 'data' => []);
+							$data = array('status' => "201", "message" => 'failed' );
 							$returnValue = json_encode($data);
 						}
 					}
@@ -194,7 +194,7 @@ class Customer extends CI_Controller
 				
 		} catch(Exception $ex)
 		{
-			$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+			$data = array('status' => "01", "message" => $ex->getMessage() );
 			$returnValue = json_encode($data);
 		}
 		
@@ -227,7 +227,7 @@ class Customer extends CI_Controller
 					throw new Exception("Wrong Signature!!!");
 				
 					if (@$result["checked"] == "true") {
-						$data = array('status' => "200", "message" => 'next', 'data' => []);
+						$data = array('status' => "200", "message" => 'next' );
 						$returnValue = json_encode($data);
 					} else {
 						
@@ -242,7 +242,7 @@ class Customer extends CI_Controller
 							$data = array('status' => "200", "message" => 'success', 'data' => $samsat->result() );
 							$returnValue = json_encode($data);
 						// } else {
-							// $data = array('status' => "201", "message" => 'failed', 'data' => []);
+							// $data = array('status' => "201", "message" => 'failed' );
 							// $returnValue = json_encode($data);
 						// }
 					}
@@ -250,7 +250,7 @@ class Customer extends CI_Controller
 				
 		} catch(Exception $ex)
 		{
-			$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+			$data = array('status' => "01", "message" => $ex->getMessage() );
 			$returnValue = json_encode($data);
 		}
 		
@@ -311,15 +311,15 @@ class Customer extends CI_Controller
 							$data = array('status' => "200", "message" => 'success', 'data' => $data_transaksi );
 							$returnValue = json_encode($data);
 						} else {
-							$data = array('status' => "201", "message" => 'failed', 'data' => []);
+							$data = array('status' => "201", "message" => 'failed' );
 							$returnValue = json_encode($data);
 						}
 					
-				// $data = array('status' => "201", "message" => 'test', 'data' => []);
+				// $data = array('status' => "201", "message" => 'test' );
 				
 		} catch(Exception $ex)
 		{
-			$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+			$data = array('status' => "01", "message" => $ex->getMessage() );
 			$returnValue = json_encode($data);
 		}
 		
@@ -392,6 +392,7 @@ class Customer extends CI_Controller
 		$signature 	= @$result["signature"];
 		
 		$kdvoucher	= @$result["kdvoucher"]; //ME35HRQL
+		$phone		= @$result["phone"]; //ME35HRQL
 		
 		try
 		{
@@ -456,11 +457,19 @@ class Customer extends CI_Controller
 					// echo $json_pretty;
 					// echo $result['error'];
 					// var_dump($request);
-					if (empty(@$result['error']))
-						$data = array('status' => "200", "message" => "Success", 'data' => $result );
-					else
-						$data = array('status' => "404", "message" => "FAILED", 'data' => [] );
+					if (empty(@$result['error'])) {
+						
+						if ( $result['nohp'] == $phone )
+							$data = array('status' => "200", "message" => "Success", 'data' =>  $result );
+						else {
+							$data = array('status' => "404", "message" => "Phone do no match" );
+						}
+						
 						$returnValue = json_encode($data);
+					} else {
+						$data = array('status' => "404", "message" => "FAILED" );
+						$returnValue = json_encode($data);
+					}
 					
 				}
 				else {
@@ -473,7 +482,7 @@ class Customer extends CI_Controller
 				}
 		} catch(Exception $ex)
 		{
-			$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+			$data = array('status' => "01", "message" => $ex->getMessage() );
 			$returnValue = json_encode($data);
 		}
 		
@@ -543,7 +552,7 @@ class Customer extends CI_Controller
 							if ($near->num_rows() > 0) {
 								$returnValue = json_encode(array('status' => "200", 'message'=>'Success', 'data' => $near->result() ));
 							} else {
-								$returnValue = json_encode(array('status' => "404", 'message'=> 'Not Found', 'data' => [] ));
+								$returnValue = json_encode(array('status' => "404", 'message'=> 'Not Found' ));
 							}
 			
 				} else {
@@ -552,7 +561,7 @@ class Customer extends CI_Controller
 		
 			} catch(Exception $ex)
 			{
-				$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+				$data = array('status' => "01", "message" => $ex->getMessage() );
 				$returnValue = json_encode($data);
 			}
 			
@@ -686,7 +695,7 @@ class Customer extends CI_Controller
 					$data = array('status' => "01", "message" => 'Success', 'data' => $request['data']->result());
 					$returnValue = json_encode($data);
 				} else {
-					$data = array('status' => "01", "message" => 'FAILED', 'data' => []);
+					$data = array('status' => "01", "message" => 'FAILED' );
 					$returnValue = json_encode($data);
 				}
 				
@@ -694,7 +703,7 @@ class Customer extends CI_Controller
 		
 			} catch(Exception $ex)
 			{
-				$data = array('status' => "01", "message" => $ex->getMessage(), 'data' => []);
+				$data = array('status' => "01", "message" => $ex->getMessage() );
 				$returnValue = json_encode($data);
 			}
 			
