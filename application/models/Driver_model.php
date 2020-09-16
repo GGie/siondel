@@ -309,18 +309,11 @@ class Driver_model extends CI_model
 
     public function accept_request($cond)
     {
-
-        $this->db->where('id_driver', 'D0');
-        $this->db->where('id_transaksi', $cond['id_transaksi']);
-        $this->db->where("(status = '1')", NULL, FALSE);
-        $this->db->from('history_transaksi');
-        $cek_once = $this->db->get();
-        if ($cek_once->num_rows() > 0) {
             $data = array(
-                'status' => '2',
+                'status' => $cond['status'], //'2',
                 'id_driver' => $cond['id_driver']
             );
-            $this->db->where('id_driver', 'D0');
+            $this->db->where('id_driver', $cond['id_driver']);
             $this->db->where('id_transaksi', $cond['id_transaksi']);
             $edit = $this->db->update('history_transaksi', $data);
 
@@ -329,7 +322,7 @@ class Driver_model extends CI_model
                 $update_trans = $this->db->update('transaksi', array('id_driver' => $cond['id_driver']));
 
                 $datD = array(
-                    'status' => '2'
+                    'status' => $cond['status'], //'2',
                 );
                 $this->db->where(array('id_driver' => $cond['id_driver']));
                 $updDriver = $this->db->update('config_driver', $datD);
@@ -343,12 +336,7 @@ class Driver_model extends CI_model
                     'data' => []
                 );
             }
-        } else {
-            return array(
-                'status' => false,
-                'data' => 'canceled'
-            );
-        }
+
     }
 
     public function start_request($cond)

@@ -364,8 +364,10 @@ class Pelanggan_model extends CI_model
     {
 
         $ha = 0;
-        $kreditamuont = explode(".", $data_req['kredit_promo']);
-        $ha  = $data_req['harga'] - $kreditamuont[0];
+        // $kreditamuont = explode(".", $data_req['kredit_promo']);
+        // $ha  = $data_req['harga'] - $kreditamuont[0];
+		$kreditamuont = explode(".", @$data_req['kredit_promo']);
+        $ha  = (int)@$data_req['harga'] - (int)$kreditamuont[0];
         if ($ha <= 0) {
             $ha = 0;
         }
