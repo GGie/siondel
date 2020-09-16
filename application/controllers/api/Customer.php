@@ -367,17 +367,29 @@ class Customer extends CI_Controller
 				{
 					header('Content-Type: application/json');
 					
-					$result = json_decode($request, true);
-
-					$json_pretty = json_encode($result, JSON_PRETTY_PRINT);
-					echo $json_pretty;
+					$data = json_decode($request, true);
+					
+					if ( empty(@$data['message']) ) {
+						// $json_pretty = json_encode($result, JSON_PRETTY_PRINT);
+						// echo $json_pretty;
+						$result['status'] = "200";
+						$result['message'] = "Success";
+						$result=array_merge($result,array('data'=>$data));
+						$returnValue =  json_encode($result);
+					} else {
+						$data = array('status' => "201", "message" => $data['message'] );
+						$returnValue = json_encode($data); 
+					}
 					// var_dump($request);
 					
 				}
 				else {
-					echo $httpCode . " - " . $request;
+					$data = array('status' => $httpCode, "message" => $request );
+					$returnValue = json_encode($data); 
+					// echo $httpCode . " - " . $request;
 				}
-
+				
+			echo $returnValue;
 				
 	}
 	
@@ -612,47 +624,47 @@ class Customer extends CI_Controller
 				if (!$email)
 					throw new Exception("email null.");
 				
-				if (!$id_pelanggan)
-					throw new Exception("id_pelanggan null.");
-				if (!$order_fitur)
-					throw new Exception("order_fitur null.");
+				// if (!$id_pelanggan)
+					// throw new Exception("id_pelanggan null.");
+				// if (!$order_fitur)
+					// throw new Exception("order_fitur null.");
 				if (!$start_latitude)
 					throw new Exception("start_latitude null.");
 				if (!$start_longitude)
 					throw new Exception("start_longitude null.");
-				if (!$end_latitude)
-					throw new Exception("end_latitude null.");
-				if (!$end_longitude)
-					throw new Exception("end_longitude null.");
-				if (!$jarak)
-					throw new Exception("jarak null.");
-				if (!$harga)
-					throw new Exception("harga null.");
-				if (!$estimasi_time)
-					throw new Exception("estimasi_time null.");
-				if (!$alamat_asal)
-					throw new Exception("alamat_asal null.");
-				if (!$alamat_tujuan)
-					throw new Exception("alamat_tujuan null.");
-				if (!$biaya_akhir)
-					throw new Exception("biaya_akhir null.");
-				if (!$kredit_promo)
-					throw new Exception("kredit_promo null.");
-				if (!$pakai_wallet)
-					throw new Exception("pakai_wallet null.");
-				if (!$nama_pengirim)
-					throw new Exception("nama_pengirim null.");
-				if (!$telepon_pengirim)
-					throw new Exception("telepon_pengirim null.");
-				if (!$nama_penerima)
-					throw new Exception("nama_penerima null.");
-				if (!$telepon_penerima)
-					throw new Exception("telepon_penerima null.");
-				if (!$nama_barang)
-					throw new Exception("nama_barang null.");
+				// if (!$end_latitude)
+					// throw new Exception("end_latitude null.");
+				// if (!$end_longitude)
+					// throw new Exception("end_longitude null.");
+				// if (!$jarak)
+					// throw new Exception("jarak null.");
+				// if (!$harga)
+					// throw new Exception("harga null.");
+				// if (!$estimasi_time)
+					// throw new Exception("estimasi_time null.");
+				// if (!$alamat_asal)
+					// throw new Exception("alamat_asal null.");
+				// if (!$alamat_tujuan)
+					// throw new Exception("alamat_tujuan null.");
+				// if (!$biaya_akhir)
+					// throw new Exception("biaya_akhir null.");
+				// if (!$kredit_promo)
+					// throw new Exception("kredit_promo null.");
+				// if (!$pakai_wallet)
+					// throw new Exception("pakai_wallet null.");
+				// if (!$nama_pengirim)
+					// throw new Exception("nama_pengirim null.");
+				// if (!$telepon_pengirim)
+					// throw new Exception("telepon_pengirim null.");
+				// if (!$nama_penerima)
+					// throw new Exception("nama_penerima null.");
+				// if (!$telepon_penerima)
+					// throw new Exception("telepon_penerima null.");
+				// if (!$nama_barang)
+					// throw new Exception("nama_barang null.");
 
 				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
-				$signatureGenerate	= hash('sha256', $uid . $secret . $latitude . $longitude);
+				$signatureGenerate	= hash('sha256', $uid . $secret . $start_latitude . $start_longitude);
 				
 				if ($signature != $signatureGenerate)
 					throw new Exception("Wrong Signature!!!");

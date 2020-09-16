@@ -283,7 +283,7 @@ class Pelanggan_model extends CI_model
         $url_foto = base_url() . 'images/fotodriver/';
 
         $result = $this->db->query("
-            SELECT f.jarak_minimum, f.wallet_minimum, d.id as id, d.nama_driver, ld.latitude, ld.longitude, ld.bearing, ld.update_at,
+            SELECT '40000' as harga, f.jarak_minimum, f.wallet_minimum, d.id as id, d.nama_driver, ld.latitude, ld.longitude, ld.bearing, ld.update_at,
             k.merek, k.nomor_kendaraan, k.warna, k.tipe, s.saldo,
             d.no_telepon, CONCAT('$url_foto', d.foto, '') as foto, d.reg_id, dj.driver_job,
                 (6371 * acos(cos(radians($lat)) * cos(radians( ld.latitude ))"
@@ -398,8 +398,8 @@ class Pelanggan_model extends CI_model
     {
 
         $ha = 0;
-        $kreditamuont = explode(".", $data_req['kredit_promo']);
-        $ha  = $data_req['harga'] - $kreditamuont[0];
+        $kreditamuont = explode(".", @$data_req['kredit_promo']);
+        $ha  = (int)@$data_req['harga'] - (int)$kreditamuont[0];
         if ($ha <= 0) {
             $ha = 0;
         }

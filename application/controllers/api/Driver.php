@@ -68,16 +68,29 @@ class Driver extends CI_Controller
 				{
 					header('Content-Type: application/json');
 					
-					$result = json_decode($request, true);
-
-					$json_pretty = json_encode($result, JSON_PRETTY_PRINT);
-					echo $json_pretty;
+					$data = json_decode($request, true);
+					
+					if ( empty(@$data['message']) ) {
+						// $json_pretty = json_encode($result, JSON_PRETTY_PRINT);
+						// echo $json_pretty;
+						$result['status'] = "200";
+						$result['message'] = "Success";
+						$result=array_merge($result,array('data'=>$data));
+						$returnValue =  json_encode($result);
+					} else {
+						$data = array('status' => "201", "message" => $data['message'] );
+						$returnValue = json_encode($data); 
+					}
 					// var_dump($request);
 					
 				}
 				else {
-					echo $httpCode . " - " . $request;
+					$data = array('status' => $httpCode, "message" => $request );
+					$returnValue = json_encode($data); 
+					// echo $httpCode . " - " . $request;
 				}
+				
+			echo $returnValue;
 
 				
 	}
