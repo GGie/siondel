@@ -114,6 +114,7 @@
                                 </ul>
                             </div>
                         </li>
+						<!--
 						<li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#samsat" aria-expanded="false" aria-controls="samsat">
                                 <i class="icon-list menu-icon"></i>
@@ -127,6 +128,7 @@
                                 </ul>
                             </div>
                         </li>
+						-->
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#drivers" aria-expanded="false" aria-controls="drivers">
                                 <i class="icon-people menu-icon"></i>

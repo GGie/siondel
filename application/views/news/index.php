@@ -76,10 +76,10 @@
                                                             </td>
                                                             <td>
                                                                 <a href="<?= base_url(); ?>news/ubah/<?= $nw['id_berita']; ?>">
-                                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                                    <button class="btn btn-outline-primary m-2" style='width:80px'>Edit</button>
                                                                 </a>
                                                                 <a href="<?= base_url(); ?>news/hapus/<?= $nw['id_berita']; ?>" onclick="return confirm ('are you sure?')">
-                                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                                    <button class="btn btn-outline-danger m-2" style='width:80px'>Delete</button>
                                                                 </a>
                                                             </td>
                                                         </tr>

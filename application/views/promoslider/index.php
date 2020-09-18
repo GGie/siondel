@@ -68,9 +68,9 @@
                     </td>
                     <td>
                       <a href="<?= base_url(); ?>promoslider/ubah/<?= $pr['id']; ?>">
-                        <button class="btn btn-outline-primary">Edit</button></a>
+                        <button class="btn btn-outline-primary m-2" style='width:80px'>Edit</button></a>
                       <a href="<?= base_url(); ?>promoslider/hapus/<?= $pr['id']; ?>" onclick="return confirm ('are you sure?')">
-                        <button class="btn btn-outline-danger">Delete</button></a>
+                        <button class="btn btn-outline-danger m-2" style='width:80px'>Delete</button></a>
                     </td>
                   </tr>
                 <?php $i++;

@@ -21,8 +21,8 @@
                                     <th>Customer</th>
                                     <th>Driver</th>
                                     <th>Service</th>
-                                    <th style="width:300px">Pick Up</th>
-                                    <th style="width:300px">Destination</th>
+                                    <th style="min-width:300px">Pick Up</th>
+                                    <th style="min-width:300px">Destination</th>
                                     <th>Price</th>
                                     <th>Payment Method</th>
                                     <th>Status</th>

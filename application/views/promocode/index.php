@@ -28,8 +28,8 @@
                 <tr>
                   <th>No</th>
                   <th>Image</th>
-                  <th>Title</th>
-                  <th>Promo Code</th>
+                  <th style="min-width:100px">Title</th>
+                  <th style="min-width:100px">Promo Code</th>
                   <th>Discount</th>
                   <th>Service</th>
                   <th>Expired</th>
@@ -65,9 +65,9 @@
                     </td>
                     <td>
                       <a href="<?= base_url(); ?>promocode/editpromocode/<?= $prc['id_promo']; ?>">
-                        <button class="btn btn-outline-primary">Edit</button></a>
+                        <button class="btn btn-outline-primary m-2" style='width:80px'>Edit</button></a>
                       <a href="<?= base_url(); ?>promocode/hapus/<?= $prc['id_promo']; ?>" onclick="return confirm ('are you sure?')">
-                        <button class="btn btn-outline-danger">Delete</button></a>
+                        <button class="btn btn-outline-danger m-2" style='width:80px'>Delete</button></a>
                     </td>
                   </tr>
                 <?php $i++;

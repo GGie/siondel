@@ -83,16 +83,16 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="<?= base_url(); ?>mitra/detail/<?= $mtr['id_mitra'] ?>">
-                                                                            <button class="btn btn-outline-primary mr-2">View</button>
+                                                                            <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                         </a>
                                                                         <?php
                                                                         if ($mtr['status_mitra'] == 1) { ?>
-                                                                            <a href="<?= base_url(); ?>mitra/block/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-dark text-red mr-2">Block</button></a>
+                                                                            <a href="<?= base_url(); ?>mitra/block/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-dark text-red m-2" style='width:80px'>Block</button></a>
                                                                         <?php } else { ?>
-                                                                            <a href="<?= base_url(); ?>mitra/unblock/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-success text-red mr-2">Unblock</button></a>
+                                                                            <a href="<?= base_url(); ?>mitra/unblock/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button></a>
                                                                         <?php } ?>
                                                                         <a href="<?= base_url(); ?>mitra/hapus/<?= $mtr['id_mitra'] ?>">
-                                                                            <button onclick="return confirm ('Are you sure want to delete this Partner?')" class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                            <button onclick="return confirm ('Are you sure want to delete this Partner?')" class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                         </a>
 
                                                                     </td>
@@ -159,16 +159,16 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="<?= base_url(); ?>mitra/detail/<?= $mtr['id_mitra'] ?>">
-                                                                            <button class="btn btn-outline-primary mr-2">View</button>
+                                                                            <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                         </a>
                                                                         <?php
                                                                         if ($mtr['status_mitra'] == 1) { ?>
-                                                                            <a href="<?= base_url(); ?>mitra/block/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-dark text-red mr-2">Block</button></a>
+                                                                            <a href="<?= base_url(); ?>mitra/block/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-dark text-red m-2" style='width:80px'>Block</button></a>
                                                                         <?php } else { ?>
-                                                                            <a href="<?= base_url(); ?>mitra/unblock/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-success text-red mr-2">Unblock</button></a>
+                                                                            <a href="<?= base_url(); ?>mitra/unblock/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button></a>
                                                                         <?php } ?>
                                                                         <a href="<?= base_url(); ?>mitra/hapus/<?= $mtr['id_mitra'] ?>">
-                                                                            <button onclick="return confirm ('Are you sure want to delete this Partner?')" class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                            <button onclick="return confirm ('Are you sure want to delete this Partner?')" class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                         </a>
 
                                                                     </td>
@@ -239,16 +239,16 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="<?= base_url(); ?>mitra/detail/<?= $mtr['id_mitra'] ?>">
-                                                                            <button class="btn btn-outline-primary mr-2">View</button>
+                                                                            <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                         </a>
                                                                         <?php
                                                                         if ($mtr['status_mitra'] == 1) { ?>
-                                                                            <a href="<?= base_url(); ?>mitra/block/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-dark text-red mr-2">Block</button></a>
+                                                                            <a href="<?= base_url(); ?>mitra/block/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-dark text-red m-2" style='width:80px'>Block</button></a>
                                                                         <?php } else { ?>
-                                                                            <a href="<?= base_url(); ?>mitra/unblock/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-success text-red mr-2">Unblock</button></a>
+                                                                            <a href="<?= base_url(); ?>mitra/unblock/<?= $mtr['id_mitra'] ?>"><button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button></a>
                                                                         <?php } ?>
                                                                         <a href="<?= base_url(); ?>mitra/hapus/<?= $mtr['id_mitra'] ?>">
-                                                                            <button onclick="return confirm ('Are you sure want to delete this Partner?')" class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                            <button onclick="return confirm ('Are you sure want to delete this Partner?')" class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                         </a>
 
                                                                     </td>

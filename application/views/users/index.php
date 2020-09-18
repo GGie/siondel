@@ -76,19 +76,19 @@
                                                                 </td>
                                                                 <td>
                                                                     <a href="<?= base_url(); ?>users/detail/<?= $us['id'] ?>">
-                                                                        <button class="btn btn-outline-primary mr-2">View</button>
+                                                                        <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                     </a>
                                                                     <?php if ($us['status'] == 0) { ?>
                                                                         <a href="<?= base_url(); ?>users/userunblock/<?= $us['id'] ?>">
-                                                                            <button class="btn btn-outline-success text-red mr-2">Unblock</button>
+                                                                            <button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button>
                                                                         </a>
                                                                     <?php } else { ?>
                                                                         <a href="<?= base_url(); ?>users/userblock/<?= $us['id'] ?>">
-                                                                            <button class="btn btn-outline-dark text-dark mr-2">Block</button>
+                                                                            <button class="btn btn-outline-dark text-dark m-2" style='width:80px'>Block</button>
                                                                         </a>
                                                                     <?php } ?>
                                                                     <a href="<?= base_url(); ?>users/hapususers/<?= $us['id'] ?>">
-                                                                        <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                        <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                     </a>
                                                                 </td>
                                                             <?php $i++;
@@ -148,14 +148,14 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="<?= base_url(); ?>users/detail/<?= $us['id'] ?>">
-                                                                            <button class="btn btn-outline-primary mr-2">View</button>
+                                                                            <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                         </a>
                                                                         <a href="<?= base_url(); ?>users/userunblock/<?= $us['id'] ?>">
-                                                                            <button class="btn btn-outline-success text-red mr-2">Unblock</button>
+                                                                            <button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button>
                                                                         </a>
 
                                                                         <a href="<?= base_url(); ?>users/hapususers/<?= $us['id'] ?>">
-                                                                            <button class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                            <button class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                         </a>
                                                                     </td>
                                                             <?php $i++;
