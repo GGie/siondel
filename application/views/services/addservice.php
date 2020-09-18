@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Price</label>
-                        <input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="biaya"  required>
+                        <input type="text" class="form-control" id="newstitle" name="biaya"  required>
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Discount (%)</label>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Minimum Price</label>
-                        <input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="biaya_minimum" required>
+                        <input type="text" class="form-control" id="newstitle" name="biaya_minimum" required>
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Driver Radius</label>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Minimum Saldo</label>
-                        <input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="wallet_minimum" required>
+                        <input type="text" class="form-control" id="newstitle" name="wallet_minimum" required>
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Description</label>

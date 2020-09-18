@@ -56,17 +56,17 @@
                                         </td>
                                         <td>
                                             <?= $duit ?>
-                                            <?= number_format($s['biaya'] / 1000, 3, ".", ".") ?>
+                                            <?= number_format($s['biaya'], 0, ".", "") ?>
                                         </td>
                                         <td><?= $s['nilai']; ?>%</td>
                                         <td>/<?= $s['keterangan_biaya']; ?></td>
                                         <td><?= $s['komisi']; ?> %</td>
                                         <td><?= $duit ?>
-                                            <?= number_format($s['biaya_minimum'] / 1000, 3, ".", ".") ?></td>
+                                            <?= number_format($s['biaya_minimum'], 0, ".", "") ?></td>
                                         <td><?= $s['jarak_minimum']; ?>km</td>
                                         <td><?= $s['maks_distance']; ?>km</td>
                                         <td><?= $duit ?>
-                                            <?= number_format($s['wallet_minimum'] / 1000, 3, ".", ".") ?></td>
+                                            <?= number_format($s['wallet_minimum'], 0, ".", "") ?></td>
                                         <?php foreach ($driverjob as $dj) {
                                             if ($s['driver_job'] == $dj['id']) { ?>
                                                 <td><?= $dj['driver_job']; ?></td>
@@ -76,17 +76,17 @@
 
                                         <td>
                                             <?php if ($s['active'] == 1) { ?>
-                                                <label class="badge badge-success">Active</label>
+                                                <label class="badge badge-success m-2" style='width:80px'>Active</label>
                                             <?php } else { ?>
-                                                <label class="badge badge-danger">Non Active</label>
+                                                <label class="badge badge-danger m-2" style='width:80px'>Non Active</label>
                                             <?php } ?>
                                         </td>
                                         <td>
                                             <a href="<?= base_url(); ?>services/ubah/<?= $s['id_fitur']; ?>">
-                                                <button class="btn btn-outline-primary">Edit</button>
+                                                <button class="btn btn-outline-primary m-2" style='width:80px'>Edit</button>
                                             </a>
                                             <a href="<?= base_url(); ?>services/hapusservice/<?= $s['id_fitur']; ?>" onclick="return confirm ('are you sure?')">
-                        <button class="btn btn-outline-danger">Delete</button></a>
+                        <button class="btn btn-outline-danger m-2" style='width:80px'>Delete</button></a>
                                         </td>
                                     <?php $i++;
                                 } ?>

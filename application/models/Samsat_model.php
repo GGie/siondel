@@ -8,6 +8,12 @@ class Samsat_model extends CI_model
         return $this->db->get('samsat')->result_array();
     }
 
+	public function getsamsatbyid($id)
+    {
+        $this->db->select('*');
+        return $this->db->get_where('samsat', ['id' => $id]);
+    }
+	
     public function getusersbyid($id)
     {
         // $this->db->select('kendaraan.*');

@@ -21,8 +21,8 @@
                                     <th>Customer</th>
                                     <th>Driver</th>
                                     <th>Service</th>
-                                    <th>Pick Up</th>
-                                    <th>Destination</th>
+                                    <th style="width:300px">Pick Up</th>
+                                    <th style="width:300px">Destination</th>
                                     <th>Price</th>
                                     <th>Payment Method</th>
                                     <th>Status</th>
@@ -64,8 +64,8 @@
                                             <?php } ?>
                                         </td>
                                         <td>
-                                            <a href="<?= base_url(); ?>dashboard/detail/<?= $tr['id_transaksi']; ?>" class="btn btn-outline-primary">View</a>
-                                            <a onclick="return confirm ('Are You Sure?')" href="<?= base_url(); ?>dashboard/delete/<?= $tr['id_transaksi']; ?>" class="btn btn-outline-danger">Delete</a>
+                                            <a href="<?= base_url(); ?>dashboard/detail/<?= $tr['id_transaksi']; ?>" class="btn btn-outline-primary m-2" style='width:80px'>View</a>
+                                            <a onclick="return confirm ('Are You Sure?')" href="<?= base_url(); ?>dashboard/delete/<?= $tr['id_transaksi']; ?>" class="btn btn-outline-danger m-2" style='width:80px'>Delete</a>
                                         </td>
                                     </tr>
                                 <?php $i++;

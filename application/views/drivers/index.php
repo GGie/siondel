@@ -100,19 +100,19 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="<?= base_url(); ?>driver/detail/<?= $drv['id'] ?>">
-                                                                            <button class="btn btn-outline-primary mr-2">View</button>
+                                                                            <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                         </a>
                                                                         <?php
                                                                         if ($drv['status'] != 0) {
 
                                                                             if ($drv['status'] != 3) { ?>
-                                                                                <a href="<?= base_url(); ?>driver/block/<?= $drv['id'] ?>"><button class="btn btn-outline-dark text-red mr-2">Block</button></a>
+                                                                                <a href="<?= base_url(); ?>driver/block/<?= $drv['id'] ?>"><button class="btn btn-outline-dark text-red m-2" style='width:80px'>Block</button></a>
                                                                             <?php } else { ?>
-                                                                                <a href="<?= base_url(); ?>driver/unblock/<?= $drv['id'] ?>"><button class="btn btn-outline-success text-red mr-2">Unblock</button></a>
+                                                                                <a href="<?= base_url(); ?>driver/unblock/<?= $drv['id'] ?>"><button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button></a>
                                                                         <?php }
                                                                         } ?>
                                                                         <a href="<?= base_url(); ?>driver/hapus/<?= $drv['id'] ?>">
-                                                                            <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                            <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                         </a>
 
                                                                     </td>
@@ -191,13 +191,13 @@
                                                                         </td>
                                                                         <td>
                                                                             <a href="<?= base_url(); ?>driver/detail/<?= $drv['id'] ?>">
-                                                                                <button class="btn btn-outline-primary mr-2">View</button>
+                                                                                <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                             </a>
                                                                             <a href="<?= base_url(); ?>driver/block/<?= $drv['id'] ?>">
-                                                                                <button class="btn btn-outline-dark text-red mr-2">Block</button>
+                                                                                <button class="btn btn-outline-dark text-red m-2" style='width:80px'>Block</button>
                                                                             </a>
                                                                             <a href="<?= base_url(); ?>driver/hapus/<?= $drv['id'] ?>">
-                                                                                <button class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                                <button class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                             </a>
                                                                         </td>
                                                                     </tr>
@@ -278,13 +278,13 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="<?= base_url(); ?>driver/detail/<?= $drv['id'] ?>">
-                                                                            <button class="btn btn-outline-primary mr-2">View</button>
+                                                                            <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                         </a>
                                                                         <a href="<?= base_url(); ?>driver/block/<?= $drv['id'] ?>">
-                                                                            <button class="btn btn-outline-dark text-red mr-2">Block</button>
+                                                                            <button class="btn btn-outline-dark text-red m-2" style='width:80px'>Block</button>
                                                                         </a>
                                                                         <a href="<?= base_url(); ?>driver/hapus/<?= $drv['id'] ?>">
-                                                                            <button class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                            <button class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                         </a>
 
                                                                     </td>
@@ -362,13 +362,13 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="<?= base_url(); ?>driver/detail/<?= $drv['id'] ?>">
-                                                                            <button class="btn btn-outline-primary mr-2">View</button>
+                                                                            <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
                                                                         </a>
                                                                         <a href="<?= base_url(); ?>driver/unblock/<?= $drv['id'] ?>">
-                                                                            <button class="btn btn-outline-success text-red mr-2">Unblock</button>
+                                                                            <button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button>
                                                                         </a>
                                                                         <a href="<?= base_url(); ?>driver/hapus/<?= $drv['id'] ?>">
-                                                                            <button class="btn btn-outline-danger text-red mr-2">Delete</button>
+                                                                            <button class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
                                                                         </a>
                                                                     </td>
                                                                 </tr>

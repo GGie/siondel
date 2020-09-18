@@ -17,6 +17,7 @@ class Pelanggan extends REST_Controller
         $this->load->database();
         $this->load->model('Pelanggan_model');
         $this->load->model('Driver_model');
+        $this->load->model('Samsat_model');
         date_default_timezone_set('Asia/Jakarta');
     }
 
@@ -1068,24 +1069,33 @@ class Pelanggan extends REST_Controller
         $dec_data = json_decode($data);
 
         $data_req = array(
-            'id_pelanggan' => $dec_data->id_pelanggan,
-            'order_fitur' => $dec_data->order_fitur,
-            'start_latitude' => $dec_data->start_latitude,
-            'start_longitude' => $dec_data->start_longitude,
-            'end_latitude' => $dec_data->end_latitude,
-            'end_longitude' => $dec_data->end_longitude,
-            'jarak' => $dec_data->jarak,
-            'harga' => $dec_data->harga,
-            'estimasi_time' => $dec_data->estimasi,
-            'waktu_order' => date('Y-m-d H:i:s'),
-            'alamat_asal' => $dec_data->alamat_asal,
-            'alamat_tujuan' => $dec_data->alamat_tujuan,
-            'biaya_akhir' => $dec_data->harga,
-            'kredit_promo' => $dec_data->kredit_promo,
-            'pakai_wallet' => $dec_data->pakai_wallet
+            'id_pelanggan'		=> $dec_data->id_pelanggan,
+            'order_fitur'		=> $dec_data->order_fitur,
+            'start_latitude'	=> $dec_data->start_latitude,
+            'start_longitude'	=> $dec_data->start_longitude,
+            'end_latitude'		=> $dec_data->end_latitude,
+            'end_longitude'		=> $dec_data->end_longitude,
+            'jarak'				=> $dec_data->jarak,
+            'harga'				=> $dec_data->harga,
+            'estimasi_time'		=> $dec_data->estimasi,
+            'waktu_order'		=> date('Y-m-d H:i:s'),
+            'alamat_asal'		=> $dec_data->alamat_asal,
+            'alamat_tujuan'		=> $dec_data->alamat_tujuan,
+            'biaya_akhir'		=> $dec_data->harga,
+            'kredit_promo'		=> $dec_data->kredit_promo,
+            'pakai_wallet'		=> $dec_data->pakai_wallet
         );
+		
+		$samsat = $this->Samsat_model->getsamsatbyid($dec_data->samsatid);
+		$dataDetail = array(
+            'kdvoucher'		=> $dec_data->kdvoucher,
+            'samsatid'		=> $dec_data->samsatid,
+            'datasamsat'	=> $samsat->row(),
+        );
+		
+		$request = $this->Pelanggan_model->insert_transaksi($data_req, $dataDetail);
 
-        $request = $this->Pelanggan_model->insert_transaksi($data_req);
+        
         if ($request['status']) {
             $message = array(
                 'message' => 'success',

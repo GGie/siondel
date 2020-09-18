@@ -31,7 +31,8 @@
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Price</label>
-                        <input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="biaya" value="<?= number_format($biaya / 1000, 3, ".", ".") ?>" required>
+                        <!--<input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="biaya" value="<?= number_format($biaya / 1000, 3, ".", ".") ?>" required>-->
+                        <input type="text" class="form-control" id="newstitle" name="biaya" value="<?= number_format($biaya, 0, ".", "") ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Discount (%)</label>
@@ -60,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Minimum Price</label>
-                        <input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="biaya_minimum" value="<?= number_format($biaya_minimum / 1000, 3, ".", ".") ?>" required>
+                        <input type="text" class="form-control" id="newstitle" name="biaya_minimum" value="<?= number_format($biaya_minimum, 0, ".", "") ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Driver Radius</label>
@@ -72,7 +73,7 @@
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Minimum Saldo</label>
-                        <input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="wallet_minimum" value="<?= number_format($wallet_minimum / 1000, 3, ".", ".") ?>" required>
+                        <input type="text" class="form-control" id="newstitle" name="wallet_minimum" value="<?= number_format($wallet_minimum, 0, ".", "") ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Description</label>

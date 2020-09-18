@@ -283,7 +283,7 @@ class Pelanggan_model extends CI_model
         $url_foto = base_url() . 'images/fotodriver/';
 
         $result = $this->db->query("
-            SELECT '40000' as harga, f.jarak_minimum, f.wallet_minimum, d.id as id, d.nama_driver, ld.latitude, ld.longitude, ld.bearing, ld.update_at,
+            SELECT f.jarak_minimum, f.wallet_minimum, d.id as id, d.nama_driver, ld.latitude, ld.longitude, ld.bearing, ld.update_at,
             k.merek, k.nomor_kendaraan, k.warna, k.tipe, s.saldo,
             d.no_telepon, CONCAT('$url_foto', d.foto, '') as foto, d.reg_id, dj.driver_job,
                 (6371 * acos(cos(radians($lat)) * cos(radians( ld.latitude ))"
@@ -360,14 +360,12 @@ class Pelanggan_model extends CI_model
     }
 
 
-    public function insert_transaksi($data_req)
+    public function insert_transaksi($data_req, $dataDetail = "")
     {
 
         $ha = 0;
-        // $kreditamuont = explode(".", $data_req['kredit_promo']);
-        // $ha  = $data_req['harga'] - $kreditamuont[0];
-		$kreditamuont = explode(".", @$data_req['kredit_promo']);
-        $ha  = (int)@$data_req['harga'] - (int)$kreditamuont[0];
+        $kreditamuont = explode(".", $data_req['kredit_promo']);
+        $ha  = $data_req['harga'] - $kreditamuont[0];
         if ($ha <= 0) {
             $ha = 0;
         }
@@ -384,6 +382,33 @@ class Pelanggan_model extends CI_model
                 'status' => '1'
             );
             $this->db->insert('history_transaksi', $data_hist);
+			
+			if ( !empty($dataDetail) ) {
+				$kdvoucher = array(
+					'id_transaksi' => $reqid,
+				);
+				$this->db->where('kdvoucher', $dataDetail['kdvoucher']);
+				$this->db->update('kdvoucher', $kdvoucher);
+				
+				$qrstring = base64_encode($dataDetail['kdvoucher'].'.'.$reqid);
+				$transaksi['qrstring'] = $qrstring;
+				$this->db->where('id', $reqid);
+				$this->db->update('transaksi', $transaksi);
+			}
+			
+			if ( !empty(@$dataDetail['samsatid']) ) {
+				$samsat = array(
+					'id_transaksi'	=> $reqid,
+					'id_samsat'		=> $dataDetail['datasamsat']->id,
+					'nama_samsat'	=> $dataDetail['datasamsat']->nama,
+					'alamat_samsat'	=> $dataDetail['datasamsat']->alamat,
+					'latitude'		=> $dataDetail['datasamsat']->latitude,
+					'longitude'		=> $dataDetail['datasamsat']->longitude,
+				);
+				$this->db->insert('transaksi_samsat', $samsat);
+			}
+			
+			
             return array(
                 'status' => true,
                 'data' => $get_data->result()
@@ -400,8 +425,8 @@ class Pelanggan_model extends CI_model
     {
 
         $ha = 0;
-        $kreditamuont = explode(".", @$data_req['kredit_promo']);
-        $ha  = (int)@$data_req['harga'] - (int)$kreditamuont[0];
+        $kreditamuont = explode(".", $data_req['kredit_promo']);
+        $ha  = $data_req['harga'] - $kreditamuont[0];
         if ($ha <= 0) {
             $ha = 0;
         }
@@ -1761,31 +1786,13 @@ class Pelanggan_model extends CI_model
     }
 	
 	
-	public function insert_dataTransaksi($data_transaksi)
+	function getKdVoucher($voucher)
     {
-        $transaksi = [
-            'id_transaksi'	=> $data_transaksi['id_transaksi'],
-            'no_polis'		=> $data_transaksi['no_polis'],
-            'nik'    		=> $data_transaksi['nik'],
-            'no_rangka'		=> $data_transaksi['no_rangka'],
-            'kode'   		=> $data_transaksi['kode'],
-			'email'			=> $data_transaksi['email'],
-			'phone'			=> $data_transaksi['phone'],
-        ];
-
-        $this->db->insert('berkas_transaksi', $transaksi);
-        $reqid = $this->db->insert_id();
-		if ($this->db->affected_rows() == 1) {
-            return array(
-                'status'        => true,
-
-            );
-        } else {
-            return array(
-                'status' => false
-            );
-        }
-		
-		
+        $this->db->select('*');
+        $this->db->from('kdvoucher');
+        $this->db->join('transaksi', 'transaksi.id = kdvoucher.id_transaksi', 'left');
+        // $this->db->where($data_cond);
+        $cek = $this->db->get();
+        return $cek;
     }
 }

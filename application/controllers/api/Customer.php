@@ -17,6 +17,7 @@ class Customer extends CI_Controller
         $this->load->database();
         $this->load->model('Driver_model');
         $this->load->model('Pelanggan_model');
+        $this->load->model('Voucher_model');
         date_default_timezone_set('Asia/Jakarta');
     }
 
@@ -413,6 +414,7 @@ class Customer extends CI_Controller
 		
 		$kdvoucher	= @$result["kdvoucher"]; //ME35HRQL
 		$phone		= @$result["phone"]; //ME35HRQL
+		$validasi	= false;
 		
 		try
 		{
@@ -424,7 +426,7 @@ class Customer extends CI_Controller
 					throw new Exception("signature null.");
 				if (!$kdvoucher)
 					throw new Exception("kdvoucher null.");
-				/*
+				
 				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
 				$signatureGenerate	= hash('sha256', $uid . $secret . $kdvoucher);
 				
@@ -479,9 +481,27 @@ class Customer extends CI_Controller
 					// var_dump($request);
 					if (empty(@$result['error'])) {
 						
-						if ( $result['nohp'] == $phone )
-							$data = array('status' => "200", "message" => "Success", 'data' =>  $result );
-						else {
+						if ( $result['nohp'] == $phone OR $validasi != true) {
+							
+							$cekvoucher = $this->Voucher_model->cekvoucher($kdvoucher);
+							if ($cekvoucher->num_rows() > 0){
+								//get dari table kdvoucher
+								$JSON = json_decode($cekvoucher->row()->json);
+								$data = array('status' => "200", "message" => "Success", 'data' => $JSON );
+							}else{
+								//insert dan munculin dari bankdki
+								$JSON = json_encode($result);
+								$addvoucher	= array(
+									'kdvoucher'		=> $kdvoucher,
+									'json'			=> $JSON,
+									'status'		=> 1,
+								);
+								
+								$this->Voucher_model->addvoucher($addvoucher);
+								$data = array('status' => "200", "message" => "Success", 'data' =>  $result );
+							}
+							
+						} else {
 							$data = array('status' => "404", "message" => "Phone do no match" );
 						}
 						
@@ -506,42 +526,42 @@ class Customer extends CI_Controller
 					// $result = json_decode($request, true);
 					// echo $result['error'];
 				}
-				*/
+				
 				
 				// $json = '{"kodesah":"200902Z17200902","iic":"111","code":"00","pnpb":"0000000","tahunbuat":"2000","pkbdenda":"000036500","kdvoucher":"ME35HRQL","jrdenda":"0035000","nik":"3175085103560002","kendke-":"001","bbnpokok":"00000000000","pkbpokok":"001824500","jrpokok":"0143000","masapajak":"29082021","cc":"02498","amount":"000002039000","merk":"MITSUBISHI","bbndenda":"00000000000","tnkb":"0000000","mt":"6017","nopol":"0888PO ","alamat":"JL.ZENI G-109 RT7/6 JAKTIM         ","nama":"ETTY TRIMURTI            ","jenis":"SEDAN        ","nohp":"08211234567890"}';
 				
 				// $data = array('status' => "200", "message" => "Success", 'data' =>  $json );
-				$returnValue = '{
-    "status": "200",
-    "message": "Success",
-    "data": {
-        "kodesah": "200902Z17200902 ",
-        "iic": "111 ",
-        "code": "00",
-        "pnpb": "0000000",
-        "tahunbuat": "2000",
-        "pkbdenda": "000036500",
-        "kdvoucher": "ME35HRQL",
-        "jrdenda": "0035000",
-        "nik": "3175085103560002",
-        "kendke-": "001",
-        "bbnpokok": "00000000000",
-        "pkbpokok": "001824500",
-        "jrpokok": "0143000",
-        "masapajak": "29082021",
-        "cc": "02498",
-        "amount": "000002039000",
-        "merk": "MITSUBISHI",
-        "bbndenda": "00000000000",
-        "tnkb": "0000000",
-        "mt": "6017",
-        "nopol": "0888PO ",
-        "alamat": "JL.ZENI G-109 RT7/6 JAKTIM",
-        "nama": "ETTY TRIMURTI",
-        "jenis": "SEDAN",
-        "nohp": "08211234567890"
-    }
-}';
+				// $returnValue = '{
+    // "status": "200",
+    // "message": "Success",
+    // "data": {
+        // "kodesah": "200902Z17200902 ",
+        // "iic": "111 ",
+        // "code": "00",
+        // "pnpb": "0000000",
+        // "tahunbuat": "2000",
+        // "pkbdenda": "000036500",
+        // "kdvoucher": "ME35HRQL",
+        // "jrdenda": "0035000",
+        // "nik": "3175085103560002",
+        // "kendke-": "001",
+        // "bbnpokok": "00000000000",
+        // "pkbpokok": "001824500",
+        // "jrpokok": "0143000",
+        // "masapajak": "29082021",
+        // "cc": "02498",
+        // "amount": "000002039000",
+        // "merk": "MITSUBISHI",
+        // "bbndenda": "00000000000",
+        // "tnkb": "0000000",
+        // "mt": "6017",
+        // "nopol": "0888PO ",
+        // "alamat": "JL.ZENI G-109 RT7/6 JAKTIM",
+        // "nama": "ETTY TRIMURTI",
+        // "jenis": "SEDAN",
+        // "nohp": "08211234567890"
+    // }
+// }';
 		} catch(Exception $ex)
 		{
 			$data = array('status' => "01", "message" => $ex->getMessage() );
@@ -643,7 +663,9 @@ class Customer extends CI_Controller
 		$uid 		= @$result["uid"];
 		$signature 	= @$result["signature"];
 		$email		= @$result["email"];
+		$kdvoucher	= @$result["kdvoucher"];
 		
+		$id_driver			= @$result["id_driver"];
 		$id_pelanggan		= @$result["id_pelanggan"];
 		$order_fitur		= @$result["order_fitur"];
 		$start_latitude		= @$result["start_latitude"];
@@ -675,9 +697,13 @@ class Customer extends CI_Controller
 					throw new Exception("signature null.");
 				if (!$email)
 					throw new Exception("email null.");
+				if (!$kdvoucher)
+					throw new Exception("kdvoucher null.");
 				
-				// if (!$id_pelanggan)
-					// throw new Exception("id_pelanggan null.");
+				if (!$id_pelanggan)
+					throw new Exception("id_pelanggan null.");
+				if (!$id_driver)
+					throw new Exception("id_driver null.");
 				// if (!$order_fitur)
 					// throw new Exception("order_fitur null.");
 				if (!$start_latitude)
@@ -728,6 +754,7 @@ class Customer extends CI_Controller
 					}
 
 				$data_req = array(
+					'id_driver' => $id_driver,
 					'id_pelanggan' => $id_pelanggan,
 					'order_fitur' => $order_fitur,
 					'start_latitude' => $start_latitude,
@@ -744,9 +771,9 @@ class Customer extends CI_Controller
 					'kredit_promo' => $kredit_promo,
 					'pakai_wallet' => $pakai_wallet
 				);
-
-
+				
 				$dataDetail = array(
+					'kdvoucher' => $kdvoucher,
 					'nama_pengirim' => $nama_pengirim,
 					'telepon_pengirim' => $telepon_pengirim,
 					'nama_penerima' => $nama_penerima,
@@ -756,7 +783,28 @@ class Customer extends CI_Controller
 
 				$request = $this->Pelanggan_model->insert_transaksi_send($data_req, $dataDetail);
 				if ($request['status']) {
-					$data = array('status' => "200", "message" => 'Success', 'data' => $request['data']->result());
+					
+					foreach($request['data']->result() as $trans)
+					{	
+						$qrstring = base64_encode($kdvoucher.'.'.$trans->id.'.'.$trans->id_pelanggan.'.'.$trans->id_driver);
+						$transaksi['qrstring'] = $qrstring;
+						$this->db->where('id', $trans->id);
+						$this->db->update('transaksi', $transaksi);
+						
+						$datatransaksi[] = array(
+							'id'			=> $trans->id,
+							'id_pelanggan'	=> $trans->id_pelanggan,
+							'id_driver'		=> $trans->id_driver,
+							'qrstring'		=> ($qrstring),
+						);
+					}
+					
+					// $row[] = array(
+							// 'token'					=> "test",
+						// );
+					// $datatransaksi=array_push($datatransaksi,$row);
+
+					$data = array('status' => "200", "message" => 'Success', 'data' => $datatransaksi );
 					$returnValue = json_encode($data);
 				} else {
 					$data = array('status' => "01", "message" => 'FAILED' );
@@ -876,15 +924,118 @@ class Customer extends CI_Controller
 		
 		foreach($data as $driver)
 		{	
-			$row[] = array(
+			$result[] = array(
 				'id'					=> $driver->id,
-				'roken'					=> $driver->reg_id,
+				// 'roken'					=> $driver->reg_id,
 				// 'customer_id'			=> $data->customer_id,
 			);
 		}
-		// $result=array_merge($result,array('rows'=>$row));
-		echo json_encode($row);
+		
+		$row[] = array(
+				'id'					=> "test",
+				// 'roken'					=> $driver->reg_id,
+				// 'customer_id'			=> $data->customer_id,
+			);
+		$result=array_merge($result,$row);
+		echo json_encode($result);
 		
     }
 	
+	
+	public function QRstring()
+	{
+			$data = file_get_contents('php://input');
+			$result = json_decode($data, true);
+		
+			header('Content-Type: application/json');
+
+			$uid 		= @$result["uid"];
+			$signature 	= @$result["signature"];
+			$kdvoucher	= @$result["kdvoucher"];
+			
+			try
+			{
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$kdvoucher)
+					throw new Exception("kdvoucher null.");
+				
+				// $reg_id = array(
+					// 'token' => $token
+				// );
+		
+				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+				$signatureGenerate	= hash('sha256', $uid . $secret . $kdvoucher);
+				
+				if ($signature != $signatureGenerate)
+					throw new Exception("Wrong Signature!!!");
+				
+			
+				$check_voucher = $this->Pelanggan_model->getKdVoucher($kdvoucher);
+				// $check_voucher = @$this->db->get_where('kdvoucher', array('kdvoucher' => $kdvoucher));
+				if ($check_voucher->num_rows() > 0) {
+					$returnValue = json_encode(array('status' => "200", 'message'=>'Success', 'data'=> $check_voucher->result() ));
+				} else {
+					$returnValue = json_encode(array('status' => "404", 'message'=> 'kdvoucher not found' ));
+				}
+
+		
+			} catch(Exception $ex)
+			{
+				$data = array('status' => "01", "message" => $ex->getMessage() );
+				$returnValue = json_encode($data);
+			}
+			
+			echo $returnValue;
+			
+	}
+	
+	
+	public function transaksi_log()
+	{
+			$data = file_get_contents('php://input');
+			$result = json_decode($data, true);
+		
+			header('Content-Type: application/json');
+
+			$uid			= @$result["uid"];
+			$signature		= @$result["signature"];
+			$id_transaksi	= @$result["id_transaksi"];
+			
+			try
+			{
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$signature)
+					throw new Exception("signature null.");
+				if (!$id_transaksi)
+					throw new Exception("id_transaksi null.");
+				
+				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+				$signatureGenerate	= hash('sha256', $uid . $secret . $id_transaksi);
+				
+				if ($signature != $signatureGenerate)
+					throw new Exception("Wrong Signature!!!");
+				
+					$this->db->order_by('id', 'DESC');
+					$trans_log = $this->db->get_where('transaksi_log', array('id_transaksi' => $id_transaksi));
+					if ($trans_log->num_rows() > 0) {
+						$returnValue = json_encode(array('status' => "200", 'message'=>'Success', 'data' => $trans_log->result() ));
+					} else {
+						$returnValue = json_encode(array('status' => "404", 'message'=> 'Transaction not found' ));
+					}
+							
+			} catch(Exception $ex)
+			{
+				$data = array('status' => "01", "message" => $ex->getMessage() );
+				$returnValue = json_encode($data);
+			}
+			
+			echo $returnValue;
+			
+	}
 }
