@@ -713,7 +713,7 @@ class Driver extends REST_Controller
         $data = file_get_contents("php://input");
         $dec_data = json_decode($data);
 
-		update_transaksi_log($dec_data->id_transaksi, GOTO);
+		update_transaksi_log($dec_data->id_transaksi, GOTOS);
 		
         $data_req = array(
             'id_driver' => $dec_data->id,
