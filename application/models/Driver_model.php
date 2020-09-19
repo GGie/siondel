@@ -440,7 +440,7 @@ class Driver_model extends CI_model
         }
     }
 	
-	public function goto_request($cond)
+	public function backto_request($cond)
     {
 
         $this->db->where('id_driver', 'D0');

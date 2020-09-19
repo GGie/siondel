@@ -702,7 +702,7 @@ class Driver extends REST_Controller
         }
     }
 
-	function goto_post()
+	function backto_post()
     {
         if (!isset($_SERVER['PHP_AUTH_USER'])) {
             header("WWW-Authenticate: Basic realm=\"Private Area\"");
@@ -713,7 +713,7 @@ class Driver extends REST_Controller
         $data = file_get_contents("php://input");
         $dec_data = json_decode($data);
 
-		update_transaksi_log($dec_data->id_transaksi, GOTOS);
+		update_transaksi_log($dec_data->id_transaksi, BACKTO);
 		
         $data_req = array(
             'id_driver' => $dec_data->id,
@@ -728,7 +728,7 @@ class Driver extends REST_Controller
         $cek_login = $this->Driver_model->get_status_driver($condition);
         if ($cek_login->num_rows() > 0) {
 
-            $acc_req = $this->Driver_model->goto_request($data_req);
+            $acc_req = $this->Driver_model->backto_request($data_req);
             if ($acc_req['status']) {
                 $message = array(
                     'message' => 'berhasil',
