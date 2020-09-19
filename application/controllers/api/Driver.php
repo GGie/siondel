@@ -587,6 +587,177 @@ class Driver extends REST_Controller
             $this->response($message, 200);
         }
     }
+	
+	function arrived_post()
+    {
+        if (!isset($_SERVER['PHP_AUTH_USER'])) {
+            header("WWW-Authenticate: Basic realm=\"Private Area\"");
+            header("HTTP/1.0 401 Unauthorized");
+            return false;
+        }
+
+        $data = file_get_contents("php://input");
+        $dec_data = json_decode($data);
+
+		update_transaksi_log($dec_data->id_transaksi, ARRIVED);
+		
+        $data_req = array(
+            'id_driver' => $dec_data->id,
+            'id_transaksi' => $dec_data->id_transaksi
+        );
+
+        $condition = array(
+            'id_driver' => $dec_data->id,
+            'status' => '2'
+        );
+
+        $cek_login = $this->Driver_model->get_status_driver($condition);
+        if ($cek_login->num_rows() > 0) {
+
+            $acc_req = $this->Driver_model->arrived_request($data_req);
+            if ($acc_req['status']) {
+                $message = array(
+                    'message' => 'berhasil',
+                    'data' => 'berhasil'
+                );
+                $this->response($message, 200);
+            } else {
+                if ($acc_req['data'] == 'canceled') {
+                    $message = array(
+                        'message' => 'canceled',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                } else {
+                    $message = array(
+                        'message' => 'unknown fail',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                }
+            }
+        } else {
+            $message = array(
+                'message' => 'unknown fail',
+                'data' => 'canceled'
+            );
+            $this->response($message, 200);
+        }
+    }
+
+	function process_post()
+    {
+        if (!isset($_SERVER['PHP_AUTH_USER'])) {
+            header("WWW-Authenticate: Basic realm=\"Private Area\"");
+            header("HTTP/1.0 401 Unauthorized");
+            return false;
+        }
+
+        $data = file_get_contents("php://input");
+        $dec_data = json_decode($data);
+
+		update_transaksi_log($dec_data->id_transaksi, PROCESS);
+		
+        $data_req = array(
+            'id_driver' => $dec_data->id,
+            'id_transaksi' => $dec_data->id_transaksi
+        );
+
+        $condition = array(
+            'id_driver' => $dec_data->id,
+            'status' => '6'
+        );
+
+        $cek_login = $this->Driver_model->get_status_driver($condition);
+        if ($cek_login->num_rows() > 0) {
+
+            $acc_req = $this->Driver_model->process_request($data_req);
+            if ($acc_req['status']) {
+                $message = array(
+                    'message' => 'berhasil',
+                    'data' => 'berhasil'
+                );
+                $this->response($message, 200);
+            } else {
+                if ($acc_req['data'] == 'canceled') {
+                    $message = array(
+                        'message' => 'canceled',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                } else {
+                    $message = array(
+                        'message' => 'unknown fail',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                }
+            }
+        } else {
+            $message = array(
+                'message' => 'unknown fail',
+                'data' => 'canceled'
+            );
+            $this->response($message, 200);
+        }
+    }
+
+	function goto_post()
+    {
+        if (!isset($_SERVER['PHP_AUTH_USER'])) {
+            header("WWW-Authenticate: Basic realm=\"Private Area\"");
+            header("HTTP/1.0 401 Unauthorized");
+            return false;
+        }
+
+        $data = file_get_contents("php://input");
+        $dec_data = json_decode($data);
+
+		update_transaksi_log($dec_data->id_transaksi, GOTO);
+		
+        $data_req = array(
+            'id_driver' => $dec_data->id,
+            'id_transaksi' => $dec_data->id_transaksi
+        );
+
+        $condition = array(
+            'id_driver' => $dec_data->id,
+            'status' => '7'
+        );
+
+        $cek_login = $this->Driver_model->get_status_driver($condition);
+        if ($cek_login->num_rows() > 0) {
+
+            $acc_req = $this->Driver_model->goto_request($data_req);
+            if ($acc_req['status']) {
+                $message = array(
+                    'message' => 'berhasil',
+                    'data' => 'berhasil'
+                );
+                $this->response($message, 200);
+            } else {
+                if ($acc_req['data'] == 'canceled') {
+                    $message = array(
+                        'message' => 'canceled',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                } else {
+                    $message = array(
+                        'message' => 'unknown fail',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                }
+            }
+        } else {
+            $message = array(
+                'message' => 'unknown fail',
+                'data' => 'canceled'
+            );
+            $this->response($message, 200);
+        }
+    }
 
     function start_post()
     {
