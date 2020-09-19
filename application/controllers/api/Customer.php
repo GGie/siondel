@@ -1038,4 +1038,53 @@ class Customer extends CI_Controller
 			echo $returnValue;
 			
 	}
+	
+	  public function check_transaksi()
+  	{
+    			  $data = file_get_contents('php://input');
+    			  $result = json_decode($data, true);
+
+     			  header('Content-Type: application/json');
+
+    			  $uid			= @$result["uid"];
+    			  $signature		= @$result["signature"];
+    			  $id_transaksi	        = @$result["id_transaksi"];
+
+    			  try
+    		          {
+      			  	if (!$result)
+        				throw new Exception("API KEY DATA");
+      				if (!$uid)
+        				throw new Exception("uid null.");
+      				if (!$signature)
+        				throw new Exception("signature null.");
+      				if (!$id_transaksi)
+        				throw new Exception("id_transaksi null.");
+
+      				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+      				$signatureGenerate	= hash('sha256', $uid . $secret . $id_transaksi);
+
+      				if ($signature != $signatureGenerate)
+        				throw new Exception("Wrong Signature!!!");
+
+        				$dataTrans = array(
+            					'id_transaksi' => $id_transaksi
+        				);
+
+        			$trans_hs = $this->Pelanggan_model->check_status($dataTrans);;
+
+        			if ($trans_hs != null) {
+          				$returnValue = json_encode($trans_hs);
+        			} else {
+          				$returnValue = json_encode(array('status' => "404", 'message'=> 'Transaction not found' ));
+        			}
+
+    			} catch(Exception $ex)
+    			{
+      				$data = array('status' => "01", "message" => $ex->getMessage() );
+      				$returnValue = json_encode($data);
+    			}
+
+    			echo $returnValue;
+  	}
 }
