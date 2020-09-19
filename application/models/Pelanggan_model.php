@@ -395,7 +395,7 @@ class Pelanggan_model extends CI_model
 				);
 				$getPelanggan = $this->get_data_pelanggan($paramPelanggan);
 				
-				$qrstring = base64_encode($dataDetail['kdvoucher'].'.'.$reqid.'.'.$getPelanggan->row()->email);
+				$qrstring = base64_encode($dataDetail['kdvoucher'].'.'.$reqid .'.'. $getPelanggan->row()->email );
 				$transaksi['qrstring'] = $qrstring;
 				$this->db->where('id', $reqid);
 				$this->db->update('transaksi', $transaksi);
