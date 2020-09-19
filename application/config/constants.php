@@ -88,6 +88,9 @@ defined('EXIT__AUTO_MAX')      or define('EXIT__AUTO_MAX', 125); // highest auto
 define('demo', False);
 
 
-define('ACCEPT', "Driver Menerima Pesanan");
-define('START', "Driver Dalam Perjalanan");
-define('FINISH', "Driver Sudah Sampai Customer");
+define('ACCEPT', "Driver Terima Pesanan");
+define('START', "Driver Dalam Perjalanan ke SAMSAT yang dituju");
+define('ARRIVED', "Driver Sudah Tiba di SAMSAT yang dituju");
+define('PROCESS', "Dokumen Sedang di Proses");
+define('BACKTO', "Driver Sedang Menuju Tempat Pengiriman Dokumen");
+define('FINISH', "Driver Sudah Sampai");
