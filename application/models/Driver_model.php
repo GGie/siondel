@@ -354,9 +354,8 @@ class Driver_model extends CI_model
 	public function arrived_request($cond)
     {
 
-        $this->db->where('id_driver', 'D0');
-        $this->db->where('id_transaksi', $cond['id_transaksi']);
-        $this->db->where("(status = '1')", NULL, FALSE);
+        $this->db->where($cond);
+        $this->db->where('status', '3');
         $this->db->from('history_transaksi');
         $cek_once = $this->db->get();
         if ($cek_once->num_rows() > 0) {
@@ -364,14 +363,9 @@ class Driver_model extends CI_model
                 'status' => '6',
                 'id_driver' => $cond['id_driver']
             );
-            $this->db->where('id_driver', 'D0');
-            $this->db->where('id_transaksi', $cond['id_transaksi']);
+            $this->db->where($cond);
             $edit = $this->db->update('history_transaksi', $data);
-
             if ($this->db->affected_rows() > 0) {
-                $this->db->where('id', $cond['id_transaksi']);
-                $update_trans = $this->db->update('transaksi', array('id_driver' => $cond['id_driver']));
-
                 $datD = array(
                     'status' => '6'
                 );
@@ -388,6 +382,12 @@ class Driver_model extends CI_model
                 );
             }
         } else {
+            $datD = array(
+                'status' => '1'
+            );
+            $this->db->where(array('id_driver' => $cond['id_driver']));
+
+            $updDriver = $this->db->update('config_driver', $datD);
             return array(
                 'status' => false,
                 'data' => 'canceled'
@@ -399,9 +399,8 @@ class Driver_model extends CI_model
 	public function process_request($cond)
     {
 
-        $this->db->where('id_driver', 'D0');
-        $this->db->where('id_transaksi', $cond['id_transaksi']);
-        $this->db->where("(status = '1')", NULL, FALSE);
+        $this->db->where($cond);
+        $this->db->where('status', '6');
         $this->db->from('history_transaksi');
         $cek_once = $this->db->get();
         if ($cek_once->num_rows() > 0) {
@@ -409,14 +408,9 @@ class Driver_model extends CI_model
                 'status' => '7',
                 'id_driver' => $cond['id_driver']
             );
-            $this->db->where('id_driver', 'D0');
-            $this->db->where('id_transaksi', $cond['id_transaksi']);
+            $this->db->where($cond);
             $edit = $this->db->update('history_transaksi', $data);
-
             if ($this->db->affected_rows() > 0) {
-                $this->db->where('id', $cond['id_transaksi']);
-                $update_trans = $this->db->update('transaksi', array('id_driver' => $cond['id_driver']));
-
                 $datD = array(
                     'status' => '7'
                 );
@@ -433,6 +427,12 @@ class Driver_model extends CI_model
                 );
             }
         } else {
+            $datD = array(
+                'status' => '1'
+            );
+            $this->db->where(array('id_driver' => $cond['id_driver']));
+
+            $updDriver = $this->db->update('config_driver', $datD);
             return array(
                 'status' => false,
                 'data' => 'canceled'
@@ -443,9 +443,8 @@ class Driver_model extends CI_model
 	public function backto_request($cond)
     {
 
-        $this->db->where('id_driver', 'D0');
-        $this->db->where('id_transaksi', $cond['id_transaksi']);
-        $this->db->where("(status = '1')", NULL, FALSE);
+        $this->db->where($cond);
+        $this->db->where('status', '7');
         $this->db->from('history_transaksi');
         $cek_once = $this->db->get();
         if ($cek_once->num_rows() > 0) {
@@ -453,14 +452,9 @@ class Driver_model extends CI_model
                 'status' => '8',
                 'id_driver' => $cond['id_driver']
             );
-            $this->db->where('id_driver', 'D0');
-            $this->db->where('id_transaksi', $cond['id_transaksi']);
+            $this->db->where($cond);
             $edit = $this->db->update('history_transaksi', $data);
-
             if ($this->db->affected_rows() > 0) {
-                $this->db->where('id', $cond['id_transaksi']);
-                $update_trans = $this->db->update('transaksi', array('id_driver' => $cond['id_driver']));
-
                 $datD = array(
                     'status' => '8'
                 );
@@ -477,6 +471,12 @@ class Driver_model extends CI_model
                 );
             }
         } else {
+            $datD = array(
+                'status' => '1'
+            );
+            $this->db->where(array('id_driver' => $cond['id_driver']));
+
+            $updDriver = $this->db->update('config_driver', $datD);
             return array(
                 'status' => false,
                 'data' => 'canceled'
