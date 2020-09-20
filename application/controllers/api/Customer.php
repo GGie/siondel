@@ -214,6 +214,8 @@ class Customer extends CI_Controller
 		$signature 	= @$result["signature"];
 		
 		$samsatID	= @$result["samsatid"];
+		$nama		= @$result["nama"];
+		$address	= @$result["address"];
         $time		= @$result["time"];
 		$token		= @$result["token"];
 		
@@ -235,25 +237,26 @@ class Customer extends CI_Controller
 						$returnValue = json_encode($data);
 					} else {
 						
-						if ($samsatID != '') {
-							$reg_id = array('id' => $samsatID);
-							$this->db->where($reg_id);
-						}
-						
-						$this->db->where('status', 1);
-						$samsat = $this->db->get('samsat');
-						// if ($signup) {
-							$result = $samsat->result();
-							// $result['token'][] = $token;
-							// $data123 = array_merge($result, array('token' => $token));
-							// return json_encode($result);
-		
-							$data = array('status' => "200", "message" => 'success', 'data' => $result );
-							$returnValue = json_encode($data);
-						// } else {
-							// $data = array('status' => "201", "message" => 'failed' );
-							// $returnValue = json_encode($data);
+						// if ($samsatID != '') {
+							// $reg_id = array('id' => $samsatID);
+							// $this->db->where($reg_id);
 						// }
+						
+						$param = array(
+							'id'		=> @$samsatID,
+							'nama'		=> @$nama,
+							'address'	=> @$address
+						);
+						
+						$samsat = $this->getsamsat($param);
+						if ($samsat != "01") {
+							$data = array('status' => "200", "message" => 'success', 'data' => json_decode($samsat)	 );
+							$returnValue = json_encode($data);
+						} else {
+							$data = array('status' => "201", "message" => 'failed', 'data' => []);
+							$returnValue = json_encode($data);
+						}
+							
 					}
 				
 				
@@ -266,6 +269,26 @@ class Customer extends CI_Controller
 		echo $returnValue;
     }
 	
+	
+	public function getsamsat($param = "")
+    {
+		header('Content-Type: application/json');
+		
+		$apiLink = "http://103.41.206.172/rest/api/samsat?nama=" . @$param['nama'] . "&id=" . @$param['id'] . "&address=" . @$param['address'];
+		$response = file_get_contents($apiLink);
+		// var_dump($response); 
+		if(!empty($response)){
+			$result = json_encode($response);
+					return json_decode($result);
+					 // echo "paymentUrl :". $result['result'] . "<br />";
+					 // return $result['result']['access_token'];
+		  // echo $response;
+		}else{
+		  return "01";
+		}
+		
+			
+    }
 	
 	public function dataTransaksi()
     {
@@ -498,7 +521,7 @@ class Customer extends CI_Controller
 								);
 								
 								$this->Voucher_model->addvoucher($addvoucher);
-								$data = array('status' => "200", "message" => "Success", 'data' =>  $result );
+								$data = array('status' => "200", "message" => "Success", 'data' =>  $JSON );
 							}
 							
 						} else {

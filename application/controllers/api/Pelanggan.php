@@ -1086,11 +1086,11 @@ class Pelanggan extends REST_Controller
             'pakai_wallet'		=> $dec_data->pakai_wallet
         );
 		
-		$samsat = $this->Samsat_model->getsamsatbyid($dec_data->samsatid);
+		// $samsat = $this->Samsat_model->getsamsatbyid($dec_data->samsatid);
 		$dataDetail = array(
             'kdvoucher'		=> $dec_data->kdvoucher,
             'samsatid'		=> $dec_data->samsatid,
-            'datasamsat'	=> $samsat->row(),
+            // 'datasamsat'	=> $samsat->row(),
         );
 		
 		$request = $this->Pelanggan_model->insert_transaksi($data_req, $dataDetail);
