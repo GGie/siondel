@@ -599,7 +599,9 @@ class Driver extends REST_Controller
         $data = file_get_contents("php://input");
         $dec_data = json_decode($data);
 
-		update_transaksi_log($dec_data->id_transaksi, ARRIVED);
+		$id_trans = str_replace(array('.', "'"), '', $dec_data->id_transaksi);
+		
+		update_transaksi_log($id_trans, ARRIVED);
 		
         // $data_req = array(
             // 'id_driver' => $dec_data->id,
@@ -655,8 +657,9 @@ class Driver extends REST_Controller
 
         $data = file_get_contents("php://input");
         $dec_data = json_decode($data);
-
-		update_transaksi_log($dec_data->id_transaksi, PROCESS);
+		
+		$id_trans = str_replace(array('.', "'"), '', $dec_data->id_transaksi);
+		update_transaksi_log($id_trans, PROCESS);
 		
         // $data_req = array(
             // 'id_driver' => $dec_data->id,
@@ -712,8 +715,9 @@ class Driver extends REST_Controller
 
         $data = file_get_contents("php://input");
         $dec_data = json_decode($data);
-
-		update_transaksi_log($dec_data->id_transaksi, BACKTO);
+		
+		$id_trans = str_replace(array('.', "'"), '', $dec_data->id_transaksi);
+		update_transaksi_log($id_trans, BACKTO);
 		
         // $data_req = array(
             // 'id_driver' => $dec_data->id,
