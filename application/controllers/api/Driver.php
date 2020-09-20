@@ -603,48 +603,48 @@ class Driver extends REST_Controller
 		
 		update_transaksi_log($id_trans, ARRIVED);
 		
-        // $data_req = array(
-            // 'id_driver' => $dec_data->id,
-            // 'id_transaksi' => $dec_data->id_transaksi
-        // );
+        $data_req = array(
+            'id_driver' => $dec_data->id,
+            'id_transaksi' => $id_trans
+        );
 
-        // $condition = array(
-            // 'id_driver' => $dec_data->id,
-            // 'status' => '3'
-        // );
+        $condition = array(
+            'id_driver' => $dec_data->id,
+            'status' => '3'
+        );
 
-        // $cek_login = $this->Driver_model->get_status_driver($condition);
-        // if ($cek_login->num_rows() > 0) {
+        $cek_login = $this->Driver_model->get_status_driver($condition);
+        if ($cek_login->num_rows() > 0) {
 
-            // $acc_req = $this->Driver_model->arrived_request($data_req);
-            // if ($acc_req['status']) {
+            $acc_req = $this->Driver_model->arrived_request($data_req);
+            if ($acc_req['status']) {
                 $message = array(
                     'message' => 'berhasil',
                     'data' => 'berhasil'
                 );
                 $this->response($message, 200);
-            // } else {
-                // if ($acc_req['data'] == 'canceled') {
-                    // $message = array(
-                        // 'message' => 'canceled',
-                        // 'data' => 'canceled'
-                    // );
-                    // $this->response($message, 200);
-                // } else {
-                    // $message = array(
-                        // 'message' => 'unknown fail',
-                        // 'data' => 'canceled'
-                    // );
-                    // $this->response($message, 200);
-                // }
-            // }
-        // } else {
-            // $message = array(
-                // 'message' => 'unknown fail',
-                // 'data' => 'canceled'
-            // );
-            // $this->response($message, 200);
-        // }
+            } else {
+                if ($acc_req['data'] == 'canceled') {
+                    $message = array(
+                        'message' => 'canceled',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                } else {
+                    $message = array(
+                        'message' => 'unknown fail',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                }
+            }
+        } else {
+            $message = array(
+                'message' => 'unknown fail',
+                'data' => 'canceled'
+            );
+            $this->response($message, 200);
+        }
     }
 
 	function process_post()
@@ -661,48 +661,48 @@ class Driver extends REST_Controller
 		$id_trans = str_replace(array('.', "'"), '', $dec_data->id_transaksi);
 		update_transaksi_log($id_trans, PROCESS);
 		
-        // $data_req = array(
-            // 'id_driver' => $dec_data->id,
-            // 'id_transaksi' => $dec_data->id_transaksi
-        // );
+        $data_req = array(
+            'id_driver' => $dec_data->id,
+            'id_transaksi' => $id_trans
+        );
 
-        // $condition = array(
-            // 'id_driver' => $dec_data->id,
-            // 'status' => '6'
-        // );
+        $condition = array(
+            'id_driver' => $dec_data->id,
+            'status' => '6'
+        );
 
-        // $cek_login = $this->Driver_model->get_status_driver($condition);
-        // if ($cek_login->num_rows() > 0) {
+        $cek_login = $this->Driver_model->get_status_driver($condition);
+        if ($cek_login->num_rows() > 0) {
 
-            // $acc_req = $this->Driver_model->process_request($data_req);
-            // if ($acc_req['status']) {
+            $acc_req = $this->Driver_model->process_request($data_req);
+            if ($acc_req['status']) {
                 $message = array(
                     'message' => 'berhasil',
                     'data' => 'berhasil'
                 );
                 $this->response($message, 200);
-            // } else {
-                // if ($acc_req['data'] == 'canceled') {
-                    // $message = array(
-                        // 'message' => 'canceled',
-                        // 'data' => 'canceled'
-                    // );
-                    // $this->response($message, 200);
-                // } else {
-                    // $message = array(
-                        // 'message' => 'unknown fail',
-                        // 'data' => 'canceled'
-                    // );
-                    // $this->response($message, 200);
-                // }
-            // }
-        // } else {
-            // $message = array(
-                // 'message' => 'unknown fail',
-                // 'data' => 'canceled'
-            // );
-            // $this->response($message, 200);
-        // }
+            } else {
+                if ($acc_req['data'] == 'canceled') {
+                    $message = array(
+                        'message' => 'canceled',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                } else {
+                    $message = array(
+                        'message' => 'unknown fail',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                }
+            }
+        } else {
+            $message = array(
+                'message' => 'unknown fail',
+                'data' => 'canceled'
+            );
+            $this->response($message, 200);
+        }
     }
 
 	function backto_post()
@@ -719,48 +719,48 @@ class Driver extends REST_Controller
 		$id_trans = str_replace(array('.', "'"), '', $dec_data->id_transaksi);
 		update_transaksi_log($id_trans, BACKTO);
 		
-        // $data_req = array(
-            // 'id_driver' => $dec_data->id,
-            // 'id_transaksi' => $dec_data->id_transaksi
-        // );
+        $data_req = array(
+            'id_driver' => $dec_data->id,
+            'id_transaksi' => $id_trans
+        );
 
-        // $condition = array(
-            // 'id_driver' => $dec_data->id,
-            // 'status' => '7'
-        // );
+        $condition = array(
+            'id_driver' => $dec_data->id,
+            'status' => '7'
+        );
 
-        // $cek_login = $this->Driver_model->get_status_driver($condition);
-        // if ($cek_login->num_rows() > 0) {
+        $cek_login = $this->Driver_model->get_status_driver($condition);
+        if ($cek_login->num_rows() > 0) {
 
-            // $acc_req = $this->Driver_model->backto_request($data_req);
-            // if ($acc_req['status']) {
+            $acc_req = $this->Driver_model->backto_request($data_req);
+            if ($acc_req['status']) {
                 $message = array(
                     'message' => 'berhasil',
                     'data' => 'berhasil'
                 );
                 $this->response($message, 200);
-            // } else {
-                // if ($acc_req['data'] == 'canceled') {
-                    // $message = array(
-                        // 'message' => 'canceled',
-                        // 'data' => 'canceled'
-                    // );
-                    // $this->response($message, 200);
-                // } else {
-                    // $message = array(
-                        // 'message' => 'unknown fail',
-                        // 'data' => 'canceled'
-                    // );
-                    // $this->response($message, 200);
-                // }
-            // }
-        // } else {
-            // $message = array(
-                // 'message' => 'unknown fail',
-                // 'data' => 'canceled'
-            // );
-            // $this->response($message, 200);
-        // }
+            } else {
+                if ($acc_req['data'] == 'canceled') {
+                    $message = array(
+                        'message' => 'canceled',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                } else {
+                    $message = array(
+                        'message' => 'unknown fail',
+                        'data' => 'canceled'
+                    );
+                    $this->response($message, 200);
+                }
+            }
+        } else {
+            $message = array(
+                'message' => 'unknown fail',
+                'data' => 'canceled'
+            );
+            $this->response($message, 200);
+        }
     }
 
     function start_post()
