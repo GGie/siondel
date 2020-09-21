@@ -398,11 +398,10 @@ class Pelanggan_model extends CI_model
 				$this->db->update('transaksi', $transaksi);
 			}
 			
-			// if ( !empty(@$dataDetail['datasamsat']) AND !empty(@$dataDetail['samsatid']) ) {
 			if ( !empty(@$dataDetail['samsatid']) ) {
 				$samsat = array(
 					'id_transaksi'	=> $reqid,
-					'id_samsat'		=> $dataDetail['samsatid'],
+					'id_samsat'		=>$dataDetail['samsatid'],
 					// 'nama_samsat'	=> $dataDetail['datasamsat']->nama,
 					// 'alamat_samsat'	=> $dataDetail['datasamsat']->alamat,
 					// 'latitude'		=> $dataDetail['datasamsat']->latitude,
@@ -445,10 +444,7 @@ class Pelanggan_model extends CI_model
                 'status' => '1'
             );
             $this->db->insert('history_transaksi', $data_hist);
-			
             $dataDetail['id_transaksi'] = $reqid;
-            // $dataDetail['kdvoucher'] = $dataDetail['kdvoucher'];
-            // $dataDetail['samsatid'] = $dataDetail['samsatid'];
             $this->db->insert('transaksi_detail_send', $dataDetail);
             $get_data_msend = $this->get_data_transaksi_send($data_req);
             return array(

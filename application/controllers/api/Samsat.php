@@ -267,7 +267,7 @@ class Samsat extends CI_Controller
 		// var_dump($response); 
 		if(!empty($response)){
 			$result = json_encode($response);
-					return json_decode($result);
+					echo json_decode($result);
 					 // echo "paymentUrl :". $result['result'] . "<br />";
 					 // return $result['result']['access_token'];
 		  // echo $response;
@@ -277,6 +277,30 @@ class Samsat extends CI_Controller
 		
 			
     }
+	
+	
+	public function test()
+    {
+		header('Content-Type: application/json');
+		
+		$param['id'] = 1;
+		$apiLink = "http://localhost:8080/public_apps/api/samsat/getsamsat/1" . $param['id'];
+		$response = file_get_contents($apiLink);
+		// var_dump($response); 
+		if(!empty($response)){
+			$result = json_encode($response, JSON_FORCE_OBJECT);
+					$test =  json_decode($result);
+					
+					foreach($test as $a ){ 
+						echo $a->id;
+					 }
+		}else{
+		  return "01";
+		}
+		
+			
+    }
+
 	
 	
 }

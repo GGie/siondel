@@ -1111,6 +1111,7 @@ class Pelanggan extends REST_Controller
         }
     }
 
+	
     function check_status_transaksi_post()
     {
         if (!isset($_SERVER['PHP_AUTH_USER'])) {
