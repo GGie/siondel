@@ -541,8 +541,6 @@ class Driver extends REST_Controller
 
         $data = file_get_contents("php://input");
         $dec_data = json_decode($data);
-
-		update_transaksi_log($dec_data->id_transaksi, ACCEPT);
 		
         $data_req = array(
             'id_driver' => $dec_data->id,
@@ -559,6 +557,9 @@ class Driver extends REST_Controller
 
             $acc_req = $this->Driver_model->accept_request($data_req);
             if ($acc_req['status']) {
+				
+				update_transaksi_log($dec_data->id_transaksi, ACCEPT);
+				
                 $message = array(
                     'message' => 'berhasil',
                     'data' => 'berhasil'
@@ -601,8 +602,6 @@ class Driver extends REST_Controller
 
 		$id_trans = str_replace(array('.', "'"), '', $dec_data->id_transaksi);
 		
-		update_transaksi_log($id_trans, ARRIVED);
-		
         $data_req = array(
             'id_driver' => $dec_data->id,
             'id_transaksi' => $id_trans
@@ -618,6 +617,9 @@ class Driver extends REST_Controller
 
             $acc_req = $this->Driver_model->arrived_request($data_req);
             if ($acc_req['status']) {
+				
+				update_transaksi_log($id_trans, ARRIVED);
+				
                 $message = array(
                     'message' => 'berhasil',
                     'data' => 'berhasil'
@@ -659,7 +661,6 @@ class Driver extends REST_Controller
         $dec_data = json_decode($data);
 		
 		$id_trans = str_replace(array('.', "'"), '', $dec_data->id_transaksi);
-		update_transaksi_log($id_trans, PROCESS);
 		
         $data_req = array(
             'id_driver' => $dec_data->id,
@@ -676,6 +677,9 @@ class Driver extends REST_Controller
 
             $acc_req = $this->Driver_model->process_request($data_req);
             if ($acc_req['status']) {
+				
+				update_transaksi_log($id_trans, PROCESS);
+				
                 $message = array(
                     'message' => 'berhasil',
                     'data' => 'berhasil'
@@ -717,7 +721,6 @@ class Driver extends REST_Controller
         $dec_data = json_decode($data);
 		
 		$id_trans = str_replace(array('.', "'"), '', $dec_data->id_transaksi);
-		update_transaksi_log($id_trans, BACKTO);
 		
         $data_req = array(
             'id_driver' => $dec_data->id,
@@ -734,6 +737,9 @@ class Driver extends REST_Controller
 
             $acc_req = $this->Driver_model->backto_request($data_req);
             if ($acc_req['status']) {
+				
+				update_transaksi_log($id_trans, BACKTO);
+				
                 $message = array(
                     'message' => 'berhasil',
                     'data' => 'berhasil'
@@ -774,8 +780,6 @@ class Driver extends REST_Controller
         $data = file_get_contents("php://input");
         $dec_data = json_decode($data);
 		
-		update_transaksi_log($dec_data->id_transaksi, START);
-		
         $data_req = array(
             'id_driver' => $dec_data->id,
             'id_transaksi' => $dec_data->id_transaksi
@@ -783,6 +787,9 @@ class Driver extends REST_Controller
 
         $acc_req = $this->Driver_model->start_request($data_req);
         if ($acc_req['status']) {
+			
+			update_transaksi_log($dec_data->id_transaksi, START);
+			
             $message = array(
                 'message' => 'berhasil',
                 'data' => 'success'
@@ -805,44 +812,45 @@ class Driver extends REST_Controller
         }
     }
 
-    function finish_post()
-    {
-        if (!isset($_SERVER['PHP_AUTH_USER'])) {
-            header("WWW-Authenticate: Basic realm=\"Private Area\"");
-            header("HTTP/1.0 401 Unauthorized");
-            return false;
-        }
+    // function finish_post()
+    // {
+        // if (!isset($_SERVER['PHP_AUTH_USER'])) {
+            // header("WWW-Authenticate: Basic realm=\"Private Area\"");
+            // header("HTTP/1.0 401 Unauthorized");
+            // return false;
+        // }
 
-        $data = file_get_contents("php://input");
-        $dec_data = json_decode($data);
+        // $data = file_get_contents("php://input");
+        // $dec_data = json_decode($data);
 		
-		update_transaksi_log($dec_data->id_transaksi, FINISH);
-		
-        $data_req = array(
-            'id_driver' => $dec_data->id,
-            'id_transaksi' => $dec_data->id_transaksi
-        );
+        // $data_req = array(
+            // 'id_driver' => $dec_data->id,
+            // 'id_transaksi' => $dec_data->id_transaksi
+        // );
 
-        $data_tr = array(
-            'id_driver' => $dec_data->id,
-            'id' => $dec_data->id_transaksi
-        );
+        // $data_tr = array(
+            // 'id_driver' => $dec_data->id,
+            // 'id' => $dec_data->id_transaksi
+        // );
 
-        $finish_transaksi = $this->Driver_model->finish_request($data_req, $data_tr);
-        if ($finish_transaksi['status']) {
-            $message = array(
-                'message' => 'berhasil',
-                'data' => 'finish',
-            );
-            $this->response($message, 200);
-        } else {
-            $message = array(
-                'message' => 'fail',
-                'data' => $finish_transaksi['data']
-            );
-            $this->response($message, 200);
-        }
-    }
+        // $finish_transaksi = $this->Driver_model->finish_request($data_req, $data_tr);
+        // if ($finish_transaksi['status']) {
+			
+			// update_transaksi_log($dec_data->id_transaksi, FINISH);
+			
+            // $message = array(
+                // 'message' => 'berhasil',
+                // 'data' => 'finish',
+            // );
+            // $this->response($message, 200);
+        // } else {
+            // $message = array(
+                // 'message' => 'fail',
+                // 'data' => $finish_transaksi['data']
+            // );
+            // $this->response($message, 200);
+        // }
+    // }
 
     function detail_transaksi_post()
     {

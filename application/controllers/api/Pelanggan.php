@@ -106,9 +106,47 @@ class Pelanggan extends REST_Controller
             $this->response($message, 200);
         }
     }
+	
+	function finish_post()
+    {
+        if (!isset($_SERVER['PHP_AUTH_USER'])) {
+            header("WWW-Authenticate: Basic realm=\"Private Area\"");
+            header("HTTP/1.0 401 Unauthorized");
+            return false;
+        }
 
+        $data = file_get_contents("php://input");
+        $dec_data = json_decode($data);
+		
+        $data_req = array(
+            'id_driver' => $dec_data->id,
+            'id_transaksi' => $dec_data->id_transaksi
+        );
 
+        $data_tr = array(
+            'id_driver' => $dec_data->id,
+            'id' => $dec_data->id_transaksi
+        );
 
+        $finish_transaksi = $this->Driver_model->finish_request($data_req, $data_tr);
+        if ($finish_transaksi['status']) {
+			
+			update_transaksi_log($dec_data->id_transaksi, FINISH);
+			
+            $message = array(
+                'message' => 'berhasil',
+                'data' => 'finish',
+            );
+            $this->response($message, 200);
+        } else {
+            $message = array(
+                'message' => 'fail',
+                'data' => $finish_transaksi['data']
+            );
+            $this->response($message, 200);
+        }
+    }
+	
     function login_post()
     {
         if (!isset($_SERVER['PHP_AUTH_USER'])) {
