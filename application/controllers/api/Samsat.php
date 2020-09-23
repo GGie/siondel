@@ -190,7 +190,7 @@ class Samsat extends CI_Controller
 		echo $returnValue;
     }
 	
-	
+	/*
 	public function samsat()
     {
 		$data = file_get_contents('php://input');
@@ -227,9 +227,6 @@ class Samsat extends CI_Controller
 							$reg_id = array('id' => $samsatID);
 							$this->db->where($reg_id);
 						}
-						
-						// $this->db->where('status', 1);
-						// $samsat = $this->db->get('samsat');
 						
 						$param = array(
 							'id'		=> @$samsatID,
@@ -300,6 +297,7 @@ class Samsat extends CI_Controller
 		
 			
     }
+	*/
 
 	
 	

@@ -107,6 +107,44 @@ class Pelanggan extends REST_Controller
         }
     }
 	
+	// function user_finish_post()
+    // {
+        // if (!isset($_SERVER['PHP_AUTH_USER'])) {
+            // header("WWW-Authenticate: Basic realm=\"Private Area\"");
+            // header("HTTP/1.0 401 Unauthorized");
+            // return false;
+        // }
+
+        // $data = file_get_contents("php://input");
+        // $dec_data = json_decode($data);
+
+        // $data_req = array(
+            // 'id_driver' => $dec_data->id,
+            // 'id_transaksi' => $dec_data->id_transaksi
+        // );
+
+        // $data_tr = array(
+            // 'id_driver' => $dec_data->id,
+            // 'id' => $dec_data->id_transaksi
+        // );
+
+        // $finish_transaksi = $this->Driver_model->finish_request($data_req, $data_tr);
+        // if ($finish_transaksi['status']) {
+            // $this->Driver_model->delete_chat($cancel_req['iddriver'], $cancel_req['idpelanggan']);
+            // $message = array(
+                // 'message' => 'canceled',
+                // 'data' => []
+            // );
+            // $this->response($message, 200);
+        // } else {
+            // $message = array(
+                // 'message' => 'cancel fail',
+                // 'data' => []
+            // );
+            // $this->response($message, 200);
+        // }
+    // }
+	
 	function finish_post()
     {
         if (!isset($_SERVER['PHP_AUTH_USER'])) {
@@ -128,23 +166,35 @@ class Pelanggan extends REST_Controller
             'id' => $dec_data->id_transaksi
         );
 
-        $finish_transaksi = $this->Driver_model->finish_request($data_req, $data_tr);
-        if ($finish_transaksi['status']) {
+        $where_trans['id_transaksi'] = $dec_data->id_transaksi;
+		$get_data = $this->Pelanggan_model->get_data_transaksi($where_trans);
+		
+		if ( @$get_data->row()->qrstring == @$dec_data->qrstring AND @$get_data->row()->id_pelanggan == @$dec_data->id_pelanggan) {
+			$finish_transaksi = $this->Driver_model->finish_request($data_req, $data_tr);
+			if ($finish_transaksi['status']) {
+				
+				update_transaksi_log($dec_data->id_transaksi, FINISH);
+				
+				$message = array(
+					'message' => 'berhasil',
+					'data' => 'finish',
+				);
+				$this->response($message, 200);
+			} else {
+				$message = array(
+					'message' => 'fail',
+					'data' => $finish_transaksi['data']
+				);
+				$this->response($message, 200);
+			}
 			
-			update_transaksi_log($dec_data->id_transaksi, FINISH);
-			
-            $message = array(
-                'message' => 'berhasil',
-                'data' => 'finish',
-            );
-            $this->response($message, 200);
-        } else {
-            $message = array(
-                'message' => 'fail',
-                'data' => $finish_transaksi['data']
-            );
-            $this->response($message, 200);
-        }
+		} else {
+			$message = array(
+				'message' => 'Bukan driver anda',
+				'data' => 'failed'
+			);
+			$this->response($message, 200);
+		}
     }
 	
     function login_post()

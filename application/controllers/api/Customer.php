@@ -274,7 +274,7 @@ class Customer extends CI_Controller
     {
 		header('Content-Type: application/json');
 		
-		$apiLink = "http://103.41.206.172/rest/api/samsat?nama=" . @$param['nama'] . "&id=" . @$param['id'] . "&address=" . @$param['address'];
+		$apiLink = DashboardSamsat . "/api/samsat?nama=" . @$param['nama'] . "&id=" . @$param['id'] . "&address=" . @$param['address'];
 		$response = file_get_contents($apiLink);
 		// var_dump($response); 
 		if(!empty($response)){
