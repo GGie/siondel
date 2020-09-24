@@ -23,6 +23,7 @@
                                     <th>Service</th>
                                     <th style="min-width:300px">Pick Up</th>
                                     <th style="min-width:300px">Destination</th>
+                                    <th>Kode Voucher</th>
                                     <th>Price</th>
                                     <th>Payment Method</th>
                                     <th>Status</th>
@@ -40,6 +41,9 @@
                                         <td><?= $tr['fitur'] ?></td>
                                         <td style="max-width:300px;"><?= $tr['alamat_asal'] ?></td>
                                         <td style="max-width:300px;"><?= $tr['alamat_tujuan'] ?></td>
+										
+										<?php $kdvoucher = explode('.', base64_decode($tr['qrstring'])); ?>
+                                        <td><?= $kdvoucher[0] ?></td>
                                         <td><?= $currency['app_currency'] ?>
                                             <?= number_format($tr['biaya_akhir'] / 1000, 3, ".", ".") ?></td>
                                         <td>

@@ -95,6 +95,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                                <i class="icon-people menu-icon"></i>
+                                <span class="menu-title">Admin</span>
+                                <span class="badge badge-white"><i class="mdi mdi-menu-down mdi-24px text-primary"></i></span>
+                            </a>
+                            <div class="collapse" id="tables">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>admin">List Admin</a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>wallet/tambahtopup">Permission</a></li>
+                                </ul>
+                            </div>
+                        </li>
+						<li class="nav-item">
                             <a class="nav-link" href="<?= base_url(); ?>transaction">
                                 <i class="icon-list menu-icon"></i>
                                 <span class="menu-title">Transaction</span>

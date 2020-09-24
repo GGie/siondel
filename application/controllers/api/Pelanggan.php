@@ -166,10 +166,10 @@ class Pelanggan extends REST_Controller
             'id' => $dec_data->id_transaksi
         );
 
-        $where_trans['id_transaksi'] = $dec_data->id_transaksi;
+        $where_trans['id'] = $dec_data->id_transaksi;
 		$get_data = $this->Pelanggan_model->get_data_transaksi($where_trans);
 		
-		if ( @$get_data->row()->qrstring == @$dec_data->qrstring AND @$get_data->row()->id_pelanggan == @$dec_data->id_pelanggan) {
+		if ( @$get_data->row()->id_pelanggan == @$dec_data->id_pelanggan) {
 			$finish_transaksi = $this->Driver_model->finish_request($data_req, $data_tr);
 			if ($finish_transaksi['status']) {
 				
