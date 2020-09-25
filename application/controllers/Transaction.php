@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class transaction extends CI_Controller
+class transaction extends MX_Controller
 {
 
     public function __construct()
@@ -28,7 +28,7 @@ class transaction extends CI_Controller
         $data['fitur'] = $this->dashboard->getAllfitur();
         $data['saldo'] = $this->dashboard->getallsaldo();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('transaction/index', $data);
         $this->load->view('includes/footer');
     }

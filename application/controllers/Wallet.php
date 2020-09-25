@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Wallet extends CI_Controller
+class Wallet extends MX_Controller
 {
 
     public function  __construct()
@@ -32,7 +32,7 @@ class Wallet extends CI_Controller
         $data['currency'] = $this->user->getcurrency();
         $data['wallet'] = $this->wallet->getwallet();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('wallet/index', $data);
         $this->load->view('includes/footer');
     }
@@ -179,7 +179,7 @@ class Wallet extends CI_Controller
             $this->session->set_flashdata('ubah', 'Top Up Has Been Added');
             redirect('wallet');
         } else {
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('wallet/tambahtopup', $data);
             $this->load->view('includes/footer');
         }
@@ -223,7 +223,7 @@ class Wallet extends CI_Controller
             $this->session->set_flashdata('ubah', 'Withdraw Has Been Added');
             redirect('wallet');
         } else {
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('wallet/tambahwithdraw', $data);
             $this->load->view('includes/footer');
         }

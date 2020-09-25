@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Samsat extends CI_Controller
+class Samsat extends MX_Controller
 {
 
     public function __construct()
@@ -26,7 +26,7 @@ class Samsat extends CI_Controller
         $data['samsat'] = $this->samsat->getAllsamsat();
         // $data['transaksi']= $this->dashboard->getAlltransaksi();
         // $data['fitur']= $this->dashboard->getAllfitur();
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('samsat/index', $data);
         $this->load->view('includes/footer');
     }
@@ -38,7 +38,7 @@ class Samsat extends CI_Controller
         $data['countorder'] = $this->user->countorder($id);
         $data['wallet'] = $this->user->wallet($id);
         // $data['fitur']= $this->dashboard->getAllfitur();
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('users/detailusers', $data);
         $this->load->view('includes/footer');
     }
@@ -95,7 +95,7 @@ class Samsat extends CI_Controller
             $data['countorder'] = $this->user->countorder($id);
             // $data['transaksi']= $this->dashboard->getAlltransaksi();
             // $data['fitur']= $this->dashboard->getAllfitur();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('users/detailusers', $data);
             $this->load->view('includes/footer');
         }
@@ -141,7 +141,7 @@ class Samsat extends CI_Controller
             $data['countorder'] = $this->user->countorder($id);
             // $data['transaksi']= $this->dashboard->getAlltransaksi();
             // $data['fitur']= $this->dashboard->getAllfitur();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('users/detailusers', $data);
             $this->load->view('includes/footer');
         }
@@ -176,7 +176,7 @@ class Samsat extends CI_Controller
             $data['countorder'] = $this->user->countorder($id);
             // $data['transaksi']= $this->dashboard->getAlltransaksi();
             // $data['fitur']= $this->dashboard->getAllfitur();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('users/detailusers', $data);
             $this->load->view('includes/footer');
         }
@@ -252,7 +252,7 @@ class Samsat extends CI_Controller
                 redirect('users/index');
             }
         } else {
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('users/tambahuser');
             $this->load->view('includes/footer');
             // }

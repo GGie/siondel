@@ -274,7 +274,13 @@ class Customer extends CI_Controller
     {
 		header('Content-Type: application/json');
 		
-		$apiLink = DashboardSamsat . "/api/samsat?nama=" . @$param['nama'] . "&id=" . @$param['id'] . "&address=" . @$param['address'];
+		if ( sandbox ) {
+			$urlsamsat = DashboardSamsat_dev;
+		} else {
+			$urlsamsat = DashboardSamsat;
+		}
+		
+		$apiLink = $urlsamsat . "/api/samsat?nama=" . @$param['nama'] . "&id=" . @$param['id'] . "&address=" . @$param['address'];
 		$response = file_get_contents($apiLink);
 		// var_dump($response); 
 		if(!empty($response)){
@@ -464,14 +470,15 @@ class Customer extends CI_Controller
 				$params_string = json_encode($params);
 				
 				// file_put_contents('log.txt', "*** " . $params_string . " ***\r\n", FILE_APPEND | LOCK_EX);
-				
-				// $url = 'http://localhost:8080/public_html/api/customer/dataTransaksi';
-				$url = 'https://dev.bankdki.co.id/getdatabykdvoucher';
 
-				$ch = curl_init();
-				
-				$token = $this->oauth2();
-				
+				if ( sandbox ) {
+					$token = $this->oauth2_dev();
+					$url = VoucherDki_dev;
+				} else {
+					$token = $this->oauth2_prod();
+					$url = VoucherDki;
+				}
+
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, $url);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -479,12 +486,13 @@ class Customer extends CI_Controller
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $params_string);
 				curl_setopt($ch, CURLOPT_HEADER, false);
 				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, [
-					'Accept: application/json',                                                                      
+					// 'Accept: application/json',                                                                      
 					'Authorization: Bearer ' . $token,                                                                     
 					// 'X-Originating-IP: 103.60.101.226',
+					'Cookie: dkib=!xg5DIn/nyySqAyVj8K6EwA1gVKp2h002j2Esn+gO0mAOy4rhTrkGy5ZZLp++8YKaP4+4zceb9kAC',
 					'Content-Type: application/json' 
 				]);
 				$request = curl_exec($ch);
@@ -499,9 +507,7 @@ class Customer extends CI_Controller
 					$result = json_decode($request, true);
 
 					$json_pretty = json_encode($result, JSON_PRETTY_PRINT);
-					// echo $json_pretty;
-					// echo $result['error'];
-					// var_dump($request);
+
 					if (empty(@$result['error'])) {
 						
 						if ( $result['nohp'] == $phone OR $validasi != true) {
@@ -519,9 +525,8 @@ class Customer extends CI_Controller
 									'json'			=> $JSON,
 									'status'		=> 1,
 								);
-								
 								$this->Voucher_model->addvoucher($addvoucher);
-								$data = array('status' => "200", "message" => "Success", 'data' =>  $JSON );
+								$data = array('status' => "200", "message" => "Success", 'data' =>  json_decode($JSON) );
 							}
 							
 						} else {
@@ -540,18 +545,14 @@ class Customer extends CI_Controller
 					$result = json_decode($request, true);
 					
 					if (!empty(@$result['message'])) {
-						$data = array('status' => "01", "message" => "failed", 'data' => $result['message'] );
+						$data = array('status' => "01", "message" => $result['message'] );
 						$returnValue = json_encode($data);
 					} else {
-						$data = array('status' => "01", "message" => "failed", 'data' => $request );
+						$data = array('status' => "01", "message" => $request );
 						$returnValue = json_encode($data);
 					}
-					// $result = json_decode($request, true);
-					// echo $result['error'];
+					
 				}
-				
-				
-				// $json = '{"kodesah":"200902Z17200902","iic":"111","code":"00","pnpb":"0000000","tahunbuat":"2000","pkbdenda":"000036500","kdvoucher":"ME35HRQL","jrdenda":"0035000","nik":"3175085103560002","kendke-":"001","bbnpokok":"00000000000","pkbpokok":"001824500","jrpokok":"0143000","masapajak":"29082021","cc":"02498","amount":"000002039000","merk":"MITSUBISHI","bbndenda":"00000000000","tnkb":"0000000","mt":"6017","nopol":"0888PO ","alamat":"JL.ZENI G-109 RT7/6 JAKTIM         ","nama":"ETTY TRIMURTI            ","jenis":"SEDAN        ","nohp":"08211234567890"}';
 				
 				// $data = array('status' => "200", "message" => "Success", 'data' =>  $json );
 				// $returnValue = '{
@@ -596,14 +597,16 @@ class Customer extends CI_Controller
 		echo $returnValue;
 				
 	}
-	
-	public function oauth2()
+		
+	public function oauth2_dev()
 	{
+
 		header('Content-Type: application/json');
 		
-		$client_id = "f35ge8n6k5gt77qr4k8nprk7"; //authkeyForSMS;
+		$client_id = client_id_dev;
+		$client_secret = client_secret_dev;
 
-		$apiLink = "http://portalapi.bankdki.co.id/io-docs/getoauth2accesstoken?apiId=22593&auth_flow=client_cred&client_id=" . $client_id . "&client_secret";
+		$apiLink = "http://portalapi.bankdki.co.id/io-docs/getoauth2accesstoken?apiId=22593&auth_flow=client_cred&client_id=" . $client_id . "&client_secret=" . $client_secret;
 		$response = file_get_contents($apiLink);
 		// var_dump($response); 
 		if(!empty($response)){
@@ -616,8 +619,86 @@ class Customer extends CI_Controller
 		  return "FAILED";
 		}
 		
+	
 	}
 	
+	
+	function oauth2_prod($clientid = client_id, $client_secret = client_secret) {
+        $cacheFile = APPPATH . '/cache/' . md5($clientid.$client_secret) . '.json';
+
+        if (file_exists($cacheFile)) {
+            $fh = fopen($cacheFile, 'r');
+            $cacheTime = trim(fgets($fh));
+        if ($cacheTime > strtotime('-' . 10 . ' minutes')) {
+                $createCache = false;
+                $return = str_replace($cacheTime,'',fread($fh,filesize($cacheFile)));
+				
+				if ( $return == "<h1>596 Service Not Found</h1>" )
+					$createCache = true;
+				
+                fclose($fh);
+            } else {
+                $createCache = true;
+            }
+        } else {
+            $createCache = true;
+        }
+
+        if($createCache == true){
+            //get API
+			
+			$url = 'https://api.bankdki.co.id/sistem-oauth2/';
+			$body = 'grant_type=client_credentials&client_id='.$clientid.'&client_secret='.$client_secret;
+						
+            $ch = curl_init();
+            // $header[] = "Content-Type: application/json";
+            // $query = http_build_query($params);
+			// $headers = array( 
+                 // "Cache-Control: no-cache",
+				 // "contentType: application/xml",
+				 // "muteHttpExceptions: " . true
+				// 'Content-Type: application/json' 				 
+                // ); 
+			// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			// $headers[] = 'Content-Type: application/xml';
+			// $headers[] = 'Content-Type: application/x-www-form-urlencoded';
+			$headers[] = 'Accept: */*';
+			$headers[] = 'Cookie: dkib=!xg5DIn/nyySqAyVj8K6EwA1gVKp2h002j2Esn+gO0mAOy4rhTrkGy5ZZLp++8YKaP4+4zceb9kAC';
+
+			// curl_setopt( $ch, CURLOPT_COOKIESESSION, true );
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+			curl_setopt($ch, CURLOPT_ENCODING, "gzip");
+			curl_setopt($ch, CURLOPT_VERBOSE, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            $request = curl_exec($ch);
+            $return = ($request === FALSE) ? curl_error($ch) : $request;
+            $err = curl_error($ch);
+            curl_close($ch);
+            //get API EOF
+
+            if ($err) {
+              return $err;
+              exit;
+            } else {
+              $fh = fopen($cacheFile, 'w');
+              fwrite($fh, time() . "\n");
+              fwrite($fh, $return);
+              fclose($fh);
+            }
+        }
+
+		$result = json_decode($return, true);
+        return $result['access_token'];
+    }
 	
 	public function getDriver()
 	{

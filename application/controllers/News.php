@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class News extends CI_Controller
+class News extends MX_Controller
 {
 
     public function __construct()
@@ -24,7 +24,7 @@ class News extends CI_Controller
         $data['news'] = $this->news->getallnews();
         $data['kategori'] = $this->news->getallkategorinews();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('news/index', $data);
         $this->load->view('includes/footer');
     }
@@ -81,7 +81,7 @@ class News extends CI_Controller
             }
         } else {
             $data['news'] = $this->news->getallkategorinews();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('news/addnews', $data);
             $this->load->view('includes/footer');
         }
@@ -155,7 +155,7 @@ class News extends CI_Controller
             $data['knews'] = $this->news->getallkategorinews();
 
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('news/editnews', $data);
             $this->load->view('includes/footer');
         }
@@ -181,7 +181,7 @@ class News extends CI_Controller
                 redirect('news');
             }
         } else {
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('news/addcategory');
             $this->load->view('includes/footer');
         }

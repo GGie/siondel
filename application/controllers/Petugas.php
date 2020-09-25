@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Petugas extends CI_Controller
+class Petugas extends MX_Controller
 {
 
     public function __construct()
@@ -26,7 +26,7 @@ class Petugas extends CI_Controller
         $data['user'] = $this->petugas->getAllpetugas();
         // $data['transaksi']= $this->dashboard->getAlltransaksi();
         // $data['fitur']= $this->dashboard->getAllfitur();
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('petugas/index', $data);
         $this->load->view('includes/footer');
     }
@@ -38,7 +38,7 @@ class Petugas extends CI_Controller
         $data['countorder'] = $this->user->countorder($id);
         $data['wallet'] = $this->user->wallet($id);
         // $data['fitur']= $this->dashboard->getAllfitur();
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('users/detailusers', $data);
         $this->load->view('includes/footer');
     }
@@ -95,7 +95,7 @@ class Petugas extends CI_Controller
             $data['countorder'] = $this->user->countorder($id);
             // $data['transaksi']= $this->dashboard->getAlltransaksi();
             // $data['fitur']= $this->dashboard->getAllfitur();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('users/detailusers', $data);
             $this->load->view('includes/footer');
         }
@@ -141,7 +141,7 @@ class Petugas extends CI_Controller
             $data['countorder'] = $this->user->countorder($id);
             // $data['transaksi']= $this->dashboard->getAlltransaksi();
             // $data['fitur']= $this->dashboard->getAllfitur();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('users/detailusers', $data);
             $this->load->view('includes/footer');
         }
@@ -176,7 +176,7 @@ class Petugas extends CI_Controller
             $data['countorder'] = $this->user->countorder($id);
             // $data['transaksi']= $this->dashboard->getAlltransaksi();
             // $data['fitur']= $this->dashboard->getAllfitur();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('users/detailusers', $data);
             $this->load->view('includes/footer');
         }
@@ -252,7 +252,7 @@ class Petugas extends CI_Controller
                 redirect('users/index');
             }
         } else {
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('users/tambahuser');
             $this->load->view('includes/footer');
             // }

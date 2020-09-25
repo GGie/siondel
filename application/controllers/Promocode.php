@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Promocode extends CI_Controller
+class Promocode extends MX_Controller
 {
     public function __construct()
     {
@@ -24,7 +24,7 @@ class Promocode extends CI_Controller
     {
         $data['promocode'] = $this->promocode->getallpromocode();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('promocode/index',$data);
         $this->load->view('includes/footer');
     }
@@ -88,7 +88,7 @@ class Promocode extends CI_Controller
             }
         } else {
             $data['fitur'] = $this->fitur->getallservice();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('promocode/addpromocode', $data);
             $this->load->view('includes/footer');
         }
@@ -153,14 +153,14 @@ class Promocode extends CI_Controller
             
             if (demo == TRUE) {
                 $this->session->set_flashdata('demo', 'NOT ALLOWED FOR DEMO');
-                $this->load->view('includes/header');
+                $this->headers();
                 $this->load->view('promocode/editpromocode', $data);
                 $this->load->view('includes/footer');
             } else {
                 $cekpromo = $this->promocode->cekpromo($this->input->post('kode_promo'));
                 if ($cekpromo->num_rows() > 0 && $cekpromo->row_array()['id_promo'] != $this->input->post('id_promo')){
                     $this->session->set_flashdata('demo', 'Promotion code already exist');
-                    $this->load->view('includes/header');
+                    $this->headers();
                     $this->load->view('promocode/editpromocode', $data);
                     $this->load->view('includes/footer');
                 }else{
@@ -171,7 +171,7 @@ class Promocode extends CI_Controller
             }
         } else {
             
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('promocode/editpromocode', $data);
             $this->load->view('includes/footer');
         }

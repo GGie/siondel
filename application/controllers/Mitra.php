@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mitra extends CI_Controller
+class Mitra extends MX_Controller
 {
     public function __construct()
     {
@@ -28,7 +28,7 @@ class Mitra extends CI_Controller
     {
         $data['mitra'] = $this->mitra->getallmitra();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('mitra/index', $data);
         $this->load->view('includes/footer');
     }
@@ -46,7 +46,7 @@ class Mitra extends CI_Controller
         $data['transaksi'] = $this->mitra->gettranshistory($data['mitra']['id_merchant']);
         $data['fitur'] = $this->mitra->get_fitur_merchant();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('mitra/detail', $data);
         $this->load->view('includes/footer');
     }
@@ -121,7 +121,7 @@ class Mitra extends CI_Controller
         } else {
             $id = $this->input->post('id_mitra');
             $this->session->set_flashdata('gagal', 'Error, Please Try Again');
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/detail/' . $id);
             $this->load->view('includes/footer');
         }
@@ -240,7 +240,7 @@ class Mitra extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('gagal', 'Error, Please Try Again');
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/detail/' . $idm);
             $this->load->view('includes/footer');
         }
@@ -346,7 +346,7 @@ class Mitra extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('gagal', 'Error, Please Try Again');
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/detail/' . $id, $datafitur);
             $this->load->view('includes/footer');
         }
@@ -386,7 +386,7 @@ class Mitra extends CI_Controller
         } else {
             $idm = $this->input->post('id_merchant');
             $this->session->set_flashdata('gagal', 'Error, Please Try Again');
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/detail/' . $idm);
             $this->load->view('includes/footer');
         }
@@ -408,7 +408,7 @@ class Mitra extends CI_Controller
         } else {
             $idm = $this->input->post('id_mitra');
             $this->session->set_flashdata('gagal', 'Error, Please Try Again');
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/detail/' . $idm);
             $this->load->view('includes/footer');
         }
@@ -451,7 +451,7 @@ class Mitra extends CI_Controller
         } else {
             $idm = $this->input->post('id_mitra');
             $this->session->set_flashdata('gagal', 'Error, Please Try Again');
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/detail/' . $idm);
             $this->load->view('includes/footer');
         }
@@ -508,7 +508,7 @@ class Mitra extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('gagal', 'Error, Please Try Again');
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/detail/' . $id);
             $this->load->view('includes/footer');
         }
@@ -529,7 +529,7 @@ class Mitra extends CI_Controller
             redirect('mitra/detail/' . $idm);
         } else {
             $this->session->set_flashdata('gagal', 'Error, Please Try Again');
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/detail/' . $idm);
             $this->load->view('includes/footer');
         }
@@ -557,7 +557,7 @@ class Mitra extends CI_Controller
         $data['mitra'] = $this->mitra->getallmitra();
         $data['merchantk'] = $this->mitra->getmerchantk();
         $data['fitur'] = $this->mitra->get_fitur_merchant();
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('mitra/newreg', $data);
         $this->load->view('includes/footer');
     }
@@ -709,7 +709,7 @@ class Mitra extends CI_Controller
             $data['mitra'] = $this->mitra->getallmitra();
             $data['merchantk'] = $this->mitra->getmerchantk();
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('mitra/newreg', $data);
             $this->load->view('includes/footer');
         }
@@ -722,7 +722,7 @@ class Mitra extends CI_Controller
         $data['currency'] = $this->app->getappbyid();
 
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('mitra/edititem', $data);
         $this->load->view('includes/footer');
     }

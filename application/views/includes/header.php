@@ -87,156 +87,49 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>">
-                                <i class="icon-rocket menu-icon"></i>
-                                <span class="menu-title">Dashboard</span>
-
+						
+        <?php foreach ($menu->result() as $tab) { ?>
+        <?php //if ( $this->permissions->menu($tab->menu_id, 'view') ) { ?>
+		<?php if ( menu($tab->menu_id, 'view') ) { ?>
+		<?php $menu_child = $this->db->query("SELECT * FROM menu WHERE menu_pid='" . $tab->menu_id . "' AND status_id=1 ORDER BY menu_order"); ?>
+              <li class="nav-item">
+								<?php if ( $menu_child->num_rows() > 0 ) { ?>
+									<?php $link		= "#" . $tab->menu_id; ?>
+									<?php $collapse = "collapse"; ?>
+								<?php } else { ?>
+									<?php $link		= base_url() . $tab->url; ?>
+									<?php $collapse = "false"; ?>
+								<?php } ?>
+								
+                            <a class="nav-link" data-toggle="<?php echo $collapse; ?>" href="<?php echo $link; ?>" aria-expanded="false" aria-controls="<?php echo $tab->menu_id ?>">
+                                <i class="<?php echo $tab->icon; ?>"></i>
+                                <span class="menu-title"><?php echo ucwords(strtolower($tab->menu)) ?></span>
+								
+								<?php if ( $menu_child->num_rows() > 0 ) { ?>
+									<span class="badge badge-white"><i class="mdi mdi-menu-down mdi-24px text-primary"></i></span>
+								<?php } ?>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                                <i class="icon-people menu-icon"></i>
-                                <span class="menu-title">Admin</span>
-                                <span class="badge badge-white"><i class="mdi mdi-menu-down mdi-24px text-primary"></i></span>
-                            </a>
-                            <div class="collapse" id="tables">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>admin">List Admin</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>wallet/tambahtopup">Permission</a></li>
-                                </ul>
-                            </div>
-                        </li>
-						<li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>transaction">
-                                <i class="icon-list menu-icon"></i>
-                                <span class="menu-title">Transaction</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                                <i class="icon-wallet menu-icon"></i>
-                                <span class="menu-title">Finance</span>
-                                <span class="badge badge-white"><i class="mdi mdi-menu-down mdi-24px text-primary"></i></span>
-                            </a>
-                            <div class="collapse" id="tables">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>wallet">Wallet</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>wallet/tambahtopup">Manual Top Up</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>wallet/tambahwithdraw">Manual Withdraw</a></li>
-                                </ul>
-                            </div>
-                        </li>
-						<!--
-						<li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#samsat" aria-expanded="false" aria-controls="samsat">
-                                <i class="icon-list menu-icon"></i>
-                                <span class="menu-title">Samsat</span>
-                                <span class="badge badge-white"><i class="mdi mdi-menu-down mdi-24px text-primary"></i></span>
-                            </a>
-                            <div class="collapse" id="samsat">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>samsat">List Samsat</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>petugas">List Petugas</a></li>
-                                </ul>
-                            </div>
-                        </li>
-						-->
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#drivers" aria-expanded="false" aria-controls="drivers">
-                                <i class="icon-people menu-icon"></i>
-                                <span class="menu-title">Drivers</span>
-                                <span class="badge badge-white"><i class="mdi mdi-menu-down mdi-24px text-primary"></i></span>
-                            </a>
-                            <div class="collapse" id="drivers">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>driver">Drivers</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>newregistration">New Registration Driver</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>driver/tracking_driver">Tracking Driver</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>users">
-                                <i class="icon-people menu-icon"></i>
-                                <span class="menu-title">Users</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#tables2" aria-expanded="false" aria-controls="tables2">
-                                <i class="icon-basket-loaded menu-icon"></i>
-                                <span class="menu-title">Merchant</span>
-                                <span class="badge badge-white"><i class="mdi mdi-menu-down mdi-24px text-primary"></i></span>
-                            </a>
-                            <div class="collapse" id="tables2">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>categorymerchant">Merchant Category</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>mitra">All Merchant</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>mitra/newregmitra">New Registration Merchant</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#service" aria-expanded="false" aria-controls="tables2">
-                                <i class="icon-layers menu-icon"></i>
-                                <span class="menu-title">Service</span>
-                                <span class="badge badge-white"><i class="mdi mdi-menu-down mdi-24px text-primary"></i></span>
-                            </a>
-                            <div class="collapse" id="service">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>services">Service</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= base_url(); ?>partnerjob">Vehicle Type</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>promocode">
-                                <i class="icon-tag menu-icon"></i>
-                                <span class="menu-title">Promo Code</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>promoslider">
-                                <i class="icon-screen-smartphone menu-icon"></i>
-                                <span class="menu-title">Slider</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>news">
-                                <i class="icon-docs menu-icon"></i>
-                                <span class="menu-title">News</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>sendemail">
-                                <i class="icon-envelope-letter menu-icon"></i>
-                                <span class="menu-title">Send Email</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>appnotification">
-                                <i class="icon-paper-plane menu-icon"></i>
-                                <span class="menu-title">App Notification</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>appsettings">
-                                <i class="icon-settings menu-icon"></i>
-                                <span class="menu-title">App Settings</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>profile">
-                                <i class="icon-user-following menu-icon"></i>
-                                <span class="menu-title">Admin Profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>login/logout">
-                                <i class="icon-logout menu-icon"></i>
-                                <span class="menu-title">Logout</span>
-                            </a>
-                        </li>
-
+				
+				
+				
+				
+				<div class="collapse" id="<?php echo $tab->menu_id ?>">
+                <ul class="nav flex-column sub-menu">
+				<?php foreach ($menu_child->result() as $child) { ?>
+					
+					<?php if ( menu($child->menu_id, 'view') ) { ?>
+						<li class="nav-item"> <a class="nav-link" href="<?php echo base_url($child->url); ?>"><?php echo ucwords(strtolower($child->menu)) ?></a></li>
+					<?php } ?>
+					
+				 <?php } ?>
+				 </ul>
+				 </div>
+				 
+				 
+				 
+				 
+			   </li>
+		<?php } ?>
+		<?php } ?>
                     </ul>
                 </nav>

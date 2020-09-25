@@ -75,6 +75,10 @@
 
 
                                         <td>
+											<?php if ($s['fixed'] == 1) { ?>
+													<label class="badge badge-success m-2" style='width:80px'>Fixed Price</label>
+											<?php } ?>
+											
                                             <?php if ($s['active'] == 1) { ?>
                                                 <label class="badge badge-success m-2" style='width:80px'>Active</label>
                                             <?php } else { ?>

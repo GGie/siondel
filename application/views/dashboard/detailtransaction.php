@@ -271,7 +271,7 @@
                                                         <ul class="list-group list-group-flush">
                                                             <li class="list-group-item">
                                                                 <?= $currency['app_currency'] ?>
-                                                                <?= number_format($item['total_harga']/1000,3,".",".") ?>
+                                                                <?= number_format($item['total_harga'],0,".",".") ?>
                                                             </li>
                                                         </ul>
                                                     <?php } ?>
@@ -286,15 +286,15 @@
                             <div class="container-fluid mt-5 w-100">
                                 <p class="text-right mb-2">Amount of shopping:
                                     <?= $currency['app_currency'] ?>
-                                    <?= number_format($transaksi['total_belanja']/1000,3,".",".") ?></p>
+                                    <?= number_format($transaksi['total_belanja'],0,".",".") ?></p>
                                 <p class="text-right mb-2">Delivery cost (<?= $transaksi['jarak'] ?> KM):
                                     <?= $currency['app_currency'] ?>
-                                    <?= number_format($transaksi['harga']/1000,3,".",".") ?></p>
+                                    <?= number_format($transaksi['harga'],0,".",".") ?></p>
                                 <p class="text-right mb-2">Sub - Total amount:
                                     <?php $subtotal = $transaksi['harga'] + $transaksi['total_belanja']; ?>
 
                                     <?= $currency['app_currency'] ?>
-                                    <?= number_format($subtotal/1000,3,".",".") ?></p>
+                                    <?= number_format($subtotal,0,".",".") ?></p>
                                 <p class="text-right mb-2">Discount
                                     <span class="text-danger">
                                         (<?php if ($transaksi['pakai_wallet'] == '1') {
@@ -304,7 +304,7 @@
                                             } ?>
                                         %)</span>
                                     :<?= $currency['app_currency'] ?>
-                                    <?= number_format($transaksi['kredit_promo']/1000,3,".",".") ?></p>
+                                    <?= number_format($transaksi['kredit_promo'],0,".",".") ?></p>
                                 <br>
                                 <p class="text-right mb-2 mt-4">Payment Method :
                                     <?php if ($transaksi['pakai_wallet'] == '0') { ?>
@@ -316,7 +316,7 @@
                                 </p>
                                 <h4 class="text-right mb-5">Total :
                                     <?= $currency['app_currency'] ?>
-                                    <?= number_format($transaksi['biaya_akhir']/1000,3,".",".") ?></h4>
+                                    <?= number_format($transaksi['biaya_akhir'],0,".",".") ?></h4>
                                 <hr>
                             </div>
 
@@ -356,9 +356,9 @@
                                                     </td>
                                                 <?php } ?>
                                                 <td><?= $currency['app_currency'] ?>
-                                                    <?= number_format($transaksi['biaya']/1000,3,".",".") ?></td>
+                                                    <?= number_format($transaksi['biaya'],0,".",".") ?></td>
                                                 <td><?= $currency['app_currency'] ?>
-                                                    <?= number_format($transaksi['harga']/1000,3,".",".") ?></td>
+                                                    <?= number_format($transaksi['harga'],0,".",".") ?></td>
                                             </tr>
 
                                         </tbody>
@@ -372,7 +372,7 @@
                             <div class="container-fluid mt-5 w-100">
                                 <p class="text-right mb-2">Sub - Total amount:
                                     <?= $currency['app_currency'] ?>
-                                    <?= number_format($transaksi['harga']/1000,3,".",".") ?></p>
+                                    <?= number_format($transaksi['harga'],0,".",".") ?></p>
                                 <p class="text-right mb-2">Discount
                                     <span class="text-danger">
                                         (<?php if ($transaksi['pakai_wallet'] == '1') {
@@ -382,7 +382,7 @@
                                             } ?>
                                         %)</span>
                                     :<?= $currency['app_currency'] ?>
-                                    <?= number_format($transaksi['kredit_promo']/1000,3,".",".") ?></p>
+                                    <?= number_format($transaksi['kredit_promo'],0,".",".") ?></p>
                                 <br>
                                 <p class="text-right mb-2 mt-4">Payment Method :
                                     <?php if ($transaksi['pakai_wallet'] == '0') { ?>
@@ -394,7 +394,7 @@
                                 </p>
                                 <h4 class="text-right mb-5">Total :
                                     <?= $currency['app_currency'] ?>
-                                    <?= number_format($transaksi['biaya_akhir']/1000,3,".",".") ?></h4>
+                                    <?= number_format($transaksi['biaya_akhir'],0,".",".") ?></h4>
                                 <hr>
                             </div>
                         <?php } ?>

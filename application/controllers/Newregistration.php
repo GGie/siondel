@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class newregistration extends CI_Controller
+class newregistration extends MX_Controller
 {
 
     public function __construct()
@@ -28,7 +28,7 @@ class newregistration extends CI_Controller
         $data['driver'] = $this->driver->getalldriver();
 
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('newregistration/index', $data);
         $this->load->view('includes/footer');
     }

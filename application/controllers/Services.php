@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Services extends CI_Controller
+class Services extends MX_Controller
 {
 
     public function __construct()
@@ -28,7 +28,7 @@ class Services extends CI_Controller
         $data['driverjob'] = $this->service->getAlldriverjob();
 
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('services/index', $data);
         $this->load->view('includes/footer');
     }
@@ -89,6 +89,7 @@ class Services extends CI_Controller
                 'home'                         => html_escape($this->input->post('home', TRUE)),
                 'urutan'                        => html_escape($this->input->post('urutan', TRUE)),
                 'biaya'                         => str_replace($remove, $add, $biaya),
+				'fixed'                         => html_escape($this->input->post('fixed', TRUE)),
                 'keterangan_biaya'              => html_escape($this->input->post('keterangan_biaya', TRUE)),
                 'komisi'                        => html_escape($this->input->post('komisi', TRUE)),
                 'driver_job'                    => html_escape($this->input->post('driver_job', TRUE)),
@@ -113,7 +114,7 @@ class Services extends CI_Controller
             }
         } else {
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('services/editservices' . $id, $data);
             $this->load->view('includes/footer');
         }
@@ -162,6 +163,7 @@ class Services extends CI_Controller
                 'fitur'                         => html_escape($this->input->post('fitur', TRUE)),
                 'home'                         => html_escape($this->input->post('home', TRUE)),
                 'biaya'                         => str_replace($remove, $add, $biaya),
+                'fixed'                         => html_escape($this->input->post('fixed', TRUE)),
                 'keterangan_biaya'              => html_escape($this->input->post('keterangan_biaya', TRUE)),
                 'komisi'                        => html_escape($this->input->post('komisi', TRUE)),
                 'driver_job'                    => html_escape($this->input->post('driver_job', TRUE)),
@@ -194,7 +196,7 @@ class Services extends CI_Controller
             
         $data['driverjob'] = $this->service->getAlldriverjob();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('services/addservice', $data);
         $this->load->view('includes/footer');
         }

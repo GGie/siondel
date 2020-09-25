@@ -13,7 +13,7 @@
                             $apprevenue = ($ordermin['total'] - $orderplus['total']) - $jumlahdiskon['diskon'];
                             ?>
                             <h3><?= $currency['duit'] ?>
-                                <?= number_format($apprevenue , 2, ".", ".") ?></h3>
+                                <?= number_format($apprevenue , 0, ".", ".") ?></h3>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                             $walletvalue = $topup['total'] - $withdraw['total'] - ($ordermin['total'] - $orderplus['total']);
                             ?>
                             <h3><?= $currency['duit'] ?>
-                                <?= number_format($walletvalue , 2, ".", ".") ?></h3>
+                                <?= number_format($walletvalue , 0, ".", ".") ?></h3>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                             $walletvalue = $topup['total'] - $withdraw['total'] - ($ordermin['total'] - $orderplus['total']);
                             ?>
                             <h3><?= $currency['duit'] ?>
-                                <?= number_format($jumlahdiskon['diskon'] , 2, ".", ".") ?></h3>
+                                <?= number_format($jumlahdiskon['diskon'] , 0, ".", ".") ?></h3>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <div class="ml-3">
                             <p class="mb-0">Current Top Up Amount</p>
                             <h6><?= $currency['duit'] ?>
-                                <?= number_format($topup['total'] , 2, ".", ".") ?></h6>
+                                <?= number_format($topup['total'] , 0, ".", ".") ?></h6>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                         <div class="ml-3">
                             <p class="mb-0">Curent Withdraw Amount</p>
                             <h6><?= $currency['duit'] ?>
-                                <?= number_format($withdraw['total'] , 2, ".", ".") ?></h6>
+                                <?= number_format($withdraw['total'] , 0, ".", ".") ?></h6>
                         </div>
                     </div>
                 </div>
@@ -90,10 +90,10 @@
                             <p class="mb-0">Curent Transaction Amount</p>
                             <span class="mr-2 font-weight-bold">
                                 <i class="badge badge-success mr-1">IN</i><?= $currency['duit'] ?>
-                                <?= number_format($orderplus['total'] , 2, ".", ".") ?></span>
+                                <?= number_format($orderplus['total'] , 0, ".", ".") ?></span>
                             <span class="font-weight-bold">
                                 <i class="badge badge-danger mr-1">OUT</i><?= $currency['duit'] ?>
-                                <?= number_format($ordermin['total'] , 2, ".", ".") ?>
+                                <?= number_format($ordermin['total'] , 0, ".", ".") ?>
                                 <i></span>
 
                         </div>
@@ -178,13 +178,13 @@
                                                                     <?php if ($wlt['type'] == 'topup' or $wlt['type'] == 'Order+') { ?>
                                                                         <td class="text-success">
                                                                             <?= $currency['duit'] ?>
-                                                                            <?= number_format($wlt['jumlah'] , 2, ".", ".") ?>
+                                                                            <?= number_format($wlt['jumlah'] , 0, ".", ".") ?>
                                                                         </td>
 
                                                                     <?php } else { ?>
                                                                         <td class="text-danger">
                                                                             <?= $currency['duit'] ?>
-                                                                            <?= number_format($wlt['jumlah'] , 2, ".", ".") ?>
+                                                                            <?= number_format($wlt['jumlah'] , 0, ".", ".") ?>
                                                                         </td>
                                                                     <?php } ?>
 
@@ -279,7 +279,7 @@
 
                                                                         <td><?= $wlt['nama_driver'] ?><?= $wlt['fullnama'] ?><?= $wlt['nama_mitra'] ?></td>
                                                                         <td class="text-success"><?= $currency['duit'] ?>
-                                                                            <?= number_format($wlt['jumlah'] , 2, ".", ".") ?></td>
+                                                                            <?= number_format($wlt['jumlah'] , 0, ".", ".") ?></td>
                                                                         <td><?= $wlt['bank'] ?></td>
                                                                         <td><?= $wlt['nama_pemilik'] ?></td>
                                                                         <?php if ($wlt['bank'] == 'QRIS') { ?>
@@ -377,7 +377,7 @@
                                                                         <td><?= $wlt['nama_driver'] ?><?= $wlt['fullnama'] ?><?= $wlt['nama_mitra'] ?></td>
 
                                                                         <td class="text-danger"><?= $currency['duit'] ?>
-                                                                            <?= number_format($wlt['jumlah'] , 2, ".", ".") ?></td>
+                                                                            <?= number_format($wlt['jumlah'] , 0, ".", ".") ?></td>
                                                                         <td><?= $wlt['bank'] ?></td>
                                                                         <td><?= $wlt['nama_pemilik'] ?></td>
                                                                         <?php if ($wlt['bank'] == 'QRIS') { ?>
@@ -475,10 +475,10 @@
 
                                                                         <?php if ($wlt['type'] == 'Order+') { ?>
                                                                             <td class="text-success"><?= $currency['duit'] ?>
-                                                                                <?= number_format($wlt['jumlah'] , 2, ".", ".") ?></td>
+                                                                                <?= number_format($wlt['jumlah'] , 0, ".", ".") ?></td>
                                                                         <?php } else { ?>
                                                                             <td class="text-danger"><?= $currency['duit'] ?>
-                                                                                <?= number_format($wlt['jumlah'] , 2, ".", ".") ?></td>
+                                                                                <?= number_format($wlt['jumlah'] , 0, ".", ".") ?></td>
                                                                         <?php } ?>
 
                                                                         <?php if ($wlt['type'] == 'Order+') { ?>

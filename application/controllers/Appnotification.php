@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class appnotification extends CI_Controller
+class appnotification extends MX_Controller
 {
 
     public function  __construct()
@@ -25,7 +25,7 @@ class appnotification extends CI_Controller
     public function index()
     {
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('appnotification/index');
         $this->load->view('includes/footer');
     }

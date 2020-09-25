@@ -51,7 +51,7 @@
                     <?php if ($prc['type_promo'] == 'persen') { ?>
                         <td class="text-danger"><?= $prc['nominal_promo']; ?>%</td>
                         <?php } else { ?>
-                        <td class="text-danger">$<?= number_format($prc['nominal_promo'] / 100, 2, ".", "."); ?></td>
+                        <td class="text-danger">$<?= number_format($prc['nominal_promo'], 0, ".", "."); ?></td>
                         <?php } ?>
 
                     <td><?= $prc['fitur']; ?></td>

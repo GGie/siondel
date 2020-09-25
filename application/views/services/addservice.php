@@ -32,6 +32,17 @@
                         <label for="newstitle">Price</label>
                         <input type="text" class="form-control" id="newstitle" name="biaya"  required>
                     </div>
+					
+					<div class="form-group">
+                        <label for="newscategory">Fixed Price</label>
+                        <select class="js-example-basic-single" name="fixed" style="width:100%">
+                            <!-- <option value="KM">Kilometers</option> -->
+                            <option value="1" >Fixed</option>
+                            <option value="0" >NonFixed</option>
+                            <!-- <option value="Hr">An Hour</option> -->
+                        </select>
+                    </div>
+					
                     <div class="form-group">
                         <label for="newstitle">Discount (%)</label>
                         <input type="text" class="form-control" id="newstitle" name="nilai" placeholder="ex 10%">

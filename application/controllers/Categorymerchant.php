@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Categorymerchant extends CI_Controller
+class Categorymerchant extends MX_Controller
 {
     public function __construct()
     {
@@ -26,7 +26,7 @@ class Categorymerchant extends CI_Controller
 
 
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('categorymerchant/index', $data);
         $this->load->view('includes/footer');
     }

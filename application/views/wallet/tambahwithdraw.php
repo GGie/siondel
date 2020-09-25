@@ -28,7 +28,7 @@
                         <select class="js-example-basic-single" style="width:100%" name="id_pelanggan">
                             <?php foreach ($saldo as $sl) {
                                 if (substr($sl['id_user'], 0, 1) == 'P') { ?>
-                                    <option value="<?= $sl['id_user'] ?>"><?= $sl['fullnama'] ?> (<?= $currency['duit'] ?><?= number_format($sl['saldo'] / 100, 2, ".", ".") ?>)</option>
+                                    <option value="<?= $sl['id_user'] ?>"><?= $sl['fullnama'] ?> (<?= $currency['duit'] ?><?= number_format($sl['saldo'], 0, ".", ".") ?>)</option>
                             <?php }
                             } ?>
                         </select>
@@ -39,7 +39,7 @@
                         <select class="js-example-basic-single" style="width:100%" name="id_driver">
                             <?php foreach ($saldo as $sl) {
                                 if (substr($sl['id_user'], 0, 1) == 'D') { ?>
-                                    <option value="<?= $sl['id_user'] ?>"><?= $sl['nama_driver'] ?> (<?= $currency['duit'] ?><?= number_format($sl['saldo'] / 100, 2, ".", ".") ?>)
+                                    <option value="<?= $sl['id_user'] ?>"><?= $sl['nama_driver'] ?> (<?= $currency['duit'] ?><?= number_format($sl['saldo'], 0, ".", ".") ?>)
                                     </option>
                             <?php }
                             } ?>
@@ -51,7 +51,7 @@
                         <select class="js-example-basic-single" style="width:100%" name="id_mitra">
                             <?php foreach ($saldo as $sl) {
                                 if (substr($sl['id_user'], 0, 1) == 'M') { ?>
-                                    <option value="<?= $sl['id_user'] ?>"><?= $sl['nama_mitra'] ?> (<?= $currency['duit'] ?><?= number_format($sl['saldo'] / 100, 2, ".", ".") ?>)
+                                    <option value="<?= $sl['id_user'] ?>"><?= $sl['nama_mitra'] ?> (<?= $currency['duit'] ?><?= number_format($sl['saldo'], 0, ".", ".") ?>)
                                     </option>
                             <?php }
                             } ?>

@@ -23,7 +23,7 @@
                         <div class="ml-3">
                             <p class="mb-0">Total Transaction Value</p>
                             <h6><?= $currency['app_currency'] ?>
-                                <?= number_format($saldo['total'] / 1000, 3, ".", ".") ?></h6>
+                                <?= number_format($saldo['total'], 0, ".", ".") ?></h6>
                         </div>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                                         <td style="max-width:300px;"><?= $tr['alamat_asal'] ?></td>
                                         <td style="max-width:300px;"><?= $tr['alamat_tujuan'] ?></td>
                                         <td><?= $currency['app_currency'] ?>
-                                            <?= number_format($tr['biaya_akhir'] / 1000, 3, ".", ".") ?></td>
+                                            <?= number_format($tr['biaya_akhir'], 0, ".", ".") ?></td>
                                         <td>
                                             <?php if ($tr['pakai_wallet'] == '0') {
                                                 echo 'CASH';

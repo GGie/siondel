@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Profile extends CI_Controller
+class Profile extends MX_Controller
 {
 
     public function __construct()
@@ -25,7 +25,7 @@ class Profile extends CI_Controller
         // $data['news'] = $this->news->getallnews();
         $data = $this->profile->getadmin();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('profile/index', $data);
         $this->load->view('includes/footer');
     }
@@ -83,7 +83,7 @@ class Profile extends CI_Controller
             }
         } else {
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('login', $data);
             $this->load->view('includes/footer');
         }

@@ -413,7 +413,7 @@ class Pelanggan extends REST_Controller
                 $message = array(
                     'code' => '200',
                     'message' => 'success',
-                    'saldo' => $saldo->row('saldo'),
+                    'saldo' => $saldo->row('saldo') != null ? $saldo->row('saldo') : 0,
                     'currency' => $item['app_currency'],
                     'currency_text' => $item['app_currency_text'],
                     'app_aboutus' => $item['app_aboutus'],

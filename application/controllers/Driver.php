@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Driver extends CI_Controller
+class Driver extends MX_Controller
 {
 
     public function __construct()
@@ -29,14 +29,14 @@ class Driver extends CI_Controller
         $data['driver'] = $this->driver->getalldriver();
 
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('drivers/index', $data);
         $this->load->view('includes/footer');
     }
 
     public function tracking_driver()
     {
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('drivers/tracking_driver');
     }
 
@@ -49,7 +49,7 @@ class Driver extends CI_Controller
         $data['wallet'] = $this->driver->wallet($id);
         $data['driverjob'] = $this->driver->driverjob();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('drivers/detail', $data);
         $this->load->view('includes/footer');
     }
@@ -100,7 +100,7 @@ class Driver extends CI_Controller
             $data['currency'] = $this->app->getappbyid();
             $data['countorder'] = $this->driver->countorder($id);
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('drivers/detail', $data);
             $this->load->view('includes/footer');
         }
@@ -150,7 +150,7 @@ class Driver extends CI_Controller
             $data['currency'] = $this->app->getappbyid();
             $data['countorder'] = $this->driver->countorder($id);
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('drivers/detail', $data);
             $this->load->view('includes/footer');
         }
@@ -205,7 +205,7 @@ class Driver extends CI_Controller
             $data['currency'] = $this->app->getappbyid();
             $data['countorder'] = $this->driver->countorder($id);
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('drivers/detail', $data);
             $this->load->view('includes/footer');
         }
@@ -241,7 +241,7 @@ class Driver extends CI_Controller
             $data['currency'] = $this->app->getappbyid();
             $data['countorder'] = $this->driver->countorder($id);
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('drivers/detail', $data);
             $this->load->view('includes/footer');
         }
@@ -340,7 +340,7 @@ class Driver extends CI_Controller
             $data['currency'] = $this->app->getappbyid();
             $data['countorder'] = $this->driver->countorder($id);
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('drivers/detail', $data);
             $this->load->view('includes/footer');
         }
@@ -505,7 +505,7 @@ class Driver extends CI_Controller
             }
         } else {
             $data['driverjob'] = $this->driver->driverjob();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('drivers/tambahdriver', $data);
             $this->load->view('includes/footer');
         }

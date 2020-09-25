@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class sendemail extends CI_Controller
+class sendemail extends MX_Controller
 {
 
     public function  __construct()
@@ -30,7 +30,7 @@ class sendemail extends CI_Controller
         $data['user'] = $this->user->getallusers();
         $data['mitra'] = $this->mitra->getallmitra();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('sendemail/index', $data);
         $this->load->view('includes/footer');
     }

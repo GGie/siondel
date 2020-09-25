@@ -48,6 +48,7 @@ class Service_model extends CI_model
         $this->db->set('fitur', $data['fitur']);
         $this->db->set('home', $data['home']);
         $this->db->set('biaya', $data['biaya']);
+        $this->db->set('fixed', $data['fixed']);
         $this->db->set('keterangan_biaya', $data['keterangan_biaya']);
         $this->db->set('komisi', $data['komisi']);
         $this->db->set('driver_job', $data['driver_job']);

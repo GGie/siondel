@@ -46,6 +46,7 @@ class Login extends CI_Controller
 					'id' => $user['id'],
 					'user_name' => $user['user_name'],
 					'password' => $user['password'],
+					'group_id' => $user['group_id'],
 					'image' => $user['image']
 				];
 				$this->session->set_userdata($data);

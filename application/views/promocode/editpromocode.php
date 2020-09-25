@@ -40,7 +40,7 @@
                     
                     <div id="fixcheck" class="form-group" style="display:none;">
                         <label>Promo Amount</label>
-                        <input id="fixcheckrequired" type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="nominal_promo" name="nominal_promo" value="$<?= number_format($promo['nominal_promo'] / 100, 2, ".", "."); ?>" placeholder="enter promo amount">
+                        <input id="fixcheckrequired" type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="nominal_promo" name="nominal_promo" value="$<?= number_format($promo['nominal_promo'], 0, ".", "."); ?>" placeholder="enter promo amount">
                     </div>
                     <?php } else { ?>
                         <div id="persencheck" class="form-group" style="display:none;">
@@ -50,7 +50,7 @@
                     
                     <div id="fixcheck" class="form-group" style="display:block;">
                         <label>Promo Amount</label>
-                        <input id="fixcheckrequired" type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="nominal_promo" name="nominal_promo" value="$<?= number_format($promo['nominal_promo'] / 100, 2, ".", "."); ?>" placeholder="enter promo amount">
+                        <input id="fixcheckrequired" type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="nominal_promo" name="nominal_promo" value="$<?= number_format($promo['nominal_promo'], 0, ".", "."); ?>" placeholder="enter promo amount">
                     </div>
                     <?php } ?>
                     

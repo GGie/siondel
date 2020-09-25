@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller
+class Dashboard extends MX_Controller
 {
 
     public function __construct()
@@ -96,7 +96,7 @@ class Dashboard extends CI_Controller
 
 
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('dashboard/index', $data);
     }
 
@@ -109,7 +109,7 @@ class Dashboard extends CI_Controller
         $data['currency'] = $this->app->getappbyid();
         $data['transitem'] = $this->dashboard->getitem($id);
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('dashboard/detailtransaction', $data);
         $this->load->view('includes/footer');
     }

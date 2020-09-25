@@ -24,7 +24,7 @@
                             <h4 class="text-center text-primary">
                                 <i class="mdi mdi-wallet mr-1 text-primary "></i>Wallet</h4>
                             <p class="text-center"><?= $currency['app_currency'] ?>
-                                <?= number_format($driver['saldo'] / 100, 2, ".", ".") ?></p>
+                                <?= number_format($driver['saldo'], 0, ".", ".") ?></p>
 
                             <a class="d-block text-center text-dark" href="#">id card :
                                 <?= $driver['no_ktp'] ?></a>
@@ -326,7 +326,7 @@
                                                                 <td><?= $tr['waktu_order'] ?></td>
                                                                 <td class="text-success">
                                                                     <?= $currency['app_currency'] ?>
-                                                                    <?= number_format($tr['biaya_akhir'] / 100, 2, ".", ".") ?>
+                                                                    <?= number_format($tr['biaya_akhir'], 0, ".", ".") ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php if ($tr['status'] == '2') { ?>
@@ -383,13 +383,13 @@
                                                                 <?php if ($wl['type'] == 'topup' or $wl['type'] == 'Order+') { ?>
                                                                     <td class="text-success">
                                                                         <?= $currency['app_currency'] ?>
-                                                                        <?= number_format($wl['jumlah'] / 100, 2, ".", ".") ?>
+                                                                        <?= number_format($wl['jumlah'], 0, ".", ".") ?>
                                                                     </td>
 
                                                                 <?php } else { ?>
                                                                     <td class="text-danger">
                                                                         <?= $currency['app_currency'] ?>
-                                                                        <?= number_format($wl['jumlah'] / 100, 2, ".", ".") ?>
+                                                                        <?= number_format($wl['jumlah'], 0, ".", ".") ?>
                                                                     </td>
                                                                 <?php } ?>
 

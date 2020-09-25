@@ -18,7 +18,7 @@
                                 <i class="mdi mdi-wallet mr-1 text-primary "></i>Wallet</h4>
                             <p class="text-center">
                                 <?= $duit ?>
-                                <?= number_format($user['saldo'] / 100, 2, ".", ".") ?>
+                                <?= number_format($user['saldo'], 0, ".", ".") ?>
                             </p>
                             <span class="d-block text-center text-dark"><?= $user['email'] ?></span>
                             <span class="d-block text-center text-dark"><?= $user['no_telepon'] ?></span>
@@ -182,7 +182,7 @@
                                                             <td><?= $tr['waktu_order'] ?></td>
                                                             <td class="text-success">
                                                                 <?= $duit ?>
-                                                                <?= number_format($tr['biaya_akhir'] / 100, 2, ".", ".") ?>
+                                                                <?= number_format($tr['biaya_akhir'], 0, ".", ".") ?>
                                                             </td>
                                                             <td>
                                                                 <?php if ($tr['status'] == '2') { ?>
@@ -238,13 +238,13 @@
                                                             <?php if ($wl['type'] == 'topup' or $wl['type'] == 'Order+') { ?>
                                                                 <td class="text-success">
                                                                     <?= $duit ?>
-                                                                    <?= number_format($wl['jumlah'] / 100, 2, ".", ".") ?>
+                                                                    <?= number_format($wl['jumlah'], 0, ".", ".") ?>
                                                                 </td>
 
                                                             <?php } else { ?>
                                                                 <td class="text-danger">
                                                                     <?= $duit ?>
-                                                                    <?= number_format($wl['jumlah'] / 100, 2, ".", ".") ?>
+                                                                    <?= number_format($wl['jumlah'], 0, ".", ".") ?>
                                                                 </td>
                                                             <?php } ?>
                                                         </tr>

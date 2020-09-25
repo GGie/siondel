@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Promoslider extends CI_Controller
+class Promoslider extends MX_Controller
 {
     public function __construct()
     {
@@ -24,7 +24,7 @@ class Promoslider extends CI_Controller
     {
         $data['promo'] = $this->promo->getallpromo();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('promoslider/index', $data);
         $this->load->view('includes/footer');
     }
@@ -78,7 +78,7 @@ class Promoslider extends CI_Controller
             }
         } else {
             $data['fitur'] = $this->fitur->getallservice();
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('promoslider/addslider', $data);
             $this->load->view('includes/footer');
         }
@@ -161,7 +161,7 @@ class Promoslider extends CI_Controller
                 redirect('promoslider');
             }
         } else {
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('promoslider/editslider' . $id, $data);
             $this->load->view('includes/footer');
         }

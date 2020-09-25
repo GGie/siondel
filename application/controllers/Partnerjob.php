@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Partnerjob extends CI_Controller
+class Partnerjob extends MX_Controller
 {
     public function __construct()
     {
@@ -24,7 +24,7 @@ class Partnerjob extends CI_Controller
     {
         $data['partnerjob'] = $this->partnerjob->getAllpartnerjob();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('partnerjob/index', $data);
         $this->load->view('includes/footer');
     }
@@ -54,7 +54,7 @@ class Partnerjob extends CI_Controller
             }
         } else {
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('partnerjob/addpartnerjob');
             $this->load->view('includes/footer');
         }
@@ -89,7 +89,7 @@ class Partnerjob extends CI_Controller
             }
         } else {
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('partnerjob/editpartnerjob', $data);
             $this->load->view('includes/footer');
         }

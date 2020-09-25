@@ -22,3 +22,16 @@ function update_transaksi_log($id, $desc){
       $init->db->insert('transaksi_log', $transaksi_log);
 	
 }
+
+function menu($menu_id, $akses)
+{
+	$CI =& get_instance();
+	
+	$sql = "SELECT * FROM groups_roles WHERE menu_id='" . $menu_id . "' AND group_id='" . $CI->session->userdata('group_id') . "'";
+	$data = $CI->db->query($sql);
+	foreach ( $data->result() as $user )
+	{
+		return $user->$akses;
+	}
+	
+}

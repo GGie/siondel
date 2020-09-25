@@ -45,7 +45,7 @@
 										<?php $kdvoucher = explode('.', base64_decode($tr['qrstring'])); ?>
                                         <td><?= $kdvoucher[0] ?></td>
                                         <td><?= $currency['app_currency'] ?>
-                                            <?= number_format($tr['biaya_akhir'] / 1000, 3, ".", ".") ?></td>
+                                            <?= number_format($tr['biaya_akhir'], 0, ".", ".") ?></td>
                                         <td>
                                             <?php if ($tr['pakai_wallet'] == '0') {
                                                 echo 'CASH';

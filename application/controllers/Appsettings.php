@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Appsettings extends CI_Controller
+class Appsettings extends MX_Controller
 {
 
     public function  __construct()
@@ -26,7 +26,7 @@ class Appsettings extends CI_Controller
         $data['payusettings'] = $this->app->getpayubyid();
         $data['transfer'] = $this->app->gettransfer();
 
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('appsettings/index', $data);
         $this->load->view('includes/footer');
     }
@@ -180,7 +180,7 @@ class Appsettings extends CI_Controller
 
             $data['appsettings'] = $this->app->getappbyid();
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('appsettings/index', $data);
             $this->load->view('includes/footer');
         }
@@ -216,7 +216,7 @@ class Appsettings extends CI_Controller
 
             $data['appsettings'] = $this->app->getappbyid();
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('appsettings/index', $data);
             $this->load->view('includes/footer');
         }
@@ -255,7 +255,7 @@ class Appsettings extends CI_Controller
 
             $data['appsettings'] = $this->app->getappbyid();
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('appsettings/index', $data);
             $this->load->view('includes/footer');
         }
@@ -290,7 +290,7 @@ class Appsettings extends CI_Controller
 
             $data['appsettings'] = $this->app->getappbyid();
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('appsettings/index', $data);
             $this->load->view('includes/footer');
         }
@@ -325,7 +325,7 @@ class Appsettings extends CI_Controller
 
             $data['appsettings'] = $this->app->getappbyid();
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('appsettings/index', $data);
             $this->load->view('includes/footer');
         }
@@ -334,7 +334,7 @@ class Appsettings extends CI_Controller
     public function addbank()
 
     {
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('appsettings/addbank');
         $this->load->view('includes/footer');
     }
@@ -343,7 +343,7 @@ class Appsettings extends CI_Controller
 
     {
         $data['transfer'] = $this->app->getbankid($id);
-        $this->load->view('includes/header');
+        $this->headers();
         $this->load->view('appsettings/editbank', $data);
         $this->load->view('includes/footer');
     }
@@ -380,7 +380,7 @@ class Appsettings extends CI_Controller
 
             $data['payusettings'] = $this->app->getpayubyid();
 
-            $this->load->view('includes/header');
+            $this->headers();
             $this->load->view('appsettings/index', $data);
             $this->load->view('includes/footer');
         }

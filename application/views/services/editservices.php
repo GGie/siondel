@@ -31,8 +31,15 @@
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Price</label>
-                        <!--<input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="biaya" value="<?= number_format($biaya / 1000, 3, ".", ".") ?>" required>-->
+                        <!--<input type="text" pattern="^\d+(\.|\,)\d{2}$" data-type="currency" class="form-control" id="newstitle" name="biaya" value="<?= number_format($biaya, 0, ".", ".") ?>" required>-->
                         <input type="text" class="form-control" id="newstitle" name="biaya" value="<?= number_format($biaya, 0, ".", "") ?>" required>
+                    </div>
+					<div class="form-group">
+                        <label for="newscategory">Fixed Price</label>
+                        <select class="js-example-basic-single" name="fixed" style="width:100%">
+                            <option value="1" <?php if ($fixed == 1) { ?>selected<?php } ?>>Fixed</option>
+                            <option value="0" <?php if ($fixed == 0) { ?>selected<?php } ?>>NonFixed</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="newstitle">Discount (%)</label>
