@@ -22252,5 +22252,9 @@ div.tagsinput {
   .landing-page .footer .footer-bottom {
     color: #ffffff;
     font-family: "roboto-medium", sans-serif; }
+   .login-bg{
+      background: url("../images/background.jpg");
+      background-size: cover;
+    }
 
 /*# sourceMappingURL=maps/style.css.map */
