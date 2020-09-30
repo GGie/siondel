@@ -298,7 +298,7 @@ class Pelanggan_model extends CI_model
                 AND d.status = '1'
                 AND k.id_k = d.kendaraan
                 AND s.id_user = d.id
-                AND s.saldo > f.wallet_minimum
+                AND s.saldo >= f.wallet_minimum
             HAVING distance <= f.jarak_minimum
             ORDER BY distance ASC");
         return $result;

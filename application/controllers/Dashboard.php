@@ -86,11 +86,15 @@ class Dashboard extends MX_Controller
 
 
         $data['currency'] = $this->app->getappbyid();
-        $data['transaksi'] = $this->dashboard->getAlltransaksi();
+        // $data['transaksi'] = $this->dashboard->getAlltransaksi();
+        $data['transaksi'] = $this->dashboard->getAlltransaksi_dashboard();
         $data['fitur'] = $this->dashboard->getAllfitur();
         $data['saldo'] = $this->dashboard->getallsaldo();
         $data['user'] = $this->user->getallusers();
         $data['driver'] = $this->driver->getalldriver();
+        $data['countdriver_aktif'] = $this->dashboard->countdriver_aktif();
+        $data['driver_banned'] = $this->dashboard->countdriver_banned();
+        $data['countdriver_new'] = $this->dashboard->countdriver_new();
         $data['mitra'] = $this->dashboard->countmitra();
         $data['hitungdriver'] = $this->dashboard->countdriver();
 

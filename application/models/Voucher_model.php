@@ -24,7 +24,7 @@ class Voucher_model extends CI_model
         return $this->db->insert('kdvoucher', $data);
     }
 
-    public function cekvoucher($code)
+    public function getvoucher($code)
     {
         $this->db->select('*');
         $this->db->from('kdvoucher');

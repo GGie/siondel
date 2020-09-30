@@ -204,7 +204,97 @@ class Driver extends REST_Controller
 	}
 	
 	
+	public function APIcapture_post()
+	{
+		
+			$data = file_get_contents('php://input');
+			$result = json_decode($data);
+		
+			header('Content-Type: application/json');
+
+			$uid			= @$result->uid;
+			$id_transaksi	= @$result->id_transaksi;
+			$type			= @$result->type;
+			$signature		= @$result->signature;
+			$imgfile		= @$result->imgfile;
+			
+			try
+			{
+				
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$signature)
+					throw new Exception("signature null.");
+				if (!$id_transaksi)
+					throw new Exception("id_transaksi null.");
+				if ( $status != 1 AND $status != 2 )
+					throw new Exception("type allow is 1 OR 2.");
+				// if (!$this->validateBase64Image($imgfile)) {
+					// throw new Exception("Not a valid base64 string");
+				// }
+				
+				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+				$signatureGenerate	= hash('sha256', $uid . $secret . $id_transaksi);
+				
+				if ($signature != $signatureGenerate)
+					throw new Exception("Wrong Signature!!!");
+				
+					$getReport = $this->db->get_where('transaksi', array('id' => $id_transaksi));
+					
+					if ( $getReport->num_rows() <= 0 )
+						throw new Exception("id_transaksi Not Found.");
+					
+							if ( isset($imgfile) )
+								$this->unggah_gambar($id_transaksi, $type, $imgfile);
+
+							$returnValue = json_encode(array('status' => "00", 'message'=>'Success'));
+				
+			} catch(Exception $ex)
+			{
+				$data = array('status' => "01", "message" => $ex->getMessage());
+				$returnValue = json_encode($data);
+			}
+			
+			
+		echo $returnValue;
+			
+	}
 	
+	private function unggah_gambar( $id_transaksi, $type, $base64img = "" )
+    {
+    	$this->load->helper('string');
+		
+		try {
+			$images = $base64img;
+			$time = round(microtime(true) * 1000);
+			$ImagePath = "./images/transaksi/" . $id_transaksi . "-" . $type . "-" . $time . ".png";
+			
+			if($base64img != ""){
+				file_put_contents($ImagePath,base64_decode($base64img));
+				//$this->reportmeter_model->watermark($ImagePath, $tglcreate);
+				
+				$database = array(
+ 						'id_transaksi' => $id_transaksi,
+						'image_name'	=> $type . "-" . $time,
+						'image_url' 	=> $ImagePath,
+						'image_type' 	=> $type,
+						'id_status' 	=> 1,
+						// 'input_by' 		=> $userid,
+						'input_date' 	=> date('Y-m-d H:i:s')
+					);
+
+				$this->db->insert('image_file', $database);
+			}
+				
+			} catch(Exception $ex)
+			{
+				return false;
+			}
+		
+		
+	}
 	
 	//yg lama
 	function index_get()
@@ -419,7 +509,13 @@ class Driver extends REST_Controller
                 $payu = $this->Pelanggan_model->payusettings()->result();
                 if ($getDataDriver['status_order']->num_rows() > 0) {
                     $stat = 0;
-                    if ($getDataDriver['status_order']->row('status') == 3) {
+                    if ($getDataDriver['status_order']->row('status') == 8) {
+                        $stat = 3;
+                    } else if ($getDataDriver['status_order']->row('status') == 7) {
+                        $stat = 3;
+                    } else if ($getDataDriver['status_order']->row('status') == 6) {
+                        $stat = 3;
+                    } else if ($getDataDriver['status_order']->row('status') == 3) {
                         $stat = 3;
                     } else if ($getDataDriver['status_order']->row('status') == 2) {
                         $stat = 2;

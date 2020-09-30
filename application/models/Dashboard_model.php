@@ -3,6 +3,22 @@
 
 class Dashboard_model extends CI_model
 {
+
+  public function getAlltransaksi_dashboard()
+  {
+    $this->db->select('transaksi.*,' . 'driver.nama_driver,' . 'pelanggan.fullnama,' . 'history_transaksi.*,' . 'status_transaksi.*,' . 'fitur.fitur');
+    $this->db->from('transaksi');
+    $this->db->join('history_transaksi', 'transaksi.id = history_transaksi.id_transaksi', 'left');
+    $this->db->join('status_transaksi', 'history_transaksi.status = status_transaksi.id', 'left');
+    $this->db->join('driver', 'transaksi.id_driver = driver.id', 'left');
+    $this->db->join('pelanggan', 'transaksi.id_pelanggan = pelanggan.id', 'left');
+    $this->db->join('fitur', 'transaksi.order_fitur = fitur.id_fitur', 'left');
+    $this->db->where('history_transaksi.status != 1');
+    $this->db->where('history_transaksi.status != 0');
+    $this->db->order_by('transaksi.id', 'DESC');
+    return $this->db->get()->result_array();
+  }
+  
   public function getAlltransaksi()
   {
     $this->db->select('transaksi.*,' . 'driver.nama_driver,' . 'pelanggan.fullnama,' . 'history_transaksi.*,' . 'status_transaksi.*,' . 'fitur.fitur');
@@ -14,6 +30,13 @@ class Dashboard_model extends CI_model
     $this->db->join('fitur', 'transaksi.order_fitur = fitur.id_fitur', 'left');
     $this->db->where('history_transaksi.status != 1');
     $this->db->where('history_transaksi.status != 0');
+	
+	if ( !empty($_GET['date_first']) AND !empty($_GET['date_end']) ) {
+		$this->db->where('history_transaksi.waktu BETWEEN "'. date('Y-m-d 00:00:00', strtotime($_GET['date_first'])). '" and "'. date('Y-m-d 23:59:59', strtotime($_GET['date_end'])).'"');
+	} else {
+		$this->db->where('history_transaksi.waktu BETWEEN "'. date('Y-m-d', strtotime(date('Y-m-d') . ' - 7 days')) . '" and "'. date('Y-m-d 23:59:59').'"');
+	}
+	
     $this->db->order_by('transaksi.id', 'DESC');
     return $this->db->get()->result_array();
   }
@@ -89,7 +112,8 @@ class Dashboard_model extends CI_model
   {
     $this->db->select('SUM(biaya_akhir)as total');
     $this->db->join('history_transaksi', 'transaksi.id = history_transaksi.id_transaksi', 'left');
-    $this->db->where('history_transaksi.status != 1');
+    // $this->db->where('history_transaksi.status != 1');
+    $this->db->where('history_transaksi.status = 4');
     return $this->db->get('transaksi')->row_array();
   }
 
@@ -168,10 +192,39 @@ class Dashboard_model extends CI_model
     $this->db->where('status != 0');
     return $this->db->get('driver')->result_array();
   }
+  
+  public function countdriver_aktif()
+  {
+    $this->db->where('status = 1');
+    return $this->db->get('driver')->result_array();
+  }
+  
+  public function countdriver_banned()
+  {
+    $this->db->where('status = 3');
+    return $this->db->get('driver')->result_array();
+  }
+  
+  public function countdriver_new()
+  {
+    $this->db->where('status = 0');
+    return $this->db->get('driver')->result_array();
+  }
 
   public function countmitra()
   {
     $this->db->where('status_mitra != 0');
     return $this->db->get('mitra')->result_array();
   }
+  
+  public function check_banned($phone)
+  {
+	$stat =  $this->db->query("SELECT id FROM driver WHERE status='3' AND no_telepon='$phone'");
+	if ($stat->num_rows() == 1) {
+		return true;
+	} else {
+		return false;
+	}
+  }
+	
 }

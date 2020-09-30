@@ -24,7 +24,7 @@
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper">
             <div class="row">
-                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-full-bg">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
                     <div class="row w-100">
                         <div class="col-lg-4 mx-auto">
                             <div class="auth-form-light text-left p-5">
@@ -49,7 +49,7 @@
                                 <div class="mt-5">
                                     <button type="submit" class="btn btn-block btn-lg font-weight-medium" style="color: #fff;background: linear-gradient(88deg, #0064D3, #6DC0FF);border-color: #03a9f3;">Login</button>
                                     <br>
-                                    <span class="text-muted d-block text-center  justify-center ">Copyright © 2020 <a class="text-success" href="#">QUICKRAYDevelops</a>. All rights reserved.</span>
+                                    <span class="text-muted d-block text-center  justify-center ">Copyright © 2020 <a class="text-success" href="#">Anterin Si-OnDel</a>. All rights reserved.</span>
                                 </div>
                                 <?= form_close(); ?>
                             </div>

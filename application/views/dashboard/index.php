@@ -23,7 +23,7 @@
                         <div class="ml-3">
                             <p class="mb-0">Total Transaction Value</p>
                             <h6><?= $currency['app_currency'] ?>
-                                <?= number_format($saldo['total'], 0, ".", ".") ?></h6>
+                                <?= number_format($saldo['total'], 0, ".", ".") ?></h6> <!-- transaksi dari yg sudah finish -->
                         </div>
                     </div>
                 </div>
@@ -32,40 +32,54 @@
     </div>
 
         <div class="row">
-        <div class="col-md-6 col-lg-4 grid-margin stretch-card">
+        <div class="col-md-6 col-lg-3 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-md-center">
                         <i class="mdi mdi-account-multiple icon-lg text-info"></i>
                         <div class="ml-3">
-                            <p class="mb-0">Total Users</p>
+                            <p class="mb-0">Users</p>
                             <h6><?= count($user); ?></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 grid-margin stretch-card">
+        <div class="col-md-6 col-lg-3 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-md-center">
-                        <i class="mdi mdi-motorbike icon-lg text-danger"></i>
+                        <i class="mdi mdi-motorbike icon-lg text-success"></i>
                         <div class="ml-3">
-                            <p class="mb-0">Total Driver</p>
-                            <h6><?= count($hitungdriver); ?></h6>
+                            <p class="mb-0">Driver Aktif</p>
+                            <h6><?= count($countdriver_aktif); ?></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 grid-margin stretch-card">
+        <div class="col-md-6 col-lg-3 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-md-center">
-                        <i class="mdi mdi-store icon-lg text-primary"></i>
+                        <i class="mdi mdi-motorbike icon-lg text-primary"></i>
                         <div class="ml-3">
-                            <p class="mb-0">Total Merchant</p>
-                            <h6><?= count($mitra); ?></h6>
+                            <p class="mb-0">Driver New</p>
+                            <h6><?= count($countdriver_new); ?></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="col-md-6 col-lg-3 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-md-center">
+                        <i class="mdi mdi-motorbike icon-lg text-danger"></i>
+                        <div class="ml-3">
+                            <p class="mb-0">Driver Banned</p>
+                            <h6><?= count($driver_banned); ?></h6>
                         </div>
                     </div>
                 </div>
@@ -162,8 +176,10 @@
                                     <th>Customer</th>
                                     <th>Driver</th>
                                     <th>Service</th>
-                                    <th>Pick Up</th>
-                                    <th>Destination</th>
+                                    <th style="min-width:300px">Pick Up</th>
+                                    <th style="min-width:300px">Destination</th>
+                                    <th style="min-width:90px">Start date</th>
+                                    <th style="min-width:90px">End Date</th>
                                     <th>Price</th>
                                     <th>Payment Method</th>
                                     <th>Status</th>
@@ -179,8 +195,10 @@
                                         <td><?= $tr['fullnama'] ?></td>
                                         <td><?= $tr['nama_driver'] ?></td>
                                         <td><?= $tr['fitur'] ?></td>
-                                        <td style="max-width:300px;"><?= $tr['alamat_asal'] ?></td>
-                                        <td style="max-width:300px;"><?= $tr['alamat_tujuan'] ?></td>
+                                        <td style="max-width:300px;" valign="top"><?= $tr['alamat_asal'] ?></td>
+                                        <td style="max-width:300px;" valign="top"><?= $tr['alamat_tujuan'] ?></td>
+										<td><?= date('Y-m-d H:i:s', strtotime($tr['waktu_order'])) ?></td>
+										<td><?= date('Y-m-d H:i:s', strtotime($tr['waktu_selesai'])) ?></td>
                                         <td><?= $currency['app_currency'] ?>
                                             <?= number_format($tr['biaya_akhir'], 0, ".", ".") ?></td>
                                         <td>
@@ -205,8 +223,8 @@
                                             <?php } ?>
                                         </td>
                                         <td>
-                                            <a href="<?= base_url(); ?>dashboard/detail/<?= $tr['id_transaksi']; ?>" class="btn btn-outline-primary">View</a>
-                                            <a onclick="return confirm ('Are You Sure?')" href="<?= base_url(); ?>dashboard/delete/<?= $tr['id_transaksi']; ?>" class="btn btn-outline-danger">Delete</a>
+                                            <a href="<?= base_url(); ?>dashboard/detail/<?= $tr['id_transaksi']; ?>" class="btn btn-outline-primary m-2" style='width:80px'>View</a>
+                                            <a onclick="return confirm ('Are You Sure?')" href="<?= base_url(); ?>dashboard/delete/<?= $tr['id_transaksi']; ?>" class="btn btn-outline-danger m-2" style='width:80px'>Delete</a>
                                         </td>
                                     </tr>
                                 <?php $i++;

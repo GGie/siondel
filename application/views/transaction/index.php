@@ -1,9 +1,40 @@
+<!--
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" />
+-->
 <div class="content-wrapper">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Data table</h4>
+            <h4 class="card-title">Data Transaction</h4>
             
-
+			<div style="margin-bottom: 15px">
+			<form action="" method="GET" accept-charset="utf-8">
+			<div class="row">
+				<?php
+				
+				if ( !empty($_GET['date_first']) AND !empty($_GET['date_end']) ) {
+					$date_first = date('Y-m-d', strtotime($_GET['date_first']));
+					$date_end = date('Y-m-d', strtotime($_GET['date_end']));
+				} else {
+					$date_first = date('Y-m-d', strtotime(date('Y-m-d') . ' - 7 days'));
+					$date_end = date('Y-m-d');
+				}
+				
+				?>
+                <div class="col-3">
+					<input type="date" class="form-control" name="date_first" value="<?php echo $date_first; ?>">
+				</div>
+				s/d
+				<div class="col-3">
+					<input type="date" class="form-control" name="date_end" value="<?php echo $date_end; ?>">
+				</div>
+				<button type="submit" class="btn btn-success mr-2">Search</button>
+				<a class="btn btn-primary" href="<?php echo base_url('transaction/xls_reportmeter?date_first=' . $date_first . '&date_end=' . $date_end) ?>">Export</a>
+			
+			</div>
+			</form>
+			</div>
+			
             <div class="row">
                 <div class="col-12">
                     <?php if ($this->session->flashdata()) : ?>
@@ -23,6 +54,9 @@
                                     <th>Service</th>
                                     <th style="min-width:300px">Pick Up</th>
                                     <th style="min-width:300px">Destination</th>
+                                    <th style="min-width:90px">Date</th>
+                                    <th style="min-width:90px">Start date</th>
+                                    <th style="min-width:90px">End Date</th>
                                     <th>Kode Voucher</th>
                                     <th>Price</th>
                                     <th>Payment Method</th>
@@ -41,7 +75,9 @@
                                         <td><?= $tr['fitur'] ?></td>
                                         <td style="max-width:300px;"><?= $tr['alamat_asal'] ?></td>
                                         <td style="max-width:300px;"><?= $tr['alamat_tujuan'] ?></td>
-										
+										<td><?= date('Y-m-d H:i:s', strtotime($tr['waktu'])) ?></td>
+										<td><?= date('Y-m-d H:i:s', strtotime($tr['waktu_order'])) ?></td>
+										<td><?= date('Y-m-d H:i:s', strtotime($tr['waktu_selesai'])) ?></td>
 										<?php $kdvoucher = explode('.', base64_decode($tr['qrstring'])); ?>
                                         <td><?= $kdvoucher[0] ?></td>
                                         <td><?= $currency['app_currency'] ?>
@@ -64,6 +100,15 @@
                                                 <label class="badge badge-danger"><?= $tr['status_transaksi']; ?></label>
                                             <?php } ?>
                                             <?php if ($tr['status'] == '4') { ?>
+                                                <label class="badge badge-info"><?= $tr['status_transaksi']; ?></label>
+                                            <?php } ?>
+											<?php if ($tr['status'] == '6') { ?>
+                                                <label class="badge badge-info"><?= $tr['status_transaksi']; ?></label>
+                                            <?php } ?>
+											<?php if ($tr['status'] == '7') { ?>
+                                                <label class="badge badge-info"><?= $tr['status_transaksi']; ?></label>
+                                            <?php } ?>
+											<?php if ($tr['status'] == '8') { ?>
                                                 <label class="badge badge-info"><?= $tr['status_transaksi']; ?></label>
                                             <?php } ?>
                                         </td>
