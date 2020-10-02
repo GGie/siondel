@@ -510,11 +510,11 @@ class Driver extends REST_Controller
                 if ($getDataDriver['status_order']->num_rows() > 0) {
                     $stat = 0;
                     if ($getDataDriver['status_order']->row('status') == 8) {
-                        $stat = 3;
+                        $stat = 8;
                     } else if ($getDataDriver['status_order']->row('status') == 7) {
-                        $stat = 3;
+                        $stat = 7;
                     } else if ($getDataDriver['status_order']->row('status') == 6) {
-                        $stat = 3;
+                        $stat = 6;
                     } else if ($getDataDriver['status_order']->row('status') == 3) {
                         $stat = 3;
                     } else if ($getDataDriver['status_order']->row('status') == 2) {
@@ -663,12 +663,18 @@ class Driver extends REST_Controller
                 $this->response($message, 200);
             } else {
                 if ($acc_req['data'] == 'canceled') {
+					//update price 0
+					update_transaksi($dec_data->id_transaksi);
+					
                     $message = array(
                         'message' => 'canceled',
                         'data' => 'canceled'
                     );
                     $this->response($message, 200);
                 } else {
+					//update price 0
+					update_transaksi($dec_data->id_transaksi);
+					
                     $message = array(
                         'message' => 'unknown fail',
                         'data' => 'canceled'
@@ -677,6 +683,9 @@ class Driver extends REST_Controller
                 }
             }
         } else {
+			//update price 0
+			update_transaksi($dec_data->id_transaksi);
+					
             $message = array(
                 'message' => 'unknown fail',
                 'data' => 'canceled'
@@ -723,12 +732,17 @@ class Driver extends REST_Controller
                 $this->response($message, 200);
             } else {
                 if ($acc_req['data'] == 'canceled') {
+					//update price 0
+					update_transaksi($id_trans);
+					
                     $message = array(
                         'message' => 'canceled',
                         'data' => 'canceled'
                     );
                     $this->response($message, 200);
                 } else {
+					//update price 0
+					update_transaksi($id_trans);
                     $message = array(
                         'message' => 'unknown fail',
                         'data' => 'canceled'
@@ -737,6 +751,9 @@ class Driver extends REST_Controller
                 }
             }
         } else {
+			//update price 0
+			update_transaksi($id_trans);
+			
             $message = array(
                 'message' => 'unknown fail',
                 'data' => 'canceled'
@@ -783,12 +800,18 @@ class Driver extends REST_Controller
                 $this->response($message, 200);
             } else {
                 if ($acc_req['data'] == 'canceled') {
+					//update price 0
+					update_transaksi($id_trans);
+					
                     $message = array(
                         'message' => 'canceled',
                         'data' => 'canceled'
                     );
                     $this->response($message, 200);
                 } else {
+					//update price 0
+					update_transaksi($id_trans);
+					
                     $message = array(
                         'message' => 'unknown fail',
                         'data' => 'canceled'
@@ -797,6 +820,9 @@ class Driver extends REST_Controller
                 }
             }
         } else {
+			//update price 0
+			update_transaksi($id_trans);
+			
             $message = array(
                 'message' => 'unknown fail',
                 'data' => 'canceled'
@@ -843,12 +869,18 @@ class Driver extends REST_Controller
                 $this->response($message, 200);
             } else {
                 if ($acc_req['data'] == 'canceled') {
+					//update price 0
+					update_transaksi($id_trans);
+					
                     $message = array(
                         'message' => 'canceled',
                         'data' => 'canceled'
                     );
                     $this->response($message, 200);
                 } else {
+					//update price 0
+					update_transaksi($id_trans);
+					
                     $message = array(
                         'message' => 'unknown fail',
                         'data' => 'canceled'
@@ -857,6 +889,9 @@ class Driver extends REST_Controller
                 }
             }
         } else {
+			//update price 0
+			update_transaksi($id_trans);
+			
             $message = array(
                 'message' => 'unknown fail',
                 'data' => 'canceled'
@@ -893,6 +928,9 @@ class Driver extends REST_Controller
             $this->response($message, 200);
         } else {
             if ($acc_req['data'] == 'canceled') {
+				//update price 0
+				update_transaksi($dec_data->id_transaksi);
+					
                 $message = array(
                     'message' => 'canceled',
                     'data' => 'canceled'

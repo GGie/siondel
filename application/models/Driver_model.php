@@ -289,7 +289,7 @@ class Driver_model extends CI_model
         $this->db->join('transaksi', 'transaksi.id = history_transaksi.id_transaksi');
         $this->db->join('pelanggan', 'transaksi.id_pelanggan = pelanggan.id');
         $this->db->join('transaksi_detail_send', 'transaksi.id = transaksi_detail_send.id_transaksi', 'left');
-        $this->db->where("(history_transaksi.status = '2' OR history_transaksi.status = '3')", NULL, FALSE);
+        $this->db->where("(history_transaksi.status = '2' OR history_transaksi.status = '3' OR history_transaksi.status = '6' OR history_transaksi.status = '7' OR history_transaksi.status = '8')", NULL, FALSE);
         $this->db->where('history_transaksi.id_driver', $idDriver);
         $this->db->order_by('history_transaksi.nomor', 'DESC');
         $check = $this->db->get('history_transaksi', 1, 0);
@@ -344,6 +344,7 @@ class Driver_model extends CI_model
                 );
             }
         } else {
+			update_transaksi($cond['id_transaksi']);
             return array(
                 'status' => false,
                 'data' => 'canceled'

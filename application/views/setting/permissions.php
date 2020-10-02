@@ -204,6 +204,8 @@ data-options="
 
 			<th field="menu" width="150" sortable="false">Menu</th>
 			<th field="view" width="30" sortable="false" align="center">View</th>
+			
+			<!--
 			<th field="created" width="30" sortable="false" align="center" >Create</th>
 			<th field="updated" width="30" sortable="false" align="center">Update</th>
 			<th field="cancelled" width="30" sortable="false" align="center">Cancel</th>
@@ -212,6 +214,7 @@ data-options="
 			<th field="uploaded" width="30" sortable="false" align="center">Upload</th>
 			<th field="closed" width="30" sortable="false" align="center">Close</th>
 			<th field="verified" width="30" sortable="false" align="center">Verify</th>
+			-->
 		</tr>
 	</thead>
 </table>

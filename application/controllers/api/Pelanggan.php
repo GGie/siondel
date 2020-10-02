@@ -1235,6 +1235,9 @@ class Pelanggan extends REST_Controller
         );
         $cancel_req = $this->Pelanggan_model->user_cancel_request($data_req);
         if ($cancel_req['status']) {
+			//update price 0
+			update_transaksi($dec_data->id_transaksi);
+				
             $this->Driver_model->delete_chat($cancel_req['iddriver'], $cancel_req['idpelanggan']);
             $message = array(
                 'message' => 'canceled',

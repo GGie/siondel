@@ -443,7 +443,7 @@ class Customer extends CI_Controller
 		
 		$kdvoucher	= @$result["kdvoucher"]; //ME35HRQL
 		$phone		= @$result["phone"]; //ME35HRQL
-		$validasi	= false;
+		$validasi	= validasiVoucher;
 		
 		try
 		{
@@ -512,7 +512,7 @@ class Customer extends CI_Controller
 						
 						if ( $result['nohp'] == $phone OR $validasi != true) {
 							
-							$cekvoucher = $this->Voucher_model->cekvoucher($kdvoucher);
+							$cekvoucher = $this->Voucher_model->getvoucher($kdvoucher);
 							if ($cekvoucher->num_rows() > 0){
 								//get dari table kdvoucher
 								$JSON = json_decode($cekvoucher->row()->json);

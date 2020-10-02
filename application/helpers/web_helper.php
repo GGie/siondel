@@ -23,6 +23,23 @@ function update_transaksi_log($id, $desc){
 	
 }
 
+function update_transaksi($id){
+    $init =& get_instance();
+		$data = array(
+			'harga'			=> 0,
+			'biaya_akhir'	=> 0,
+		);
+		
+	  $init->db->where('id_transaksi', $id);
+        $edit = $init->db->update('transaksi', $data);
+        if ($init->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+	
+}
+
 function menu($menu_id, $akses)
 {
 	$CI =& get_instance();
