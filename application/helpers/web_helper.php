@@ -30,7 +30,7 @@ function update_transaksi($id){
 			'biaya_akhir'	=> 0,
 		);
 		
-	  $init->db->where('id_transaksi', $id);
+	  $init->db->where('id', $id);
         $edit = $init->db->update('transaksi', $data);
         if ($init->db->affected_rows() > 0) {
             return true;

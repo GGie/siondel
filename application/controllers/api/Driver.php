@@ -217,6 +217,8 @@ class Driver extends REST_Controller
 			$type			= @$result->type;
 			$signature		= @$result->signature;
 			$imgfile		= @$result->imgfile;
+			$latitude		= @$result->latitude;
+			$longitude		= @$result->longitude;
 			
 			try
 			{
@@ -247,7 +249,7 @@ class Driver extends REST_Controller
 						throw new Exception("id_transaksi Not Found.");
 					
 							if ( isset($imgfile) )
-								$this->unggah_gambar($id_transaksi, $type, $imgfile);
+								$this->unggah_gambar($id_transaksi, $type, $imgfile, $latitude, $longitude);
 
 							$returnValue = json_encode(array('status' => "00", 'message'=>'Success'));
 				
@@ -262,7 +264,7 @@ class Driver extends REST_Controller
 			
 	}
 	
-	private function unggah_gambar( $id_transaksi, $type, $base64img = "" )
+	private function unggah_gambar( $id_transaksi, $type, $base64img = "", $latitude = "", $longitude = "")
     {
     	$this->load->helper('string');
 		
@@ -281,7 +283,9 @@ class Driver extends REST_Controller
 						'image_url' 	=> $ImagePath,
 						'image_type' 	=> $type,
 						'id_status' 	=> 1,
-						// 'input_by' 		=> $userid,
+						'latitude'		=> $latitude,
+						'longitude' 	=> $longitude,
+						// 'input_by'	=> $userid,
 						'input_date' 	=> date('Y-m-d H:i:s')
 					);
 

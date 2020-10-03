@@ -176,8 +176,8 @@
                                     <th>Customer</th>
                                     <th>Driver</th>
                                     <th>Service</th>
-                                    <th style="min-width:300px">Pick Up</th>
-                                    <th style="min-width:300px">Destination</th>
+                                    <th style="min-width:300px">Samsat Location</th>
+                                    <th style="min-width:300px">Customer Location</th>
                                     <th style="min-width:90px">Start date</th>
                                     <th style="min-width:90px">End Date</th>
                                     <th>Price</th>
@@ -195,8 +195,8 @@
                                         <td><?= $tr['fullnama'] ?></td>
                                         <td><?= $tr['nama_driver'] ?></td>
                                         <td><?= $tr['fitur'] ?></td>
-                                        <td style="max-width:300px;" valign="top"><?= $tr['alamat_asal'] ?></td>
                                         <td style="max-width:300px;" valign="top"><?= $tr['alamat_tujuan'] ?></td>
+										<td style="max-width:300px;" valign="top"><?= $tr['alamat_asal'] ?></td>
 										<td><?= date('Y-m-d H:i:s', strtotime($tr['waktu_order'])) ?></td>
 										<td><?= date('Y-m-d H:i:s', strtotime($tr['waktu_selesai'])) ?></td>
                                         <td><?= $currency['app_currency'] ?>

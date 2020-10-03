@@ -93,8 +93,8 @@
                                         <p class="text-center">
                                             <i class="mdi mdi-account-location icon-lg text-primary "></i>
                                         </p>
-                                        <h6 class="text-center">Pick Up</h6>
-                                        <p class="text-center"><?= $transaksi['alamat_asal'] ?></p>
+                                        <h6 class="text-center">Samsat Location</h6>
+                                        <p class="text-center"><?= $transaksi['alamat_tujuan'] ?></p>
                                     </div>
                                 </div>
 
@@ -159,8 +159,8 @@
                                                     <i class="mdi mdi-account-location icon-lg text-primary "></i>
                                                 <?php } ?>
                                             </p>
-                                            <h6 class="text-center">Pick Up</h6>
-                                            <p class="text-center"><?= $transaksi['alamat_asal'] ?></p>
+                                            <h6 class="text-center">Samsat Location</h6>
+                                            <p class="text-center"><?= $transaksi['alamat_tujuan'] ?></p>
                                         </div>
                                     </div>
 
@@ -193,8 +193,8 @@
                                             <p class="text-center">
                                                 <i class="mdi mdi-map-marker icon-lg text-danger "></i>
                                             </p>
-                                            <h6 class="text-center">Drop Point</h6>
-                                            <p class="text-center"><?= $transaksi['alamat_tujuan'] ?></p>
+                                            <h6 class="text-center">Customer Location</h6>
+                                            <p class="text-center"><?= $transaksi['alamat_asal'] ?></p>
                                         </div>
                                     </div>
                                 </div>

@@ -130,6 +130,10 @@ class Dashboard extends MX_Controller
         $this->notif->notif_cancel_driver($id_transaksi, $token_driver);
         $this->dashboard->ubahstatustransaksibyid($id);
         $this->dashboard->ubahstatusdriverbyid($id_driver);
+		
+		//update price 0
+		update_transaksi($id_transaksi);
+					
         $this->session->set_flashdata('cancel', 'Transaction Has Been Cancel');
         redirect('dashboard/index');
     }
