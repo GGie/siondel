@@ -35,7 +35,7 @@
             </div>
             <div class="row mt-5">
               <div class="col-12 mt-xl-2">
-                <p class="text-white font-weight-medium text-center">Copyright &copy; QuckRayDev Team 2020 All rights reserved.</p>
+                <p class="text-white font-weight-medium text-center">Copyright &copy; Anterin Si-OnDel 2020 All rights reserved.</p>
               </div>
             </div>
           </div>
