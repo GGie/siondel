@@ -57,8 +57,15 @@
 					</span>
 
 
-					<div class="form-group wrap-input100 validate-input m-b-16" data-validate="Password tidak boleh kosong!">
+					<span style="letter-spacing: 0.5px; line-height: 22px; font-weight: 600;">Password baru</span>
+					<div class="form-group wrap-input100 validate-input m-b-16" data-validate="Password baru tidak boleh kosong!">
 						<input class="input100" type="password" name="password" id="password" placeholder="New Password">
+						<span class="focus-input100"></span>
+					</div>
+
+					<span style="letter-spacing: 0.5px; line-height: 22px; font-weight: 600;">Konfirmasi password baru</span>
+					<div class="form-group wrap-input100 validate-input m-b-16" data-validate="Konfirmasi password baru tidak boleh kosong!">
+						<input class="input100" type="password" name="confirm-password" id="confirm-password" placeholder="Confirm New Password">
 						<span class="focus-input100"></span>
 					</div>
 
