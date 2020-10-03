@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-	<title>ouride - reset password</title>
+	<title>Anterin Si-OnDel - reset password</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
