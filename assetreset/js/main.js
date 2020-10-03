@@ -9,7 +9,20 @@
 
     $('.validate-form').on('submit',function(){
         var check = true;
-
+		var passNew = $( "#password" );
+        var passNewConf = $( "#confirm-password" );
+        
+        if(passNewConf.length > 0 && passNew.length > 0) {
+            if(passNew.val() !== passNewConf.val()){
+                showValidate(passNewConf);
+                check=false;
+                passNewConf.parent().attr("data-validate","Konfirmasi password baru anda tidak cocok!");
+            }else{
+                hideValidate(passNewConf);
+                check=true;
+            }
+        }
+		
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
