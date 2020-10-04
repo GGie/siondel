@@ -305,9 +305,9 @@
                                                                         <td>
                                                                             <?php if ($wlt['status'] == '0') { ?>
                                                                                 <a href="<?= base_url(); ?>wallet/tconfirm/<?= $wlt['id'] ?>/<?= $wlt['id_user'] ?>/<?= $wlt['jumlah'] ?>">
-                                                                                    <button class="btn btn-outline-primary">Confirm</button></a>
+                                                                                    <button class="btn btn-outline-primary m-2" style='width:80px'>Confirm</button></a>
                                                                                 <a href="<?= base_url(); ?>wallet/tcancel/<?= $wlt['id'] ?>/<?= $wlt['id_user'] ?>">
-                                                                                    <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger">Cancel</button></a>
+                                                                                    <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger m-2" style='width:80px'>Cancel</button></a>
                                                                             <?php } else { ?>
                                                                                 <span class="btn btn-outline-muted">Completed</span>
                                                                             <?php } ?>
@@ -406,9 +406,9 @@
                                                                         <td>
                                                                             <?php if ($wlt['status'] == '0') { ?>
                                                                                 <a href="<?= base_url(); ?>wallet/wconfirm/<?= $wlt['id'] ?>/<?= $wlt['id_user'] ?>/<?= $wlt['jumlah'] ?>">
-                                                                                    <button class="btn btn-outline-primary">Confirm</button></a>
+                                                                                    <button class="btn btn-outline-primary m-2" style='width:80px'>Confirm</button></a>
                                                                                 <a href="<?= base_url(); ?>wallet/wcancel/<?= $wlt['id'] ?>/<?= $wlt['id_user'] ?>">
-                                                                                    <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger">Cancel</button></a>
+                                                                                    <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger m-2" style='width:80px'>Cancel</button></a>
                                                                             <?php } else { ?>
                                                                                 <span class="btn btn-outline-muted">Completed</span>
                                                                             <?php } ?>

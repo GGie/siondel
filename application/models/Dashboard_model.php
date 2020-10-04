@@ -124,7 +124,9 @@ class Dashboard_model extends CI_model
 
   public function gettransaksibyid($id)
   {
-    $this->db->select('merchant.*');
+    $this->db->select('merchant.*,
+	(SELECT image_url FROM image_file WHERE id_transaksi=transaksi.id AND image_type=1 AND id_status=1 LIMIT 1) as foto_samsat,
+		(SELECT image_url FROM image_file WHERE id_transaksi=transaksi.id AND image_type=2 AND id_status=1 LIMIT 1) as foto_customer,');
     $this->db->select('transaksi_detail_merchant.total_biaya as total_belanja');
     $this->db->select('transaksi_detail_send.*');
     $this->db->select('history_transaksi.*');

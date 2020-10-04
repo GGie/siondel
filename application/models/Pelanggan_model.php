@@ -284,7 +284,7 @@ class Pelanggan_model extends CI_model
 
         $result = $this->db->query("
             SELECT f.jarak_minimum, f.wallet_minimum, d.id as id, d.nama_driver, ld.latitude, ld.longitude, ld.bearing, ld.update_at,
-            k.merek, k.nomor_kendaraan, k.warna, k.tipe, s.saldo,
+            k.merek, k.nomor_kendaraan, k.warna, k.no_stnk, k.foto_stnk, k.tipe, s.saldo,
             d.no_telepon, CONCAT('$url_foto', d.foto, '') as foto, d.reg_id, dj.driver_job,
                 (6371 * acos(cos(radians($lat)) * cos(radians( ld.latitude ))"
             . " * cos(radians(ld.longitude) - radians($lng))"
@@ -311,7 +311,7 @@ class Pelanggan_model extends CI_model
 
         $result = $this->db->query("
             SELECT f.jarak_minimum, f.wallet_minimum, d.id as id, d.nama_driver, ld.latitude, ld.longitude, ld.bearing, ld.update_at,
-            k.merek, k.nomor_kendaraan, k.warna, k.tipe, s.saldo,
+            k.merek, k.nomor_kendaraan, k.warna, k.no_stnk, k.foto_stnk, k.tipe, s.saldo,
             d.no_telepon, CONCAT('$url_foto', d.foto, '') as foto, d.reg_id, dj.driver_job,
                 (6371 * acos(cos(radians($lat)) * cos(radians( ld.latitude ))"
             . " * cos(radians(ld.longitude) - radians($lng))"
@@ -557,6 +557,8 @@ class Pelanggan_model extends CI_model
             . 'k.tipe,'
             . 'k.jenis,'
             . 'k.nomor_kendaraan,'
+            . 'k.no_stnk,'
+            . 'k.foto_stnk,'
             . 'k.warna');
         $this->db->from('driver');
         $this->db->join('history_transaksi', 'driver.id = history_transaksi.id_driver');
@@ -857,7 +859,9 @@ class Pelanggan_model extends CI_model
 
     function transaksi($idtran)
     {
-        $this->db->select('*');
+        $this->db->select('*,
+		(SELECT image_url FROM image_file WHERE id_transaksi=transaksi.id AND image_type=1 AND id_status=1 LIMIT 1) as foto_samsat,
+		(SELECT image_url FROM image_file WHERE id_transaksi=transaksi.id AND image_type=2 AND id_status=1 LIMIT 1) as foto_customer');
         $this->db->from('transaksi');
 
         $this->db->join('transaksi_detail_merchant', 'transaksi.id = transaksi_detail_merchant.id_transaksi', 'left');

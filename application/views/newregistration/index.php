@@ -62,10 +62,10 @@
                                             </td>
                                             <td>
                                                 <a href="<?= base_url(); ?>driver/detail/<?= $drv['id'] ?>">
-                                                    <button class="btn btn-outline-info mr-2">View</button>
+                                                    <button class="btn btn-outline-info m-2" style='width:80px'>View</button>
                                                 </a>
                                                 <a href="<?= base_url(); ?>newregistration/confirm/<?= $drv['id'] ?>">
-                                                    <button class="btn btn-outline-primary mr-2">Confirm</button>
+                                                    <button class="btn btn-outline-primary m-2" style='width:80px'>Confirm</button>
                                                 </a>
 
                                             </td>

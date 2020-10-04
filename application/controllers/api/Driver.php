@@ -18,6 +18,7 @@ class Driver extends REST_Controller
         $this->load->database();
         $this->load->model('Driver_model');
         $this->load->model('Pelanggan_model');
+        $this->load->model('Bank_model');
         date_default_timezone_set('Asia/Jakarta');
 		define('AES_256_CBC', 'aes-256-cbc');
     }
@@ -231,7 +232,7 @@ class Driver extends REST_Controller
 					throw new Exception("signature null.");
 				if (!$id_transaksi)
 					throw new Exception("id_transaksi null.");
-				if ( $status != 1 AND $status != 2 )
+				if ( $type != 1 AND $type != 2 )
 					throw new Exception("type allow is 1 OR 2.");
 				// if (!$this->validateBase64Image($imgfile)) {
 					// throw new Exception("Not a valid base64 string");
@@ -251,7 +252,7 @@ class Driver extends REST_Controller
 							if ( isset($imgfile) )
 								$this->unggah_gambar($id_transaksi, $type, $imgfile, $latitude, $longitude);
 
-							$returnValue = json_encode(array('status' => "00", 'message'=>'Success'));
+							$returnValue = json_encode(array('status' => "200", 'message'=>'Success'));
 				
 			} catch(Exception $ex)
 			{
@@ -271,7 +272,7 @@ class Driver extends REST_Controller
 		try {
 			$images = $base64img;
 			$time = round(microtime(true) * 1000);
-			$ImagePath = "./images/transaksi/" . $id_transaksi . "-" . $type . "-" . $time . ".png";
+			$ImagePath = "/images/transaksi/" . $id_transaksi . "-" . $type . "-" . $time . ".png";
 			
 			if($base64img != ""){
 				file_put_contents($ImagePath,base64_decode($base64img));
@@ -280,7 +281,7 @@ class Driver extends REST_Controller
 				$database = array(
  						'id_transaksi' => $id_transaksi,
 						'image_name'	=> $type . "-" . $time,
-						'image_url' 	=> $ImagePath,
+						'image_url' 	=> ltrim($ImagePath, "."),
 						'image_type' 	=> $type,
 						'id_status' 	=> 1,
 						'latitude'		=> $latitude,
@@ -1155,7 +1156,9 @@ class Driver extends REST_Controller
             'merek' => $decoded_data->merek,
             'tipe' => $decoded_data->tipe,
             'nomor_kendaraan' => $decoded_data->no_kendaraan,
-            'warna' => $decoded_data->warna
+            'warna' => $decoded_data->warna,
+			'no_stnk' => $dec_data->no_stnk,
+            // 'foto_stnk' => $fotostnk
         );
 
 
@@ -1371,6 +1374,12 @@ class Driver extends REST_Controller
                 $namafoto = time() . '-' . rand(0, 99999) . ".jpg";
                 $path = "images/fotodriver/" . $namafoto;
                 file_put_contents($path, base64_decode($image));
+				
+				$imagestnk = $dec_data->foto_stnk;
+				$fotostnk = "stnk_" . time() . '-' . rand(0, 99999) . ".jpg";
+                $path = "images/fotostnk/" . $fotostnk;
+                file_put_contents($path, base64_decode($imagestnk));
+				
                 $data_signup = array(
                     'id' => 'D' . time(),
                     'nama_driver' => $dec_data->nama_driver,
@@ -1393,7 +1402,9 @@ class Driver extends REST_Controller
                     'merek' => $dec_data->merek,
                     'tipe' => $dec_data->tipe,
                     'nomor_kendaraan' => $dec_data->nomor_kendaraan,
-                    'warna' => $dec_data->warna
+                    'warna' => $dec_data->warna,
+                    'no_stnk' => $dec_data->no_stnk,
+                    'foto_stnk' => $fotostnk
                 );
 
                 $imagektp = $dec_data->foto_ktp;
@@ -1411,9 +1422,16 @@ class Driver extends REST_Controller
                     'foto_sim' => $namafotosim,
                     'id_sim' => $dec_data->id_sim
                 );
+				
+				$data_bank = array(
+                    'bank_code' => $dec_data->bank_code,
+                    'bank_name' => $dec_data->bank_name,
+                    'account_username' => $dec_data->account_username,
+                    'account_number' => $dec_data->account_number
+                );
 
 
-                $signup = $this->Driver_model->signup($data_signup, $data_kendaraan, $data_berkas);
+                $signup = $this->Driver_model->signup($data_signup, $data_kendaraan, $data_berkas, $data_bank);
                 if ($signup) {
                     $message = array(
                         'code' => '200',

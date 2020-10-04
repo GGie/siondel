@@ -124,7 +124,8 @@ class Driver extends MX_Controller
                 'merek'                     => html_escape($this->input->post('merek', TRUE)),
                 'tipe'                      => html_escape($this->input->post('tipe', TRUE)),
                 'nomor_kendaraan'           => html_escape($this->input->post('nomor_kendaraan', TRUE)),
-                'warna'                     => html_escape($this->input->post('warna', TRUE))
+                'warna'                     => html_escape($this->input->post('warna', TRUE)),
+                'no_stnk'					=> html_escape($this->input->post('no_stnk', TRUE))
             ];
 
             $data2             = [
@@ -482,7 +483,8 @@ class Driver extends MX_Controller
                 'merek'                     => html_escape($this->input->post('merek', TRUE)),
                 'tipe'                      => html_escape($this->input->post('tipe', TRUE)),
                 'warna'                     => html_escape($this->input->post('warna', TRUE)),
-                'nomor_kendaraan'           => html_escape($this->input->post('nomor_kendaraan', TRUE))
+                'nomor_kendaraan'           => html_escape($this->input->post('nomor_kendaraan', TRUE)),
+                'no_stnk'					=> html_escape($this->input->post('no_stnk', TRUE))
 
             ];
 

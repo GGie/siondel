@@ -641,7 +641,8 @@ class Driver extends REST_Controller
             'merek' => $decoded_data->merek,
             'tipe' => $decoded_data->tipe,
             'nomor_kendaraan' => $decoded_data->no_kendaraan,
-            'warna' => $decoded_data->warna
+            'warna' => $decoded_data->warna,
+			'no_stnk' => $dec_data->no_stnk
         );
 
 

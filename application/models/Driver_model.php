@@ -10,7 +10,7 @@ class Driver_model extends CI_model
         parent::__construct();
     }
 
-    public function signup($data_signup, $data_kendaraan, $data_berkas)
+    public function signup($data_signup, $data_kendaraan, $data_berkas, $data_bank = "")
     {
         $inskendaraan = $this->db->insert('kendaraan', $data_kendaraan);
         $inserid = $this->db->insert_id();
@@ -52,6 +52,15 @@ class Driver_model extends CI_model
             'id_sim' => $data_berkas['id_sim']
         );
         $insberkas = $this->db->insert('berkas_driver', $databerkas);
+		
+		$databank = array(
+            'id_driver' => $data_signup['id'],
+            'bank_code' => $data_bank['bank_code'],
+            'bank_name' => $data_bank['bank_name'],
+            'account_username' => $data_bank['account_username'],
+            'account_number' => $data_bank['account_number']
+        );
+        $bankaccount = $this->db->insert('bank_account', $databank);
 
         $datasaldo = array(
             'id_user' => $data_signup['id'],
@@ -988,6 +997,7 @@ class Driver_model extends CI_model
         $this->db->set('tipe', $data['tipe']);
         $this->db->set('nomor_kendaraan', $data['nomor_kendaraan']);
         $this->db->set('warna', $data['warna']);
+        $this->db->set('no_stnk', $data['no_stnk']);
 
 
         $this->db->where('id_k', $data['id_k']);

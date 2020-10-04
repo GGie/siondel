@@ -228,4 +228,87 @@ class Wallet extends MX_Controller
             $this->load->view('includes/footer');
         }
     }
+	
+	public function pdf_pay()
+    {
+		// $sql = "SELECT a.*,
+				// (SELECT klasifikasi FROM tbl_klasifikasi AS b WHERE b.id_klasifikasi=a.id_klasifikasi) AS klasifikasi
+				// FROM water_meter_report AS a";
+		
+		// $sql .= " WHERE a.status!=0";
+		
+		// if ( !empty($_GET['status_id'])) 
+		// {
+			// $sql .= " AND a.status='" . $_GET['status_id'] . "'";
+		// }
+		
+		// if ( !empty($_GET['reference']) ) {
+			// $sql .= " AND a.reference LIKE '%" . $_GET['reference'] . "%'";
+		// }
+		
+		// if ( !empty($_GET['customer_id']) ) {
+			// $sql .= " AND a.customer_id LIKE '%" . $_GET['customer_id'] . "%'";
+		// }
+		
+		// if ( !empty($_GET['customer_name']) ) {
+			// $sql .= " AND a.customer_name LIKE '%" . $_GET['customer_name'] . "%'";
+		// }
+		
+		// if ( !empty($_GET['area']) ) {
+			// $sql .= " AND a.area LIKE '%" . $_GET['area'] . "%'";
+		// }
+		
+		// if ( !empty($_GET['address']) ) {
+			// $sql .= " AND a.address LIKE '%" . $_GET['address'] . "%'";
+		// }
+		
+		// $getPeriod = @$this->db->get_Where('period', array('status'=>1))->row()->id;
+		// if ( !empty($_GET['period_id'])) 
+		// {
+			// $sql .= " AND a.period_id='" . trim($_GET['period_id']) . "'";
+		// }
+		// else if ( !empty($this->input->get('period')) AND $this->input->get('period') == 'all') 
+		// {
+			// if ( $this->input->get('period') != 'all' ) {
+				// $sql .= " AND a.period_id='" . trim($this->input->get('period')) . "'";
+				// $doubleCheck .= " AND a.period_id='" . trim($this->input->get('period')) . "'";
+			// }
+		// }
+		// else {
+		    // $sql .= " AND a.period_id='" . $getPeriod . "'";
+		// }
+		
+
+		// $data['data']		= $this->db->query($sql);
+        //load the view and saved it into $html variable
+		
+		$data['data'] = $this->wallet->getwalletbyid(883);
+		
+			$html = $this->load->view('wallet/pdf_pay', $data, true);
+			// $html = $this->load->view('reportmeter/pdf_reportmeter', $data, true);
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "PDF_" . date('Ymd_His') . ".pdf";
+ 
+        //load mPDF library
+        $this->load->library('m_pdf');
+ 
+		
+       //generate the PDF from the given html
+        $this->m_pdf->pdf->AddPage('P', // L - landscape, P - portrait
+        '', '', '', '',
+        4, // margin_left
+        4, // margin right
+        4, // margin top
+        0, // margin bottom
+        18, // margin header
+        12); // margin footer
+		$css = base_url('assets/css/style.css');
+        $this->m_pdf->pdf->SetTitle($pdfFilePath);
+        $this->m_pdf->pdf->WriteHTML($css, 1);
+        $this->m_pdf->pdf->WriteHTML($html, 2);
+ 
+        //download it.
+        //$this->m_pdf->pdf->Output($pdfFilePath, "D");        
+        $this->m_pdf->pdf->Output($pdfFilePath, "I");     		
+    }
 }

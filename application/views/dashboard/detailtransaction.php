@@ -218,7 +218,6 @@
                     </div>
                 <?php } ?>
 
-
             </div>
         </div>
         <div class="col-lg-8 side-right stretch-card">
@@ -408,6 +407,37 @@
                                 <i class="mdi mdi-keyboard-backspace mr-1"></i>Back</a>
                         </div>
 
+								<div class="col-12 stretch-card">
+									<div class="card">
+										<div class="card-body overview">
+											<div class="row">
+											
+												<div class="col-6">
+													<h4 class="card-title">FOTO FINISH SAMSAT
+													</h4>
+														<?php if (!empty(@$transaksi['foto_samsat'])) { ?>
+															<img height="300px" src="<?php echo base_url(@$transaksi['foto_samsat']) ?>">
+														<?php } else { ?>
+															<img height="300px" src="<?php echo base_url('images/admin/noimage2.jpg') ?>">
+														<?php } ?>
+												</div>
+												
+												<div class="col-6">
+													<h4 class="card-title">FOTO FINISH CUSTOMER
+													</h4>
+														<?php if (!empty(@$transaksi['foto_customer'])) { ?>
+															<img height="300px" src="<?php echo base_url(@$transaksi['foto_customer']) ?>">
+														<?php } else { ?>
+															<img height="300px" src="<?php echo base_url('images/admin/noimage2.jpg') ?>">
+														<?php } ?>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								
+						
                     </div>
                 </div>
             </div>
