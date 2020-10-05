@@ -189,9 +189,24 @@ class Driver_model extends CI_model
 	
 	public function edit_bank_account($data)
     {
-        $this->db->where('id_driver', $data['id_driver']);
-        $this->db->where('apply', 1);
-        $this->db->update('bank_account', $data);
+		$this->db->where('id_driver', $data['id_driver']);
+		$check = $this->db->get('bank_account');
+		
+		if ( $check->num_rows() > 0 ) {
+			$this->db->where('id_driver', $data['id_driver']);
+			$this->db->where('apply', 1);
+			$this->db->update('bank_account', $data);
+		} else {
+			$databank = array(
+				'id_driver' => $data_signup['id_driver'],
+				'bank_code' => $data_bank['bank_code'],
+				'bank_name' => $data_bank['bank_name'],
+				'account_username' => $data_bank['account_username'],
+				'account_number' => $data_bank['account_number'],
+				'apply' => 1
+			);
+			$bankaccount = $this->db->insert('bank_account', $databank);
+		}
         return true;
     }
 

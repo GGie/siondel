@@ -273,26 +273,26 @@ class Driver extends REST_Controller
 		try {
 			$images = $base64img;
 			$time = round(microtime(true) * 1000);
-			$ImagePath = "/images/transaksi/" . $id_transaksi . "-" . $type . "-" . $time . ".png";
+			$ImagePath = "./images/transaksi/" . $id_transaksi . "-" . $type . "-" . $time . ".png";
 			
-			if($base64img != ""){
-				file_put_contents($ImagePath,base64_decode($base64img));
-				//$this->reportmeter_model->watermark($ImagePath, $tglcreate);
-				
-				$database = array(
- 						'id_transaksi' => $id_transaksi,
-						'image_name'	=> $type . "-" . $time,
-						'image_url' 	=> ltrim($ImagePath, "."),
-						'image_type' 	=> $type,
-						'id_status' 	=> 1,
-						'latitude'		=> $latitude,
-						'longitude' 	=> $longitude,
-						// 'input_by'	=> $userid,
-						'input_date' 	=> date('Y-m-d H:i:s')
-					);
+				if($base64img != ""){
+					file_put_contents($ImagePath,base64_decode($base64img));
+					//$this->reportmeter_model->watermark($ImagePath, $tglcreate);
+					
+					$database = array(
+							'id_transaksi' => $id_transaksi,
+							'image_name'	=> $type . "-" . $time,
+							'image_url' 	=> ltrim($ImagePath, "."),
+							'image_type' 	=> $type,
+							'id_status' 	=> 1,
+							'latitude'		=> $latitude,
+							'longitude' 	=> $longitude,
+							// 'input_by'	=> $userid,
+							'input_date' 	=> date('Y-m-d H:i:s')
+						);
 
-				$this->db->insert('image_file', $database);
-			}
+					$this->db->insert('image_file', $database);
+				}
 				
 			} catch(Exception $ex)
 			{
