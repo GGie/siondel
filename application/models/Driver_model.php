@@ -58,7 +58,8 @@ class Driver_model extends CI_model
             'bank_code' => $data_bank['bank_code'],
             'bank_name' => $data_bank['bank_name'],
             'account_username' => $data_bank['account_username'],
-            'account_number' => $data_bank['account_number']
+            'account_number' => $data_bank['account_number'],
+            'apply' => 1
         );
         $bankaccount = $this->db->insert('bank_account', $databank);
 
@@ -183,6 +184,14 @@ class Driver_model extends CI_model
 
         $this->db->where('no_telepon', $phone);
         $this->db->update('driver', $data);
+        return true;
+    }
+	
+	public function edit_bank_account($data)
+    {
+        $this->db->where('id_driver', $data['id_driver']);
+        $this->db->where('apply', 1);
+        $this->db->update('bank_account', $data);
         return true;
     }
 

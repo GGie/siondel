@@ -19,6 +19,7 @@ class Driver extends REST_Controller
         $this->load->model('Driver_model');
         $this->load->model('Pelanggan_model');
         $this->load->model('Bank_model');
+        $this->load->model('Bank_account_model');
         date_default_timezone_set('Asia/Jakarta');
 		define('AES_256_CBC', 'aes-256-cbc');
     }
@@ -505,6 +506,11 @@ class Driver extends REST_Controller
         $saldo = $this->Pelanggan_model->saldouser($dec_data->id);
         $app_settings = $this->Pelanggan_model->get_settings();
         $getDataDriver = $this->Driver_model->get_data_driver_sync($dec_data->id);
+		
+		$paramDriver = array(
+			'id_driver' => $dec_data->id
+		);
+        $getDataDriverBank = $this->Bank_account_model->getAllDriver($paramDriver);
         $condition = array(
             'no_telepon' => $dec_data->no_telepon
         );
@@ -533,6 +539,7 @@ class Driver extends REST_Controller
                         'message' => 'success',
                         'driver_status' => $stat,
                         'data_driver' => $getDataDriver['data_driver']->result(),
+                        'data_rek' => $getDataDriverBank->result(),
                         'data_transaksi' => $getDataDriver['status_order']->result(),
                         'saldo' => $saldo->row('saldo'),
                         'currency' => $item['app_currency'],
@@ -554,6 +561,7 @@ class Driver extends REST_Controller
                         'message' => 'success',
                         'driver_status' => 1,
                         'data_driver' => $getDataDriver['data_driver']->result(),
+						'data_rek' => $getDataDriverBank->result(),
                         'data_transaksi' => [],
                         'saldo' => $saldo->row('saldo'),
                         'currency' => $item['app_currency'],
@@ -1115,10 +1123,19 @@ class Driver extends REST_Controller
             }
 
 
+			$databank_account = array(
+				'id_driver' => $decoded_data->id_driver,
+				'account_username' => $decoded_data->account_username,
+				'account_number' => $decoded_data->account_number,
+				'bank_code' => $decoded_data->bank_code,
+				'bank_name' => $decoded_data->bank_name,
+			);
+				
             $cek_login = $this->Driver_model->get_data_pelanggan($condition2);
             if ($cek_login->num_rows() > 0) {
-                $upd_user = $this->Driver_model->edit_profile($datauser, $decoded_data->no_telepon_lama);
-                $getdata = $this->Driver_model->get_data_pelanggan($condition);
+                $upd_bank_account	= $this->Driver_model->edit_bank_account($databank_account);
+                $upd_user			= $this->Driver_model->edit_profile($datauser, $decoded_data->no_telepon_lama);
+                $getdata			= $this->Driver_model->get_data_pelanggan($condition);
                 $message = array(
                     'code' => '200',
                     'message' => 'success',
