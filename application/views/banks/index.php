@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <a class="btn btn-info" href="<?= base_url(); ?>bank/tambah">
+                    <a class="btn btn-info" href="<?= base_url(); ?>banks/tambah">
                         <i class="mdi mdi-plus-circle-outline"></i>Add Bank</a>
                 </div>
                 <br>
@@ -67,21 +67,15 @@
                                                                     <?php } ?>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="<?= base_url(); ?>users/detail/<?= $sm['id'] ?>">
-                                                                        <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
-                                                                    </a>
                                                                     <?php if ($sm['apply'] == 0) { ?>
-                                                                        <a href="<?= base_url(); ?>users/userunblock/<?= $sm['id'] ?>">
-                                                                            <button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button>
+                                                                        <a href="<?= base_url(); ?>banks/bankunblock/<?= $sm['id'] ?>">
+                                                                            <button class="btn btn-outline-success text-red m-2" style='width:80px'>Active</button>
                                                                         </a>
                                                                     <?php } else { ?>
-                                                                        <a href="<?= base_url(); ?>users/userblock/<?= $sm['id'] ?>">
-                                                                            <button class="btn btn-outline-dark text-dark m-2" style='width:80px'>Block</button>
+                                                                        <a href="<?= base_url(); ?>banks/bankblock/<?= $sm['id'] ?>">
+                                                                            <button class="btn btn-outline-dark text-dark m-2" style='width:80px'>Nonaktif</button>
                                                                         </a>
                                                                     <?php } ?>
-                                                                    <a href="<?= base_url(); ?>users/hapususers/<?= $sm['id'] ?>">
-                                                                        <button onclick="return confirm ('Are You Sure?')" class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
-                                                                    </a>
                                                                 </td>
                                                             <?php $i++;
                                                         } ?>
@@ -131,15 +125,8 @@
                                                                         <?php } ?>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="<?= base_url(); ?>users/detail/<?= $us['id'] ?>">
-                                                                            <button class="btn btn-outline-primary m-2" style='width:80px'>View</button>
-                                                                        </a>
-                                                                        <a href="<?= base_url(); ?>users/userunblock/<?= $us['id'] ?>">
-                                                                            <button class="btn btn-outline-success text-red m-2" style='width:80px'>Unblock</button>
-                                                                        </a>
-
-                                                                        <a href="<?= base_url(); ?>users/hapususers/<?= $us['id'] ?>">
-                                                                            <button class="btn btn-outline-danger text-red m-2" style='width:80px'>Delete</button>
+                                                                        <a href="<?= base_url(); ?>banks/bankunblock/<?= $us['id'] ?>">
+                                                                            <button class="btn btn-outline-success text-red m-2" style='width:80px'>Active</button>
                                                                         </a>
                                                                     </td>
                                                             <?php $i++;

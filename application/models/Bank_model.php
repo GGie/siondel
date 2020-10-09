@@ -23,18 +23,9 @@ class Bank_model extends CI_model
         return $this->db->get_where('bank', ['id' => $id]);
     }
 	
-    public function getbanksbyid($id)
+    public function getbanksbyid_active($id)
     {
-        // $this->db->select('kendaraan.*');
-        $this->db->select('saldo.saldo');
-        // $this->db->select('fitur.*');
-        // $this->db->select('driver_job.driver_job');
-        $this->db->select('pelanggan.*');
-        // $this->db->join('kendaraan', 'driver.kendaraan = kendaraan.id_k', 'left');
-        $this->db->join('saldo', 'pelanggan.id = saldo.id_bank', 'left');
-        // $this->db->join('config_driver', 'driver.id = config_driver.id_driver', 'left');
-        // $this->db->join('fitur', 'pelanggan.order_fitur = fitur.id_fitur', 'left');
-        return  $this->db->get_where('pelanggan', ['pelanggan.id' => $id])->row_array();
+        return  $this->db->get_where('bank', ['bank.id' => $id, 'bank.apply' => 1])->row_array();
     }
 
     public function getcurrency()
@@ -112,23 +103,23 @@ class Bank_model extends CI_model
 
     public function blockbankbyid($id)
     {
-        $this->db->set('status', 0);
+        $this->db->set('apply', 0);
         $this->db->where('id', $id);
-        $this->db->update('pelanggan');
+        $this->db->update('bank');
     }
 
     public function unblockbankbyid($id)
     {
-        $this->db->set('status', 1);
+        $this->db->set('apply', 1);
         $this->db->where('id', $id);
-        $this->db->update('pelanggan');
+        $this->db->update('bank');
     }
 
     public function tambahdatabanks($data)
     {
-        $this->db->insert('pelanggan', $data);
+        $this->db->insert('bank', $data);
         $data2 = [
-            'id_bank' => $data['id'],
+            'id' => $data['id'],
             'saldo'   => 0,
         ];
         $this->db->insert('saldo', $data2);

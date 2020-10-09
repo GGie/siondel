@@ -20,6 +20,8 @@ class Driver extends MX_Controller
         $this->load->model('driver_model', 'driver');
         $this->load->model('appsettings_model', 'app');
         $this->load->model('Pelanggan_model');
+        $this->load->model('Bank_model', 'bank');
+        $this->load->model('Bank_account_model', 'bank_account');
         $this->load->library('form_validation');
         $this->load->library('upload');
     }
@@ -48,6 +50,8 @@ class Driver extends MX_Controller
         $data['transaksi'] = $this->driver->transaksi($id);
         $data['wallet'] = $this->driver->wallet($id);
         $data['driverjob'] = $this->driver->driverjob();
+        $data['bank'] = $this->bank_account->getbanksbyid_active($id);
+        $data['listbank'] = $this->bank->getAll();
 
         $this->headers();
         $this->load->view('drivers/detail', $data);
@@ -106,6 +110,51 @@ class Driver extends MX_Controller
         }
     }
 
+	public function ubahbankaccount()
+    {
+
+		$id = $this->input->post('id_driver', TRUE);
+		
+        $this->form_validation->set_rules('bank_code', 'bank_code', 'trim|prep_for_form');
+        $this->form_validation->set_rules('account_username', 'account_username', 'trim|prep_for_form');
+        $this->form_validation->set_rules('account_number', 'account_number', 'trim|prep_for_form');
+
+
+        if ($this->form_validation->run() == TRUE) {
+			
+			$getBankName = @$this->db->get_where('bank', array('bank_code' => $this->input->post('bank_code')) )->row()->bank_name;
+			
+            $data             = [
+
+                'id'				=> html_escape($this->input->post('id', TRUE)),
+                'id_driver'			=> html_escape($this->input->post('id_driver', TRUE)),
+                'bank_code'			=> html_escape($this->input->post('bank_code', TRUE)),
+                'bank_name'			=> @$getBankName,
+                'account_username'	=> html_escape($this->input->post('account_username', TRUE)),
+                'account_number'	=> html_escape($this->input->post('account_number', TRUE))
+            ];
+
+
+            if (demo == TRUE) {
+                $this->session->set_flashdata('demo', 'NOT ALLOWED FOR DEMO');
+                redirect(base_url('driver/detail/' . $id));
+            } else {
+                $this->driver->edit_bank_account($data);
+                // $this->driver->ubahbankaccount($data);
+                $this->session->set_flashdata('ubah', 'Bank Account Has Been Changed');
+                redirect(base_url('driver/detail/' . $id));
+            }
+        } else {			
+            $data['driver'] = $this->driver->getdriverbyid($id);
+            $data['currency'] = $this->app->getappbyid();
+            $data['countorder'] = $this->driver->countorder($id);
+
+            $this->headers();
+            $this->load->view('drivers/detail', $data);
+            $this->load->view('includes/footer');
+        }
+    }
+	
     public function ubahkendaraan()
     {
 
@@ -114,9 +163,32 @@ class Driver extends MX_Controller
         $this->form_validation->set_rules('tipe', 'tipe', 'trim|prep_for_form');
         $this->form_validation->set_rules('nomor_kendaraan', 'nomor_kendaraan', 'trim|prep_for_form');
         $this->form_validation->set_rules('warna', 'warna', 'trim|prep_for_form');
+        $this->form_validation->set_rules('no_stnk', 'no_stnk', 'trim|prep_for_form');
 
 
         if ($this->form_validation->run() == TRUE) {
+			
+			if (@$_FILES['foto_stnk']['name']) {
+
+                $config['upload_path']     = './images/fotostnk';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']         = '30000';
+                $config['file_name']     = 'name';
+                $config['encrypt_name']     = true;
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('foto_stnk')) {
+                    if ($data['foto_stnk'] != 'noimage.jpg') {
+                        $gambar = $data['foto_stnk'];
+                        unlink('images/fotostnk/' . $gambar);
+                    }
+
+                    $foto_stnk = html_escape($this->upload->data('file_name'));
+                } else {
+                    $foto_stnk = $data['foto_stnk'];
+                }
+            }
+			
             $data             = [
 
                 'id_k'                      => html_escape($this->input->post('id_k', TRUE)),
@@ -125,7 +197,8 @@ class Driver extends MX_Controller
                 'tipe'                      => html_escape($this->input->post('tipe', TRUE)),
                 'nomor_kendaraan'           => html_escape($this->input->post('nomor_kendaraan', TRUE)),
                 'warna'                     => html_escape($this->input->post('warna', TRUE)),
-                'no_stnk'					=> html_escape($this->input->post('no_stnk', TRUE))
+                'no_stnk'					=> html_escape($this->input->post('no_stnk', TRUE)),
+                'foto_stnk'					=> $foto_stnk
             ];
 
             $data2             = [

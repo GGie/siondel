@@ -53,8 +53,8 @@ class transaction extends MX_Controller
                                     <th>Customer</th>
                                     <th>Driver</th>
                                     <th>Service</th>
-                                    <th style="min-width:300px">Pick Up</th>
-                                    <th style="min-width:300px">Destination</th>
+                                    <th style="min-width:300px">Samsat Location</th>
+                                    <th style="min-width:300px">Customer Location</th>
                                     <th style="min-width:90px">Date</th>
                                     <th style="min-width:90px">Start date</th>
                                     <th style="min-width:90px">End Date</th>
@@ -80,8 +80,8 @@ class transaction extends MX_Controller
                                         <td>' . $tr['fullnama'] . '</td>
                                         <td>' . $tr['nama_driver'] . '</td>
                                         <td>' . $tr['fitur'] . '</td>
-                                        <td style="max-width:300px;">' . $tr['alamat_asal'] . '</td>
                                         <td style="max-width:300px;">' . $tr['alamat_tujuan'] . '</td>
+                                        <td style="max-width:300px;">' . $tr['alamat_asal'] . '</td>
 										<td>' . date('Y-m-d H:i:s', strtotime($tr['waktu'])) . '</td>
 										<td>' . date('Y-m-d H:i:s', strtotime($tr['waktu_order'])) . '</td>
 										<td>' . date('Y-m-d H:i:s', strtotime($tr['waktu_selesai'])) . '</td>
@@ -156,8 +156,8 @@ class transaction extends MX_Controller
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, 1, 'Customer');
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, 1, 'Driver');
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, 1, 'Service');
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, 1, 'Pick Up');
-			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, 1, 'Destination');
+			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, 1, 'Samsat Location');
+			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, 1, 'Customer Location');
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(6, 1, 'Date');
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(7, 1, 'Start date');
 			$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(8, 1, 'End Date');
@@ -193,8 +193,8 @@ class transaction extends MX_Controller
 				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+1, $row, $data['fullnama'], PHPExcel_Cell_DataType::TYPE_STRING);	
 				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+2, $row, $data['nama_driver'], PHPExcel_Cell_DataType::TYPE_STRING);	
 				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+3, $row, $data['fitur'], PHPExcel_Cell_DataType::TYPE_STRING);	
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+4, $row, $data['alamat_asal'], PHPExcel_Cell_DataType::TYPE_STRING);	
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+5, $row, $data['alamat_tujuan'], PHPExcel_Cell_DataType::TYPE_STRING);	
+				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+4, $row, $data['alamat_tujuan'], PHPExcel_Cell_DataType::TYPE_STRING);	
+				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+5, $row, $data['alamat_asal'], PHPExcel_Cell_DataType::TYPE_STRING);	
 				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+6, $row, date('Y-m-d H:i:s', strtotime($data['waktu'])), PHPExcel_Cell_DataType::TYPE_STRING);	
 				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+7, $row, date('Y-m-d H:i:s', strtotime($data['waktu_order'])), PHPExcel_Cell_DataType::TYPE_STRING);	
 				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col+8, $row, date('Y-m-d H:i:s', strtotime($data['waktu_selesai'])), PHPExcel_Cell_DataType::TYPE_STRING);	

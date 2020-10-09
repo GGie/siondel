@@ -198,11 +198,11 @@ class Driver_model extends CI_model
 			$this->db->update('bank_account', $data);
 		} else {
 			$databank = array(
-				'id_driver' => $data_signup['id_driver'],
-				'bank_code' => $data_bank['bank_code'],
-				'bank_name' => $data_bank['bank_name'],
-				'account_username' => $data_bank['account_username'],
-				'account_number' => $data_bank['account_number'],
+				'id_driver' => $data['id_driver'],
+				'bank_code' => $data['bank_code'],
+				'bank_name' => $data['bank_name'],
+				'account_username' => $data['account_username'],
+				'account_number' => $data['account_number'],
 				'apply' => 1
 			);
 			$bankaccount = $this->db->insert('bank_account', $databank);
@@ -1022,6 +1022,7 @@ class Driver_model extends CI_model
         $this->db->set('nomor_kendaraan', $data['nomor_kendaraan']);
         $this->db->set('warna', $data['warna']);
         $this->db->set('no_stnk', $data['no_stnk']);
+        $this->db->set('foto_stnk', $data['foto_stnk']);
 
 
         $this->db->where('id_k', $data['id_k']);
@@ -1030,6 +1031,16 @@ class Driver_model extends CI_model
         $this->db->set('job', $data2['job']);
         $this->db->where('id', $data2['id']);
         $this->db->update('driver', $data2);
+    }
+	
+	public function ubahbankaccount($data)
+    {
+        $this->db->set('bank_code', $data['bank_code']);
+        $this->db->set('account_username', $data['account_username']);
+        $this->db->set('account_number', $data['account_number']);
+
+        $this->db->where('id', $data['id']);
+        $this->db->update('bank_account', $data);
     }
 
     public function ubahdatafoto($data)

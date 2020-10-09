@@ -153,6 +153,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="wallet-tab" data-toggle="tab" href="#wallet" role="tab" aria-controls="wallet">Wallet</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="bank-tab" data-toggle="tab" href="#bank" role="tab" aria-controls="bank">Bank</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="wrapper">
@@ -233,6 +236,16 @@
                                         <label for="vehicleregistration">Vehicle Registration Number</label>
                                         <input type="text" class="form-control" name="nomor_kendaraan" id="vehicleregistration" value="<?= $driver['nomor_kendaraan'] ?>" required>
                                     </div>
+									
+									<div class="form-group">
+                                        <label for="vehicleregistration">STNK Number</label>
+                                        <input type="text" class="form-control" name="no_stnk" id="no_stnk" value="<?= $driver['no_stnk'] ?>" required>
+                                    </div>
+									
+									<label>STNK Image</label>
+                                    <input type="file" class="dropify" name="foto_stnk" data-max-file-size="3mb" data-default-file="<?= base_url('images/fotostnk/') . $driver['foto_stnk'] ?>" />
+
+									
                                     <div class="form-group mt-5">
                                         <button type="submit" class="btn btn-success mr-2">Update</button>
                                         <button class="btn btn-outline-danger">Cancel</button>
@@ -405,6 +418,39 @@
                                     </div>
 
                                 </div>
+								
+								
+								<!-- jjob vehicle form -->
+                                <div class="tab-pane fade" id="bank" role="tabpanel" aria-labelledby="service">
+                                    <?= form_open_multipart('driver/ubahbankaccount'); ?>
+                                    <input type="hidden" name="id_driver" value="<?= $driver['id'] ?>">
+                                    <input type="hidden" name="id" value="<?= $bank['id'] ?>">
+                                    <div class="form-group">
+                                        <label for="bank Service">Bank</label>
+                                        <select class="js-example-basic-single" name="bank_code" style="width:100%">\
+                                            <?php foreach ($listbank->result_array() as $banktable) { ?>
+                                                <option value="<?= $banktable['bank_code'] ?>" <?php if ($bank['bank_code'] == $banktable['bank_code']) { echo "selected"; } ?>><?= $banktable['bank_name'] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="brand">account_username</label>
+                                        <input type="text" class="form-control" name="account_username" id="account_username" value="<?= $bank['account_username'] ?>" required>
+                                    </div>
+									<div class="form-group">
+                                        <label for="brand">account_number</label>
+                                        <input type="text" class="form-control" name="account_number" id="account_number" value="<?= $bank['account_number'] ?>" required>
+                                    </div>
+                                    <div class="form-group mt-5">
+                                        <button type="submit" class="btn btn-success mr-2">Update</button>
+                                        <button class="btn btn-outline-danger">Cancel</button>
+                                    </div>
+                                    <?= form_close(); ?>
+                                </div>
+                                <!-- tab content ends -->
+								
+								
+								
                             </div>
                         </div>
                     </div>

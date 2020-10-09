@@ -17,4 +17,9 @@ class Bank_account_model extends CI_model
         return $this->db->get('bank_account')->result_array();
     }
 	
+	public function getbanksbyid_active($id)
+    {
+        return  $this->db->get_where('bank_account', ['bank_account.id_driver' => $id, 'bank_account.apply' => 1])->row_array();
+    }
+	
 }
