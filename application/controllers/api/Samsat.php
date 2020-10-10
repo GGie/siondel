@@ -190,6 +190,147 @@ class Samsat extends CI_Controller
 		echo $returnValue;
     }
 	
+	public function ambil_kuota(){
+		header('Content-Type: application/json');
+
+				$params = array(
+					'id_transaksi'		=> "100",
+					'id_samsat'		=> "4"
+				);
+
+				$params_string = json_encode($params);
+				
+				if ( sandbox ) {
+					$urlEnv = DashboardSamsat_dev;
+				} else {
+					$urlEnv = DashboardSamsat;
+				}
+				
+				$url = $urlEnv . '/api/order/driver';
+
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $params_string);
+				curl_setopt($ch, CURLOPT_HEADER, false);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, [   
+					'Content-Type: application/json' 
+				]);
+				$request = curl_exec($ch);
+				$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				 
+				curl_close($ch);
+						 
+				if($httpCode == 200)
+				{
+					header('Content-Type: application/json');
+					
+					$data = json_decode($request, true);
+					
+					if ( empty(@$data['message']) ) {
+						$result['status'] = "200";
+						$result['message'] = "Success";
+						$result=array_merge($result,array('data'=>$data));
+						$returnValue =  json_encode($result);
+					} else {
+						$data = array('status' => "201", "message" => $data['message'] );
+						$returnValue = json_encode($data); 
+					}
+					// var_dump($request);
+					
+				}
+				else {
+					$data = array('status' => $httpCode, "message" => $request );
+					$returnValue = json_encode($data); 
+				}
+				
+			echo $returnValue;
+				
+	}
+	
+	public function test(){
+		if ( sandbox ) {
+			$urlEnv = DashboardSamsat_dev;
+		} else {
+			$urlEnv = DashboardSamsat;
+		}
+				
+		$apiLink = base_url("api/samsat/ambil_kuota/1/100");
+		$response = file_get_contents($apiLink);
+		$return =  json_decode($response);
+		if (@$return->status == 201) {
+			echo "OK";
+		} else { 
+			echo "test";
+		}
+	}
+	
+	public function batal_kuota($id_samsat, $id_transaksi){
+		header('Content-Type: application/json');
+
+				$params = array(
+					'id_transaksi'	=> $id_transaksi,
+					'id_samsat'		=> $id_samsat
+				);
+
+				$params_string = json_encode($params);
+				
+				if ( sandbox ) {
+					$urlEnv = DashboardSamsat_dev;
+				} else {
+					$urlEnv = DashboardSamsat;
+				}
+				
+				$url = $urlEnv . '/api/order/driver';
+
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $params_string);
+				curl_setopt($ch, CURLOPT_HEADER, false);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, [   
+					'Content-Type: application/json' 
+				]);
+				$request = curl_exec($ch);
+				$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				 
+				curl_close($ch);
+						 
+				if($httpCode == 200)
+				{
+					header('Content-Type: application/json');
+					
+					$data = json_decode($request, true);
+					
+					if ( empty(@$data['message']) ) {
+						$result['status'] = "200";
+						$result['message'] = "Success";
+						$result=array_merge($result,array('data'=>$data));
+						$returnValue =  json_encode($result);
+					} else {
+						$data = array('status' => "201", "message" => $data['message'] );
+						$returnValue = json_encode($data); 
+					}
+					// var_dump($request);
+					
+				}
+				else {
+					$data = array('status' => $httpCode, "message" => $request );
+					$returnValue = json_encode($data); 
+				}
+				
+			echo $returnValue;
+				
+	}
+	
 	/*
 	public function samsat()
     {

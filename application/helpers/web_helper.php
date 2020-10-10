@@ -24,7 +24,17 @@ function update_transaksi_log($id, $desc){
 }
 
 function update_transaksi($id){
-    $init =& get_instance();
+		$init =& get_instance();
+		
+		if ( sandbox ) {
+			$urlEnv = DashboardSamsat_dev;
+		} else {
+			$urlEnv = DashboardSamsat;
+		}
+				
+		$apiLink = $urlEnv . "/api/batal_kuota/1";
+		$response = file_get_contents($apiLink);
+		
 		$data = array(
 			'harga'			=> 0,
 			'biaya_akhir'	=> 0,

@@ -1181,10 +1181,24 @@ class Pelanggan extends REST_Controller
             // 'datasamsat'	=> $samsat->row(),
         );
 		
+		
+		$return =  json_decode($response);
+		if (@$return->status == 201) {
+			echo "OK";
+		} else { 
+			echo "test";
+		}
+		
 		$request = $this->Pelanggan_model->insert_transaksi($data_req, $dataDetail);
 
         
         if ($request['status']) {
+			
+			foreach($request['data'] as $trans){}
+			//kurangin kuota samsat
+			$apiLink = base_url("api/samsat/ambil_kuota/" . $dec_data->samsatid . "/" . $trans->id);
+			$response = file_get_contents($apiLink);
+		
             $message = array(
                 'message' => 'success',
                 'data' => $request['data']
@@ -1197,6 +1211,8 @@ class Pelanggan extends REST_Controller
             );
             $this->response($message, 200);
         }
+		
+		
     }
 
 	
