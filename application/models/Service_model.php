@@ -51,6 +51,7 @@ class Service_model extends CI_model
         $this->db->set('fixed', $data['fixed']);
         $this->db->set('keterangan_biaya', $data['keterangan_biaya']);
         $this->db->set('komisi', $data['komisi']);
+        $this->db->set('schedule', $data['schedule']);
         $this->db->set('driver_job', $data['driver_job']);
         $this->db->set('biaya_minimum', $data['biaya_minimum']);
         $this->db->set('jarak_minimum', $data['jarak_minimum']);

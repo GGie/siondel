@@ -35,7 +35,6 @@ class Services extends MX_Controller
 
     public function ubah($id)
     {
-
         $this->form_validation->set_rules('fitur', 'fitur', 'trim|prep_for_form');
         $this->form_validation->set_rules('home', 'home', 'trim|prep_for_form');
         $this->form_validation->set_rules('biaya', 'biaya', 'trim|prep_for_form');
@@ -82,16 +81,50 @@ class Services extends MX_Controller
             $remove = array(".", ",");
             $add = array("", "");
 
+			//schedule
+			$schedule = array(
+				'monday' => array (
+						'start' => $this->input->post('mon_time_1', TRUE),
+						'end' => $this->input->post('mon_time_2', TRUE),
+				),
+				'tuesday' => array (
+						'start' => $this->input->post('tue_time_1', TRUE),
+						'end' => $this->input->post('tue_time_2', TRUE),
+				),
+				'wednesday' => array (
+						'start' => $this->input->post('wed_time_1', TRUE),
+						'end' => $this->input->post('wed_time_2', TRUE),
+				),
+				'thursday' => array (
+						'start' => $this->input->post('thu_time_1', TRUE),
+						'end' => $this->input->post('thu_time_2', TRUE),
+				),
+				'friday' => array (
+						'start' => $this->input->post('fri_time_1', TRUE),
+						'end' => $this->input->post('fri_time_2', TRUE),
+				),
+				'saturday' => array (
+						'start' => $this->input->post('sat_time_1', TRUE),
+						'end' => $this->input->post('sat_time_2', TRUE),
+				),
+				'sunday' => array (
+						'start' => $this->input->post('sun_time_1', TRUE),
+						'end' => $this->input->post('sun_time_2', TRUE),
+				)
+			);
+			$inputSchedule = json_encode($schedule);
+			//schedule EOF
             $data             = [
                 'icon'                          => $gambar,
                 'id_fitur'                      => html_escape($this->input->post('id_fitur', TRUE)),
                 'fitur'                         => html_escape($this->input->post('fitur', TRUE)),
-                'home'                         => html_escape($this->input->post('home', TRUE)),
+                'home'                         	=> html_escape($this->input->post('home', TRUE)),
                 'urutan'                        => html_escape($this->input->post('urutan', TRUE)),
                 'biaya'                         => str_replace($remove, $add, $biaya),
 				'fixed'                         => html_escape($this->input->post('fixed', TRUE)),
                 'keterangan_biaya'              => html_escape($this->input->post('keterangan_biaya', TRUE)),
                 'komisi'                        => html_escape($this->input->post('komisi', TRUE)),
+                'schedule'						=> $inputSchedule,
                 'driver_job'                    => html_escape($this->input->post('driver_job', TRUE)),
                 'biaya_minimum'                 => str_replace($remove, $add, $biaya_minimum),
                 'jarak_minimum'                 => html_escape($this->input->post('jarak_minimum', TRUE)),
@@ -158,14 +191,48 @@ class Services extends MX_Controller
             $remove = array(".", ",");
             $add = array("", "");
 
+			//schedule
+			$schedule = array(
+				'monday' => array (
+						'start' => $this->input->post('mon_time_1', TRUE),
+						'end' => $this->input->post('mon_time_2', TRUE),
+				),
+				'tuesday' => array (
+						'start' => $this->input->post('tue_time_1', TRUE),
+						'end' => $this->input->post('tue_time_2', TRUE),
+				),
+				'wednesday' => array (
+						'start' => $this->input->post('wed_time_1', TRUE),
+						'end' => $this->input->post('wed_time_2', TRUE),
+				),
+				'thursday' => array (
+						'start' => $this->input->post('thu_time_1', TRUE),
+						'end' => $this->input->post('thu_time_2', TRUE),
+				),
+				'friday' => array (
+						'start' => $this->input->post('fri_time_1', TRUE),
+						'end' => $this->input->post('fri_time_2', TRUE),
+				),
+				'saturday' => array (
+						'start' => $this->input->post('sat_time_1', TRUE),
+						'end' => $this->input->post('sat_time_2', TRUE),
+				),
+				'sunday' => array (
+						'start' => $this->input->post('sun_time_1', TRUE),
+						'end' => $this->input->post('sun_time_2', TRUE),
+				)
+			);
+			$inputSchedule = json_encode($schedule);
+			//schedule EOF
             $data             = [
                 'icon'                          => $gambar,
                 'fitur'                         => html_escape($this->input->post('fitur', TRUE)),
-                'home'                         => html_escape($this->input->post('home', TRUE)),
+                'home'                         	=> html_escape($this->input->post('home', TRUE)),
                 'biaya'                         => str_replace($remove, $add, $biaya),
                 'fixed'                         => html_escape($this->input->post('fixed', TRUE)),
                 'keterangan_biaya'              => html_escape($this->input->post('keterangan_biaya', TRUE)),
                 'komisi'                        => html_escape($this->input->post('komisi', TRUE)),
+				'schedule'						=> $inputSchedule,
                 'driver_job'                    => html_escape($this->input->post('driver_job', TRUE)),
                 'biaya_minimum'                 => str_replace($remove, $add, $biaya_minimum),
                 'jarak_minimum'                 => html_escape($this->input->post('jarak_minimum', TRUE)),

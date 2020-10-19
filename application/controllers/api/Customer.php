@@ -1144,7 +1144,7 @@ class Customer extends CI_Controller
 			
 	}
 	
-	  public function check_transaksi()
+	public function check_transaksi()
   	{
     			  $data = file_get_contents('php://input');
     			  $result = json_decode($data, true);
@@ -1192,4 +1192,55 @@ class Customer extends CI_Controller
 
     			echo $returnValue;
   	}
+
+
+	public function guide()
+	{
+			$data = file_get_contents('php://input');
+			$result = json_decode($data, true);
+		
+			header('Content-Type: application/json');
+
+			$uid 		= @$result["uid"];
+			$signature 	= @$result["signature"];
+			$time		= @$result["time"];
+			
+			try
+			{
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$time)
+					throw new Exception("time null.");
+				if (!$signature)
+					throw new Exception("signature null.");
+				
+				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+				$signatureGenerate	= hash('sha256', $uid . $secret . $time);
+				
+				if ($signature != $signatureGenerate)
+					throw new Exception("Wrong Signature!!!");
+				
+				$guide = @$this->db->get_where('site_options', array('option_name' => 'GUIDE') );
+				
+				if ($guide->num_rows() <= 0) {
+					throw new Exception("GUIDE Not Found.");
+				}
+				
+				
+				$returnValue = json_encode(array('status' => "200", 'message'=> $guide->row()->option_value ));
+		
+			} catch(Exception $ex)
+			{
+				$data = array('status' => "01", "message" => $ex->getMessage() );
+				$returnValue = json_encode($data);
+			}
+			
+			echo $returnValue;
+			
+	}
+	
+	
+	
 }

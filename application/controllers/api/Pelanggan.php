@@ -1182,12 +1182,12 @@ class Pelanggan extends REST_Controller
         );
 		
 		
-		$return =  json_decode($response);
-		if (@$return->status == 201) {
-			echo "OK";
-		} else { 
-			echo "test";
-		}
+		// $return =  json_decode($response);
+		// if (@$return->status == 201) {
+			// echo "OK";
+		// } else { 
+			// echo "test";
+		// }
 		
 		$request = $this->Pelanggan_model->insert_transaksi($data_req, $dataDetail);
 

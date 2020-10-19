@@ -97,6 +97,111 @@
                         </select>
                     </div>
 
+					<style>
+					fieldset.scheduler-border {
+						border: 1px groove #aaa !important;
+						padding: 0 1.4em 1.4em 1.4em !important;
+						margin: 0 0 1.5em 0 !important;
+						-webkit-box-shadow:  0px 0px 0px 0px #000;
+								box-shadow:  0px 0px 0px 0px #000;
+					}
+
+					legend.scheduler-border {
+						font-size: 1.2em !important;
+						font-weight: bold !important;
+						text-align: left !important;
+					}
+					</style>
+					
+					
+					<fieldset class="scheduler-border">
+						<legend class="scheduler-border">Schedule Operational</legend>
+						<div class="control-group">
+							<label for="newscategory">Monday</label>
+							<div class="row">
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="mon_time_1" value="00:00" required>
+								</div>
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="mon_time_2" value="23:59" required>
+								</div>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label for="newscategory">Tuesday</label>
+							<div class="row">
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="tue_time_1" value="00:00" required>
+								</div>
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="tue_time_2" value="23:59" required>
+								</div>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label for="newscategory">Wednesday</label>
+							<div class="row">
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="wed_time_1" value="00:00" required>
+								</div>
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="wed_time_2" value="23:59" required>
+								</div>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label for="newscategory">Thursday</label>
+							<div class="row">
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="thu_time_1" value="00:00" required>
+								</div>
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="thu_time_2" value="23:59" required>
+								</div>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label for="newscategory">Friday</label>
+							<div class="row">
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="fri_time_1" value="00:00" required>
+								</div>
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="fri_time_2" value="23:59" required>
+								</div>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label for="newscategory">Saturday</label>
+							<div class="row">
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="sat_time_1" value="00:00" required>
+								</div>
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="sat_time_2" value="23:59" required>
+								</div>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label for="newscategory">Sunday</label>
+							<div class="row">
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="sun_time_1" value="00:00" required>
+								</div>
+								<div class="col-6 grid-margin stretch-card">
+									<input type="time" class="form-control" name="sun_time_2" value="23:59" required>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+
+					
                     <button type="submit" class="btn btn-success mr-2">Submit</button>
                     <a href="<?= base_url() ?>services" class="btn btn-danger">Cancel</a>
                     <?= form_close(); ?>
