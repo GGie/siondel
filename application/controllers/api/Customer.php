@@ -442,9 +442,43 @@ class Customer extends CI_Controller
 		$signature 	= @$result["signature"];
 		
 		$kdvoucher	= @$result["kdvoucher"]; //ME35HRQL
-		$phone		= @$result["phone"]; //ME35HRQL
+		$phone		= @$result["phone"];
 		$validasi	= validasiVoucher;
-		/*
+	
+	if ( dummyVoucher ){
+			$returnValue = '{
+				"status": "200",
+				"message": "Success",
+				"data": {
+					"kodesah": "200902Z17200902 ",
+					"iic": "111 ",
+					"code": "00",
+					"pnpb": "0000000",
+					"tahunbuat": "2000",
+					"pkbdenda": "000036500",
+					"kdvoucher": "ME35HRQL",
+					"jrdenda": "0035000",
+					"nik": "3175085103560002",
+					"kendke-": "001",
+					"bbnpokok": "00000000000",
+					"pkbpokok": "001824500",
+					"jrpokok": "0143000",
+					"masapajak": "29082021",
+					"cc": "02498",
+					"amount": "000002039000",
+					"merk": "MITSUBISHI",
+					"bbndenda": "00000000000",
+					"tnkb": "0000000",
+					"mt": "6017",
+					"nopol": "0888PO ",
+					"alamat": "JL.ZENI G-109 RT7/6 JAKTIM",
+					"nama": "ETTY TRIMURTI",
+					"jenis": "SEDAN",
+					"nohp": "08211234567890"
+				}
+			}';
+	} else {
+		
 		try
 		{
 				if (!$result)
@@ -560,40 +594,8 @@ class Customer extends CI_Controller
 			$data = array('status' => "01", "message" => $ex->getMessage() );
 			$returnValue = json_encode($data);
 		}
-		*/
 		
-		// $data = array('status' => "200", "message" => "Success", 'data' =>  $json );
-				$returnValue = '{
-    "status": "200",
-    "message": "Success",
-    "data": {
-        "kodesah": "200902Z17200902 ",
-        "iic": "111 ",
-        "code": "00",
-        "pnpb": "0000000",
-        "tahunbuat": "2000",
-        "pkbdenda": "000036500",
-        "kdvoucher": "ME35HRQL",
-        "jrdenda": "0035000",
-        "nik": "3175085103560002",
-        "kendke-": "001",
-        "bbnpokok": "00000000000",
-        "pkbpokok": "001824500",
-        "jrpokok": "0143000",
-        "masapajak": "29082021",
-        "cc": "02498",
-        "amount": "000002039000",
-        "merk": "MITSUBISHI",
-        "bbndenda": "00000000000",
-        "tnkb": "0000000",
-        "mt": "6017",
-        "nopol": "0888PO ",
-        "alamat": "JL.ZENI G-109 RT7/6 JAKTIM",
-        "nama": "ETTY TRIMURTI",
-        "jenis": "SEDAN",
-        "nohp": "08211234567890"
-    }
-}';
+	}
 		
 		echo $returnValue;
 				

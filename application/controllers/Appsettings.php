@@ -22,6 +22,7 @@ class Appsettings extends MX_Controller
 
     public function index()
     {
+        $data['guide'] = @$this->db->get_where("site_options", array("option_name" => "GUIDE") )->row_array();
         $data['appsettings'] = $this->app->getappbyid();
         $data['payusettings'] = $this->app->getpayubyid();
         $data['transfer'] = $this->app->gettransfer();
@@ -186,6 +187,36 @@ class Appsettings extends MX_Controller
         }
     }
 
+	public function ubahguide()
+    {
+
+        $this->form_validation->set_rules('guide', 'guide', 'trim|prep_for_form');
+
+        if ($this->form_validation->run() == TRUE) {
+            $data             = [
+                'guide'	=> $this->input->post('guide'),
+            ];
+
+
+            if (demo == TRUE) {
+                $this->session->set_flashdata('demo', 'NOT ALLOWED FOR DEMO');
+                redirect('appsettings/index');
+            } else {
+
+                $this->app->ubahguide($data);
+                $this->session->set_flashdata('ubah', 'Guide Has Been Change');
+                redirect('appsettings');
+            }
+        } else {
+
+            $data['appsettings'] = $this->app->getappbyid();
+
+            $this->headers();
+            $this->load->view('appsettings/index', $data);
+            $this->load->view('includes/footer');
+        }
+    }
+	
     public function ubahemail()
     {
 

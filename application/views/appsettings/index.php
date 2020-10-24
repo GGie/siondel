@@ -21,6 +21,10 @@
                                 <a class="nav-link active" id="tab-2-1" data-toggle="tab" href="#app-2-1" role="tab" aria-controls="app-2-1" aria-selected="true">
                                     <i class="mdi mdi-cellphone-android"></i>App</a>
                             </li>
+							<li class="nav-item">
+                                <a class="nav-link" id="tab-2-8" data-toggle="tab" href="#guide-2-8" role="tab" aria-controls="guide-2-8" aria-selected="true">
+                                    <i class="icon icon-notebook"></i>Guide</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="tab-2-2" data-toggle="tab" href="#email-2-2" role="tab" aria-controls="email-2-2" aria-selected="false">
                                     <i class="mdi mdi-email-outline"></i>Email</a>
@@ -84,6 +88,27 @@
                                             <div class="form-group">
                                                 <label for="appcurrency">App Currency</label>
                                                 <input type="text" class="form-control" id="appcurrency" name="app_currency" value="<?= $appsettings['app_currency']; ?>" required></div>
+                                            <button type="submit" class="btn btn-success mr-2">Submit</button>
+
+                                            <?= form_close(); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="tab-pane fade" id="guide-2-8" role="tabpanel" aria-labelledby="tab-2-2">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Template For Guide Customer</h4>
+                                            <br>
+                                            <?= form_open_multipart('appsettings/ubahguide'); ?>
+                                            <div class="form-group">
+                                                <label for="guide">Guide Text</label>
+                                                <textarea type="text" class="form-control" id="summernoteExample4" name="guide" required><?= $guide['option_value']; ?></textarea>
+                                            </div>
+                                            
+
+
                                             <button type="submit" class="btn btn-success mr-2">Submit</button>
 
                                             <?= form_close(); ?>

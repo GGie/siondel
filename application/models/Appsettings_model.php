@@ -57,6 +57,14 @@ class Appsettings_model extends CI_model
         $this->db->insert('list_bank', $data);
     }
 
+	public function ubahguide($data)
+    {
+        $this->db->set('option_value', $data['guide']);
+
+        $this->db->where('option_name', 'GUIDE');
+        $this->db->update('site_options');
+    }
+	
     public function ubahdataemail($data)
     {
         $this->db->set('email_subject', $data['email_subject']);

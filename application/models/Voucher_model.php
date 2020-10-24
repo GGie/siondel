@@ -12,6 +12,13 @@ class Voucher_model extends CI_model
     {
         return $this->db->get_where('kdvoucher', ['id_promo' => $id])->row_array();
     }
+	
+	public function generateVoucher($id = 0)
+    {
+        $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		// Output: 54esmdr0qf
+		return substr(str_shuffle($permitted_chars), 0, 10);
+    }
 
     public function hapuspromocodebyId($id)
     {

@@ -27,6 +27,7 @@
                             <option value="2" <?php if ($home == '2') { ?>selected<?php } ?>>Shipment</option>
                             <option value="3" <?php if ($home == '3') { ?>selected<?php } ?>>Rental Service</option>
                             <option value="4" <?php if ($home == '4') { ?>selected<?php } ?>>Purchasing Service</option>
+                            <option value="4" <?php if ($home == '5') { ?>selected<?php } ?>>Guide</option>
                         </select>
                     </div>
                     <div class="form-group">

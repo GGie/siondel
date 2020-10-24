@@ -14,9 +14,14 @@ class Jakone extends CI_Controller
         }
 		
 		$this->load->model('Jakone_model');
+		$this->load->model('Voucher_model');
 		
     }
 
+	public function test(){
+		echo $this->Voucher_model->generateVoucher();
+	}
+	
 	public function enc($string, $action = "encrypt"){
 		$ciphertext_b64 = "";
 		$plaintext = mb_convert_encoding($string, "UTF-8");
@@ -94,14 +99,48 @@ class Jakone extends CI_Controller
 	}
 	
 	public function payment(){
-
+		//transaction
 		header('Content-Type: application/json');
-
+		$dataParam = file_get_contents('php://input');
+		$result = json_decode($dataParam, true);
+			
+			$iduser		= @$result["iduser"];
+			$password	= @$result["password"];
+			$uid 		= @$result["uid"];
+			$signature 	= @$result["signature"];
+			
+			try
+			{
+				if (!$result)
+					throw new Exception("API KEY DATA");
+				if (!$iduser)
+					throw new Exception("iduser null.");
+				if (!$password)
+					throw new Exception("password null.");
+				if (!$uid)
+					throw new Exception("uid null.");
+				if (!$signature)
+					throw new Exception("signature null.");
+				
+				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
+				$signatureGenerate	= hash('sha256', $uid . $secret . $iduser);
+				
+				if ($signature != $signatureGenerate)
+					throw new Exception("Wrong Signature!!!");
+				
+				$saldo = @$this->db->get_where('saldo', array('id_user' => $iduser) );
+				
+				if ($saldo->num_rows() <= 0) {
+					throw new Exception("saldo user Not Register Ondel.");
+				}
+				
+				$json 	= json_decode($saldo->row()->jakone_json, true);
+				$voucher = $this->Voucher_model->generateVoucher();
 				$params = array(
-					'username'			=> 'anggi2506824003624',
-					'password'			=> "pw/hyLkFlQhdyq3DRvFdWw==",
-					'acctFromNumber'	=> "085156447932",
-					'payRef'			=> "VOUCHER ONDEL",
+					'username'			=> $json['username'], //'anggi2506824003624',
+					'password'			=> $this->enc($password), //"pw/hyLkFlQhdyq3DRvFdWw==",
+					'acctFromNumber'	=> $saldo->row()->jakone_phone, //"085156447932",
+					'payRef'			=> "VOUCHER ONDEL : " . $voucher,
 					'amount'			=> "40000",
 					'channel'			=> "ONDEL",
 					'enumChannel'		=> "ANTERIN",
@@ -116,28 +155,65 @@ class Jakone extends CI_Controller
 				$paramJSON['params_string'] = $params_string;
 				$paramJSON['url'] = '/ochannel';
 				$response = $this->HTTP_POST_REQUEST($paramJSON);
-						 
+				
+				
 				if($response['httpCode'] == "200")
 				{
+					
 					header('Content-Type: application/json');
 					
 					$data = json_decode($response['request'], true);
 					
-					if ( empty(@$data['message']) ) {
-						$result['status'] = "200";
-						$result['message'] = "Success";
-						$result=array_merge($result,array('data'=>$data['body']));
-						$returnValue =  json_encode($result);
+					if ( !empty(@$data['status']['code']) AND $data['status']['code'] == "200" AND @$data['body']['ConfirmTransactionOtherChannelResponse']['responseCode']['_text'] == "00" ) {
+						$return['status'] = "200";
+						$return['message'] = "Success";
+						
+						$dataResult = array(
+							'reference' => $data['body']['ConfirmTransactionOtherChannelResponse']['noRefferenceTrx']['_text'],
+							'transaction' => $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['acctFromNumber']['_text'],
+							'amount' => $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['amount']['_text'],
+							'description' => $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['payRef']['_text'],
+						);
+						
+						// $saldo['id']			= $pelanggan->row()->id;
+						// $saldo['jakone']		= $dataResult['availableBalance'];
+						// $saldo['jakone_phone']	= $dataResult['msisdn'];
+						// $saldo['jakone_active']	= 1;
+						// $saldo['jakone_json']	= json_encode($dataResult);
+						// $this->Jakone_model->update_saldo($pelanggan->row()->id, $saldo);
+								$addvoucher	= array(
+									'kdvoucher'		=> $voucher,
+									'json'			=> "",
+									'channel'		=> "JAKONE",
+									'status'		=> 1,
+								);
+								$this->Voucher_model->addvoucher($addvoucher);
+								
+						$return=array_merge($return,array('data'=>$dataResult));
+						$returnValue =  json_encode($return);
+						
+					} else if ( !empty(@$data['body']['Fault']['faultstring']['_text']) ) {
+						$data = array('status' => "404", "message" => $data['body']['Fault']['faultstring']['_text'] );
+						$returnValue = json_encode($data);
+					} else if ( !empty(@$data['body']['ConfirmTransactionOtherChannelResponse']['responseDesc']) ) {
+						$data = array('status' => "201", "message" => @$data['body']['ConfirmTransactionOtherChannelResponse']['responseDesc']['_text'] );
+						$returnValue = json_encode($data);
 					} else {
-						$data = array('status' => "201", "message" => $data['message'] );
+						$data = array('status' => "201", "message" => "Error" );
 						$returnValue = json_encode($data); 
 					}
 				}
 				else {
-					$data = array('status' => $httpCode, "message" => $request );
+					$data = array('status' => $response['httpCode'], "message" => $request );
 					$returnValue = json_encode($data); 
 				}
-				
+			
+			} catch(Exception $ex)
+			{
+				$data = array('status' => "01", "message" => $ex->getMessage() );
+				$returnValue = json_encode($data);
+			}
+			
 			echo $returnValue;
 				
 	}
@@ -193,7 +269,7 @@ class Jakone extends CI_Controller
 					
 					$data = json_decode($response['request'], true);
 					
-					if ( !empty(@$data['status']['code']) AND $data['status']['code'] == "200" AND empty(@$data['body']['Fault']['faultstring']['_text'] )) {
+					if ( !empty(@$data['status']['code']) AND $data['status']['code'] == "200" AND empty(@$data['body']['Fault']['faultstring']['_text']) AND !empty(@$data['body']['GetAccountInformationOtherChannelResponse']['AccountInformation']) ) {
 						$return['status'] = "200";
 						$return['message'] = "Success";
 						
@@ -223,6 +299,9 @@ class Jakone extends CI_Controller
 						
 					} else if ( !empty(@$data['body']['Fault']['faultstring']['_text']) ) {
 						$data = array('status' => "404", "message" => $data['body']['Fault']['faultstring']['_text'] );
+						$returnValue = json_encode($data);
+					} else if ( !empty(@$data['body']['GetAccountInformationOtherChannelResponse']['responseDesc']) ) {
+						$data = array('status' => "201", "message" => @$data['body']['GetAccountInformationOtherChannelResponse']['responseDesc']['_text'] );
 						$returnValue = json_encode($data);
 					} else {
 						$data = array('status' => "201", "message" => "Error" );
@@ -321,7 +400,27 @@ class Jakone extends CI_Controller
 						$return['status'] = "200";
 						$return['message'] = "Success";
 						
-						$return=array_merge($return,array('data'=>$data['body']['TrxHistoryEnquiryResponse']['trxHistory']));
+						$trans = $data['body']['TrxHistoryEnquiryResponse']['trxHistory'];
+
+							if ( count($trans) > 0 ) {
+								foreach($trans as $tr)
+								{	
+									$row[] = array(
+										'reference'			=> @$tr['noRefferenceTrx']['_text'],
+										'description'		=> @$tr['description']['_text'],
+										'debit'				=> !empty(@$tr['debit']['_text']) ? @$tr['debit']['_text'] : 0,
+										'credit'			=> !empty(@$tr['credit']['_text']) ? @$tr['credit']['_text'] : 0,
+										'transactionDate'	=> date("Y-m-d H:i:s", strtotime(@$tr['transactionDate']['_text'])),
+									);
+								}
+							} else {
+								$row[] = array();
+							}
+							
+						$return=array_merge($return,array('data'=>$row));
+						// return json_encode($result);
+						
+						// $return=array_merge($return,array('data'=>$data['body']['TrxHistoryEnquiryResponse']['trxHistory']));
 						$returnValue =  json_encode($return);
 						
 					} else if ( empty(@$data['body']['TrxHistoryEnquiryResponse']['trxHistory'] ) ) {
@@ -343,7 +442,7 @@ class Jakone extends CI_Controller
 				$returnValue = json_encode($data);
 			}
 			
-			$trans = $data['body']['TrxHistoryEnquiryResponse']['trxHistory'];
+			// $trans = $data['body']['TrxHistoryEnquiryResponse']['trxHistory'];
 			
 			// foreach($trans as $tr){
 				// $param['desc'][0] = @$tr['description']['_text'];
@@ -351,21 +450,25 @@ class Jakone extends CI_Controller
 				// $param['credit'][0] = @$tr['credit']['_text'];
 			// }
 			
-			foreach($trans as $tr)
-			{	
-				$row[] = array(
-					'reference'			=> @$tr['noRefferenceTrx']['_text'],
-					'description'		=> @$tr['description']['_text'],
-					'debit'				=> !empty(@$tr['debit']['_text']) ? @$tr['debit']['_text'] : 0,
-					'credit'			=> !empty(@$tr['credit']['_text']) ? @$tr['credit']['_text'] : 0,
-					'transactionDate'	=> @$tr['transactionDate']['_text'],
-				);
-			}
+			// if ( count($trans) > 0 ) {
+				// foreach($trans as $tr)
+				// {	
+					// $row[] = array(
+						// 'reference'			=> @$tr['noRefferenceTrx']['_text'],
+						// 'description'		=> @$tr['description']['_text'],
+						// 'debit'				=> !empty(@$tr['debit']['_text']) ? @$tr['debit']['_text'] : 0,
+						// 'credit'			=> !empty(@$tr['credit']['_text']) ? @$tr['credit']['_text'] : 0,
+						// 'transactionDate'	=> date("Y-m-d H:i:s", strtotime(@$tr['transactionDate']['_text'])),
+					// );
+				// }
+			// } else {
+				// $row[] = array();
+			// }
 		// $result=array_merge($result,array('rows'=>$row));
 		// return json_encode($result);
 		
-			$data = array('status' => 200, "message" => $row );
-					$returnValue = json_encode($data);
+			// $data = array('status' => 200, "message" => $row );
+					// $returnValue = json_encode($data);
 			echo $returnValue;
 				
 	}
@@ -547,7 +650,7 @@ class Jakone extends CI_Controller
 				$data = array("httpCode" => $httpCode, "request" => $request );
 				
 				file_put_contents('jakoone.txt', "*** request : " . $param['params_string'] . " ***\r\n", FILE_APPEND | LOCK_EX);
-				file_put_contents('jakoone.txt', "*** response : " . $httpCode . " " . json_encode($data) . " ***\r\n\r\n", FILE_APPEND | LOCK_EX);
+				file_put_contents('jakoone.txt', "*** response : " . $httpCode . " " . ($data) . " ***\r\n\r\n", FILE_APPEND | LOCK_EX);
 				return $data;
 	}
 	

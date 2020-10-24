@@ -155,7 +155,7 @@ class Driver_model extends CI_model
         $this->db->select('driver.*, saldo.saldo,kendaraan.*');
         $this->db->from('driver');
         $this->db->join('saldo', 'driver.id = saldo.id_user');
-        $this->db->join('kendaraan', 'driver.kendaraan = kendaraan.id_k');
+        $this->db->join('kendaraan', 'driver.kendaraan = kendaraan.id_k', 'left');
         $this->db->where($condition);
         $this->db->where('status', '1');
         return $this->db->get();
@@ -571,6 +571,16 @@ class Driver_model extends CI_model
         if ($this->db->affected_rows() > 0) {
             $last_trans = $this->get_data_last_transaksi($condtr);
 
+			//close voucher
+			if ( closedVoucher ) {
+				$kdvoucher = array(
+						'status' => '4' // 1 aktif, 4 finish
+					);
+				$this->db->where('id_transaksi', $last_trans->row('id_transaksi'));
+				$this->db->update('kdvoucher', $kdvoucher);
+			}
+			//close voucher eof
+			
             $get_mitra = $this->get_trans_merchant($last_trans->row('id_transaksi'));
             $datapelanggan = $this->get_data_pelangganid($last_trans->row('id_pelanggan'));
             $datadriver = $this->get_data_driverid($cond['id_driver']);
