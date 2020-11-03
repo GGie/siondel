@@ -26,7 +26,8 @@
                             <option value="2" >Shipment</option>
                             <option value="3" >Rental</option>
                             <option value="4" >Purchasing Service</option>
-							<option value="5">Guide</option>
+							<option value="5" >Guide</option>
+							<option value="6" >Voucher</option>
                         </select>
                     </div>
                     <div class="form-group">

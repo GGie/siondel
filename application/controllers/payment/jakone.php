@@ -109,6 +109,16 @@ class Jakone extends CI_Controller
 			$uid 		= @$result["uid"];
 			$signature 	= @$result["signature"];
 			
+			
+			$nopol		= @$result["nopol"];
+			$jenis		= @$result["jenis"];
+			$merk		= @$result["merk"];
+			$nama		= @$result["nama"];
+			$nik		= @$result["nik"];
+			$cc			= @$result["cc"];
+			$nohp		= @$result["nohp"];
+			$alamat		= @$result["alamat"];
+			
 			try
 			{
 				if (!$result)
@@ -121,6 +131,23 @@ class Jakone extends CI_Controller
 					throw new Exception("uid null.");
 				if (!$signature)
 					throw new Exception("signature null.");
+				
+				if (!$nopol)
+					throw new Exception("nopol null.");
+				if (!$jenis)
+					throw new Exception("jenis null.");
+				if (!$merk)
+					throw new Exception("merk null.");
+				if (!$nama)
+					throw new Exception("nama null.");
+				if (!$nik)
+					throw new Exception("nik null.");
+				if (!$cc)
+					throw new Exception("cc null.");
+				if (!$nohp)
+					throw new Exception("nohp null.");
+				if (!$alamat)
+					throw new Exception("alamat null.");
 				
 				$secret = @$this->db->get_Where('user_api', array('uid'=>$uid))->row()->secret;
 				$signatureGenerate	= hash('sha256', $uid . $secret . $iduser);
@@ -169,10 +196,11 @@ class Jakone extends CI_Controller
 						$return['message'] = "Success";
 						
 						$dataResult = array(
-							'reference' => $data['body']['ConfirmTransactionOtherChannelResponse']['noRefferenceTrx']['_text'],
-							'transaction' => $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['acctFromNumber']['_text'],
-							'amount' => $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['amount']['_text'],
-							'description' => $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['payRef']['_text'],
+							'reference'		=> $data['body']['ConfirmTransactionOtherChannelResponse']['noRefferenceTrx']['_text'],
+							'transaction'	=> $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['acctFromNumber']['_text'],
+							'amount'		=> $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['amount']['_text'],
+							'description'	=> $data['body']['ConfirmTransactionOtherChannelResponse']['transaction']['payRef']['_text'],
+							'kdvoucher'		=> $voucher,
 						);
 						
 						// $saldo['id']			= $pelanggan->row()->id;
@@ -181,9 +209,22 @@ class Jakone extends CI_Controller
 						// $saldo['jakone_active']	= 1;
 						// $saldo['jakone_json']	= json_encode($dataResult);
 						// $this->Jakone_model->update_saldo($pelanggan->row()->id, $saldo);
+						
+								$JsonVoucher	= array(
+									'kdvoucher'	=> $voucher,
+									'nopol'		=> $nopol,
+									'jenis'		=> $jenis,
+									'merk'		=> $merk,
+									'nama'		=> $nama,
+									'nik'		=> $nik,
+									'cc'		=> $cc,
+									'nohp'		=> $nohp,
+									'alamat'	=> $alamat,
+								);
+								
 								$addvoucher	= array(
 									'kdvoucher'		=> $voucher,
-									'json'			=> "",
+									'json'			=> json_encode($JsonVoucher),
 									'channel'		=> "JAKONE",
 									'status'		=> 1,
 								);
@@ -223,7 +264,7 @@ class Jakone extends CI_Controller
 		$dataParam = file_get_contents('php://input');
 		$result = json_decode($dataParam, true);
 			
-			$phone = @$result["phone"]; //'0887912193';
+			$phone 		= @$result["phone"]; //'0887912193';
 			$uid 		= @$result["uid"];
 			$signature 	= @$result["signature"];
 			
@@ -650,7 +691,7 @@ class Jakone extends CI_Controller
 				$data = array("httpCode" => $httpCode, "request" => $request );
 				
 				file_put_contents('jakoone.txt', "*** request : " . $param['params_string'] . " ***\r\n", FILE_APPEND | LOCK_EX);
-				file_put_contents('jakoone.txt', "*** response : " . $httpCode . " " . ($data) . " ***\r\n\r\n", FILE_APPEND | LOCK_EX);
+				file_put_contents('jakoone.txt', "*** response : " . $httpCode . " " . ($request) . " ***\r\n\r\n", FILE_APPEND | LOCK_EX);
 				return $data;
 	}
 	

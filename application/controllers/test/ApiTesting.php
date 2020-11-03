@@ -873,8 +873,8 @@ class ApiTesting extends CI_Controller {
 					$result = json_decode($request, true);
 
 					$json_pretty = json_encode($result, JSON_PRETTY_PRINT);
-					echo $json_pretty;
-					// var_dump($request);
+					// echo $json_pretty;
+					var_dump($request);
 					
 				}
 				else {
@@ -1013,13 +1013,21 @@ class ApiTesting extends CI_Controller {
 	}
 	
 	public function APIpaymentJakone(){
-		header('Content-Type: application/json');
+				header('Content-Type: application/json');
 				
 				$uid		= "10005"; 
 				$secret		= "2b261a8987c004580e24c2d8137485b425b6a0170257447b6745edaa6c073f8f"; 
 				$iduser		= "P1600573252";
-				$password	= "111111";
-				
+				$password	= "111111"; // bikin inputan password
+				$nopol		= "5325TDW";
+				$jenis		= "SPD-MTR >50CC";
+				$merk		= "HONDA";
+				$nama		= "ACEP HIDAYAT,SE";
+				$nik		= "3175031004760009";
+				$cc			= "345433";
+				$nohp		= "08176983666";
+				$alamat		= "CIPINANG LONTAR RT12/6 CIP MUARA JT";
+			
 				$signature	= hash('sha256', $uid . $secret . $iduser);
 
 				$params = array(
@@ -1027,7 +1035,16 @@ class ApiTesting extends CI_Controller {
 					'signature'	=> $signature,
 					
 					'iduser'		=> $iduser,	
-					'password'		=> $password,	
+					'password'		=> $password,
+					'kdvoucher'		=> $voucher,
+					'nopol'			=> $nopol,
+					'jenis'			=> $jenis,
+					'merk'			=> $merk,
+					'nama'			=> $nama,
+					'nik'			=> $nik,
+					'cc'			=> $cc,
+					'nohp'			=> $nohp,
+					'alamat'		=> $alamat,
 				);
 
 				$params_string = json_encode($params);
