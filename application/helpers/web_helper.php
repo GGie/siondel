@@ -11,6 +11,18 @@ function number_hp_prefix($originalNumber){
   return $internationalNumber;
 }
 
+function number_hp_zero($originalNumber){
+  $countryCode = '0'; // Replace with known country code of user.
+  $internationalNumber = preg_replace('/^62/', $countryCode, $originalNumber);
+  
+  if ( substr($internationalNumber, 0, 1) == 0 ) {
+	$result = $internationalNumber;
+  } else {
+	$result = "0" . $internationalNumber;
+  }
+  return $result;
+}
+
 function update_transaksi_log($id, $desc){
     $init =& get_instance();
 		$transaksi_log = array(
@@ -61,4 +73,61 @@ function menu($menu_id, $akses)
 		return $user->$akses;
 	}
 	
+}
+
+function JakoneTranslate($text)
+{
+	$text = strtolower($text);
+	$returnText = $text;
+	
+	if($text == "account blocked.")
+		$returnText = "Akun Jakone Terblokir";
+	if($text == "Customer not found.")
+		$returnText = "Merchant Code (CIF CASA) dari request tidak di temukan";
+	if($text == "Account From not found.")
+		$returnText = "No Account tidak ditemukan";
+	if($text == "Your account is not allowed to make transaction in this Merchant")
+		$returnText = "No Account Bukan Account Casa";
+	if($text == "Process successful.")
+		$returnText = "Proses Berhasil";
+	if($text == "Data not found.")
+		$returnText = "Data transaksi tidak di temukan (reference nya salah)";
+	if($text == "Transaction failed with exception")
+		$returnText = "Proses transaksi gagal";
+	if($text == "Transaction not found.")
+		$returnText = "Transaksi tidak di temukan";
+	if($text == "username not found.")
+		$returnText = "Akun Jakone Tidak di temukan";
+	if($text == "bad credential.")
+		$returnText = "Password Jakone Salah";
+	
+	return $returnText;
+	
+}
+
+function nopol($nopol){
+	
+	$str_nospace = str_replace(" ", "", $nopol); // replace space
+	
+	$str_first = substr($str_nospace, 0, 1);
+	
+	if (is_numeric($str_first)){
+		//Jika huruf pertama angka
+		$str = $str_nospace;
+	} else {
+		//Jika huruf pertama bukan angka
+		//remove 1 caracter
+		$str = substr($str_nospace, 1);
+		
+		//cek karakter pertama numerik atau bukan
+		$str_first = substr($str, 0, 1);
+		if (is_numeric($str_first)){
+			//Jika huruf pertama angka
+			$str = $str;
+		} else {
+			$str = substr($str, 1);
+		}
+	}
+
+	return $str;
 }

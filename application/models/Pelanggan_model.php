@@ -473,7 +473,7 @@ class Pelanggan_model extends CI_model
     {
         $this->db->select('*');
         $this->db->from('transaksi');
-        $this->db->join('transaksi_detail_send', 'transaksi.id = transaksi_detail_send.id_transaksi', 'left');
+        // $this->db->join('transaksi_detail_send', 'transaksi.id = transaksi_detail_send.id_transaksi', 'left');
         $this->db->where($cond);
         $cek = $this->db->get();
         return $cek;

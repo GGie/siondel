@@ -145,6 +145,24 @@ class Pelanggan extends REST_Controller
         // }
     // }
 	
+	function logs($title = "", $request = "", $response = ""){
+		
+		$month = date('Y-m');
+		
+		// create dir logs
+		if (!is_dir('logs'))
+		  mkdir('logs');
+	  
+		// create dir logs -> month
+		if (!is_dir('logs/' . $month)) 
+		  mkdir('logs/' . $month);
+	  
+		file_put_contents('logs/' .$month. '/LOG_' . date('Ymd') . '.txt', "Date: " . date('Y-m-d H:i:s') . " - " . $title . " \r", FILE_APPEND | LOCK_EX);
+		file_put_contents('logs/' .$month. '/LOG_' . date('Ymd') . '.txt', "request : " . json_encode($request) . " \r", FILE_APPEND | LOCK_EX);
+		file_put_contents('logs/' .$month. '/LOG_' . date('Ymd') . '.txt', "response : " . json_encode($response) . " \r\n\r\n", FILE_APPEND | LOCK_EX);
+		
+	}
+	
 	function finish_post()
     {
         if (!isset($_SERVER['PHP_AUTH_USER'])) {
@@ -166,6 +184,8 @@ class Pelanggan extends REST_Controller
             'id' => $dec_data->id_transaksi
         );
 
+		$this->logs("finish_post : ", $dec_data, $data_req);
+		
         $where_trans['id'] = $dec_data->id_transaksi;
 		$get_data = $this->Pelanggan_model->get_data_transaksi($where_trans);
 		
@@ -185,15 +205,19 @@ class Pelanggan extends REST_Controller
 					'message' => 'fail',
 					'data' => $finish_transaksi['data']
 				);
+				$this->logs("finish_transaksi : ", $dec_data, $message);
 				$this->response($message, 200);
 			}
+			
 			
 		} else {
 			$message = array(
 				'message' => 'Bukan driver anda',
 				'data' => 'failed'
 			);
+			$this->logs("id_pelanggan null : ", $dec_data, $message);
 			$this->response($message, 200);
+			
 		}
     }
 	

@@ -130,7 +130,7 @@ class ApiTesting extends CI_Controller {
 					'signature'	=> $signature,
 					
 					'email'		=> $email,
-					'pass'		=> $pass,		
+					'password'	=> $pass,		
 				);
 
 				$params_string = json_encode($params);
@@ -138,7 +138,8 @@ class ApiTesting extends CI_Controller {
 				// file_put_contents('log.txt', "*** " . $params_string . " ***\r\n", FILE_APPEND | LOCK_EX);
 				
 				// $url = 'http://localhost:8080/public_apps/api/customer/login';
-				$url = 'http://project.opus-id.com/siondel/api/customer/login';
+				// $url = 'http://project.opus-id.com/siondel/api/customer/login';
+				$url = 'http://103.140.90.146/ondel/api/customer/login';
 
 				$ch = curl_init();
 
@@ -426,7 +427,7 @@ class ApiTesting extends CI_Controller {
 				$uid		= "10005"; 
 				$secret		= "2b261a8987c004580e24c2d8137485b425b6a0170257447b6745edaa6c073f8f"; 
 				// $kdvoucher	= "ME35HRQL"; 
-				$kdvoucher	= "2WKO3LEE"; 
+				$kdvoucher	= "E1GM2BXH"; 
 				$phone		= "08211234567890"; //yang benar 08211234567890
 				
 				$signature	= hash('sha256', $uid . $secret . $kdvoucher);
@@ -444,9 +445,10 @@ class ApiTesting extends CI_Controller {
 				// file_put_contents('log.txt', "*** " . $params_string . " ***\r\n", FILE_APPEND | LOCK_EX);
 				
 				// $url = 'http://project.opus-id.com/siondel/api/customer/kdvoucher';
-				$url = 'http://localhost:8080/public_apps/api/customer/kdvoucher';
+				// $url = 'http://localhost:8080/public_apps/api/customer/kdvoucher';
 				// $url = 'http://103.41.206.172/ondel/api/customer/kdvoucher';
 				// $url = 'http://103.41.206.187/ondel/api/customer/kdvoucher';
+				$url = 'http://103.140.90.146/ondel/api/customer/kdvoucher';
 
 				$ch = curl_init();
 
@@ -471,8 +473,8 @@ class ApiTesting extends CI_Controller {
 					$result = json_decode($request, true);
 
 					$json_pretty = json_encode($result, JSON_PRETTY_PRINT);
-					echo $json_pretty;
-					// var_dump($request);
+					// echo $json_pretty;
+					var_dump($request);
 					
 				}
 				else {
@@ -848,6 +850,7 @@ class ApiTesting extends CI_Controller {
 				
 				// $url = 'http://localhost:8080/public_apps/payment/jakone/infochannel';
 				$url = 'http://103.41.206.187/ondel/payment/jakone/infochannel'; //sandbox
+				// $url = 'http://103.140.90.146/ondel/payment/jakone/infochannel'; //sandbox
 				// $url = 'https://103.41.206.172/ondel/payment/jakone/infochannel'; //production
 
 				$ch = curl_init();
@@ -892,8 +895,8 @@ class ApiTesting extends CI_Controller {
 				$placeOfBirth	= "Jakarta";
 				$dateOfBirth	= "1992-06-25"; 
 				$password		= "111111";
-				$msisdn			= "085156447932";
-				$email			= "gietriejast@gmail.com";
+				$msisdn			= "081289344064";
+				$email			= "irfanresident067@gmail.com";
 				
 				$signature	= hash('sha256', $uid . $secret . $msisdn);
 
@@ -914,8 +917,8 @@ class ApiTesting extends CI_Controller {
 				
 				// file_put_contents('log.txt', "*** " . $params_string . " ***\r\n", FILE_APPEND | LOCK_EX);
 				
-				$url = 'http://localhost:8080/public_apps/payment/jakone/register';
-				// $url = 'http://103.41.206.187/ondel/payment/jakone/register'; //sandbox
+				// $url = 'http://localhost:8080/public_apps/payment/jakone/register';
+				$url = 'http://103.41.206.187/ondel/payment/jakone/register'; //sandbox
 				// $url = 'https://103.41.206.172/ondel/payment/jakone/register'; //production
 
 				$ch = curl_init();
@@ -941,8 +944,8 @@ class ApiTesting extends CI_Controller {
 					$result = json_decode($request, true);
 
 					$json_pretty = json_encode($result, JSON_PRETTY_PRINT);
-					echo $json_pretty;
-					// var_dump($request);
+					// echo $json_pretty;
+					var_dump($request);
 					
 				}
 				else {
@@ -1011,7 +1014,7 @@ class ApiTesting extends CI_Controller {
 					echo $httpCode . " - " . $request;
 				}
 	}
-	
+
 	public function APIpaymentJakone(){
 				header('Content-Type: application/json');
 				
@@ -1019,13 +1022,13 @@ class ApiTesting extends CI_Controller {
 				$secret		= "2b261a8987c004580e24c2d8137485b425b6a0170257447b6745edaa6c073f8f"; 
 				$iduser		= "P1600573252";
 				$password	= "111111"; // bikin inputan password
-				$nopol		= "5325TDW";
+				$nopol		= "0888PO"; //"5325TDW";
 				$jenis		= "SPD-MTR >50CC";
 				$merk		= "HONDA";
 				$nama		= "ACEP HIDAYAT,SE";
 				$nik		= "3175031004760009";
 				$cc			= "345433";
-				$nohp		= "08176983666";
+				$nohp		= "085156447932"; //"08176983666";
 				$alamat		= "CIPINANG LONTAR RT12/6 CIP MUARA JT";
 			
 				$signature	= hash('sha256', $uid . $secret . $iduser);
@@ -1036,7 +1039,6 @@ class ApiTesting extends CI_Controller {
 					
 					'iduser'		=> $iduser,	
 					'password'		=> $password,
-					'kdvoucher'		=> $voucher,
 					'nopol'			=> $nopol,
 					'jenis'			=> $jenis,
 					'merk'			=> $merk,
@@ -1051,9 +1053,10 @@ class ApiTesting extends CI_Controller {
 				
 				// file_put_contents('log.txt', "*** " . $params_string . " ***\r\n", FILE_APPEND | LOCK_EX);
 				
-				$url = 'http://localhost:8080/public_apps/payment/jakone/payment';
-				// $url = 'http://103.41.206.187/ondel/payment/jakone/payment'; //sandbox
-				// $url = 'https://103.41.206.172/ondel/payment/jakone/payment'; //production
+				// $url = 'http://localhost:8080/public_apps/payment/jakone/ochannel';
+				$url = 'http://103.140.90.146/ondel/payment/jakone/payment';
+				// $url = 'http://103.41.206.187/ondel/payment/jakone/transaksi'; //sandbox
+				// $url = 'https://103.41.206.172/ondel/payment/jakone/transaksi'; //production
 
 				$ch = curl_init();
 
@@ -1086,6 +1089,7 @@ class ApiTesting extends CI_Controller {
 					echo $httpCode . " - " . $request;
 				}
 	}
+
 	
 	public function APIGuide(){
 		header('Content-Type: application/json');
@@ -1143,4 +1147,61 @@ class ApiTesting extends CI_Controller {
 				}
 	}
 	
+	public function APIGuide123(){
+		header('Content-Type: application/json');
+				
+				$uid		= "10005"; 
+				$secret		= "2b261a8987c004580e24c2d8137485b425b6a0170257447b6745edaa6c073f8f"; 
+				$time		= time(); 
+				
+				$signature	= hash('sha256', $uid . $secret . $time);
+
+				$params = array(
+					'uid'		=> $uid,
+					'signature'	=> $signature,
+						
+					'time'		=> $time
+				);
+
+				$params_string = json_encode($params);
+				
+				// file_put_contents('log.txt', "*** " . $params_string . " ***\r\n", FILE_APPEND | LOCK_EX);
+				
+				// $url = 'http://localhost:8080/public_apps/api/customer/guide';
+				$url = 'http://103.41.206.187/ondel/api/customer/guide'; //sandbox
+				// $url = 'https://103.41.206.172/ondel/api/customer/guide'; //production
+
+				$ch = curl_init();
+
+				curl_setopt($ch, CURLOPT_URL, $url); 
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $params_string);                                                                  
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+					'Content-Type: application/json',                                                                                
+					'Content-Length: ' . strlen($params_string))                                                                       
+				);   
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+				//execute post
+				$request = curl_exec($ch);
+				$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				// var_dump($request);
+				if($httpCode == 200)
+				{
+					header('Content-Type: application/json');
+					
+					$result = json_decode($request, true);
+
+					$json_pretty = json_encode($result, JSON_PRETTY_PRINT);
+					echo $json_pretty;
+					// var_dump($request);
+					
+				}
+				else {
+					echo $httpCode . " - " . $request;
+				}
+	}
+
+
 }

@@ -703,6 +703,25 @@ class Driver_model extends CI_model
         }
     }
 
+	
+	function logs($title = "", $request = "", $response = ""){
+		
+		$month = date('Y-m');
+		
+		// create dir logs
+		if (!is_dir('logs'))
+		  mkdir('logs');
+	  
+		// create dir logs -> month
+		if (!is_dir('logs/' . $month)) 
+		  mkdir('logs/' . $month);
+	  
+		file_put_contents('logs/' .$month. '/LOG_' . date('Ymd') . '.txt', "Date: " . date('Y-m-d H:i:s') . " - " . $title . " \r", FILE_APPEND | LOCK_EX);
+		file_put_contents('logs/' .$month. '/LOG_' . date('Ymd') . '.txt', "request : " . json_encode($request) . " \r", FILE_APPEND | LOCK_EX);
+		file_put_contents('logs/' .$month. '/LOG_' . date('Ymd') . '.txt', "response : " . json_encode($response) . " \r\n\r\n", FILE_APPEND | LOCK_EX);
+		
+	}
+	
     function cut_driver_saldo_by_order($data)
     {
         $this->db->select('komisi');
@@ -726,20 +745,23 @@ class Driver_model extends CI_model
             );
             $ins_trans = $this->db->insert('wallet', $data_ins);
             if ($ins_trans) {
+				$saldo_akhir = ($saldo + $hasil);
                 $this->db->where('id_user', $data['id_driver']);
-                $upd = $this->db->update('saldo', array('saldo' => ($saldo + $hasil)));
+                $upd = $this->db->update('saldo', array('saldo' => $saldo_akhir));
                 if ($this->db->affected_rows() > 0) {
                     return array(
                         'status' => true,
                         'data' => array('saldo' => ($saldo + $hasil))
                     );
                 } else {
+					$this->logs("affected_rows > 0 : ", $ins_trans, array('saldo_akhir'=>$saldo_akhir));
                     return array(
                         'status' => false,
                         'data' => 'fail in update'
                     );
                 }
             } else {
+				$this->logs("driver_model ins_trans null : ", $ins_trans, $data_ins);
                 return array(
                     'status' => false,
                     'data' => []

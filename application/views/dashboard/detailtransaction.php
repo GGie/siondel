@@ -22,6 +22,18 @@
                                 <h4 class="card-title">Status<p class="ml-2 badge badge-danger"><?= $transaksi['status_transaksi'] ?></p>
                                 </h4>
                             <?php } ?>
+							<?php if ($transaksi['status'] == '6') { ?>
+                                <h4 class="card-title">Status<p class="ml-2 badge badge-info"><?= $transaksi['status_transaksi'] ?></p>
+                                </h4>
+                            <?php } ?>
+							<?php if ($transaksi['status'] == '7') { ?>
+                                <h4 class="card-title">Status<p class="ml-2 badge badge-info"><?= $transaksi['status_transaksi'] ?></p>
+                                </h4>
+                            <?php } ?>
+							<?php if ($transaksi['status'] == '8') { ?>
+                                <h4 class="card-title">Status<p class="ml-2 badge badge-info"><?= $transaksi['status_transaksi'] ?></p>
+                                </h4>
+                            <?php } ?>
                             <br>
                             <div class="row">
 

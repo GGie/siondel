@@ -9,6 +9,41 @@ class Jakone_model extends CI_model
        return $this->db->update('saldo', $data);
     }
 	
+	//kdvoucher_payment
+	public function kdvoucherPaymentId()
+    {
+		$increment = 100001;
+		
+        $this->db->select('id');
+        $this->db->order_by('id', 'desc');
+        $id = @$this->db->get('kdvoucher_payment')->row()->id;
+		if ( isset($id) )
+			return ($id+1);
+		else{
+			return $increment;
+		}
+    }
+	
+	//kdvoucher_payment
+	public function kdvoucherPaymentUpdate($param)
+    {
+		$param['channel'] = "JAKONE";
+        $this->updateOnDuplicate('kdvoucher_payment', $param);
+    }
+	
+	public function updateOnDuplicate($table, $data ) {
+		 if (empty($table) || empty($data)) return false;
+		 $duplicate_data = array();
+		 
+		 foreach($data AS $key => $value) {
+			$duplicate_data[] = sprintf("%s='%s'", $key, addslashes($value));
+		 }
+
+		 $sql = sprintf("%s ON DUPLICATE KEY UPDATE %s", $this->db->insert_string($table, $data), implode(',', $duplicate_data));
+		 
+		 $this->db->query($sql);
+		 return $this->db->insert_id();
+	}
 	
     public function getAll($param = "")
     {
